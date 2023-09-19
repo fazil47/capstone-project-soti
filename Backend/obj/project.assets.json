@@ -11541,11 +11541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\CapstoneProject\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\capstone-project-soti\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\CapstoneProject\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\capstone-project-soti\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\fm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\CapstoneProject\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\capstone-project-soti\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

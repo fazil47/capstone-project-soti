@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KaIV6dx7MHd1UWjXNdqJJx+5Pf7p/j1KgsoQp1/+YcZux4C38nkxvr9FTr2q6w6QAfjQkcnR4mUiMqfrD/JQSQ==",
+  "dgSpecHash": "Q6tAvtmYj4UUnvs/F7Lrou3Kc7abblT2rQS8hCdlxNvIJvCB0P+XGMAxBYFppkepCSI8yUgavWreI6KooLR4XA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\CapstoneProject\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\fm\\source\\repos\\Training\\Xebia\\capstone-project-soti\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fm\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\fm\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
