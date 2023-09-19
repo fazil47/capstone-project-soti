@@ -13,3 +13,4 @@ builder.Services.AddDbContext<OnlineGroceryStoreContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineGroceryStoreStr"))
 );
 ```
+5. Run project.
