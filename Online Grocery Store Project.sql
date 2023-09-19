@@ -33,7 +33,7 @@ create table Users
     DateOfBirth datetime check (datediff(year,DateOfBirth, getdate()) > 18),
     MobileNo char(10) unique not null,
     EmailId varchar(150) unique not null,
-	Password varchar(150) unique not null,
+    Password varchar(150) unique not null,
     CreatedDate datetime not null default getdate()
 )
 
@@ -86,9 +86,12 @@ VALUES
 ----------------------------------------------------------------------------------------------------------------------------------
 
 
-select * from Categories
-select * from Products
-select * from Users
+select *
+from Categories
+select *
+from Products
+select *
+from Users
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
