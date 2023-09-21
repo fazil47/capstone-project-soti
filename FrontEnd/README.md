@@ -8,6 +8,7 @@ You encounter the following error message or something similar when trying to ru
 
 
 ## Solution
+Try running `npm install` and it should work . If there exist warning due to difference in cli versions try solution below
 
 The solution to this problem is straightforward and involves installing the missing package `@angular-devkit/build-angular` as a development dependency in your project.
 
@@ -19,6 +20,5 @@ To do this, follow these steps:
 
 3. Run the following command to install the missing package as a development dependency: `npm install --save-dev @angular-devkit/build-angular`
 
-4. After which you might encounter error indicatting not to be depending on @angular/core , in that case run commnd `npm install`
 
 
