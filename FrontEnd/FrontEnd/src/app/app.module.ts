@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,13 @@ import { SubcatComponent } from './products/subcat/subcat.component';
 import { ProdListComponent } from './products/prod-list/prod-list.component';
 import { DetailsComponent } from './details/details.component';
 import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.component';
+import { LoginComponent } from './login/login.component';
+import { JwtModule } from "@auth0/angular-jwt";
+import { HttpClient } from '@angular/common/http';
+
+export function tokenGetter() { 
+  return localStorage.getItem("jwt"); 
+}
 
 @NgModule({
   declarations: [
@@ -28,11 +38,22 @@ import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.com
     SubcatComponent,
     ProdListComponent,
     DetailsComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes: []
+      }
+    }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]
