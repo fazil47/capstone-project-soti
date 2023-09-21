@@ -3,10 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,17 +16,16 @@ import { ProdListComponent } from './products/prod-list/prod-list.component';
 import { DetailsComponent } from './details/details.component';
 import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
-import { JwtModule } from "@auth0/angular-jwt";
+import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 
-export function tokenGetter() { 
-  return localStorage.getItem("jwt"); 
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
 }
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     AboutComponent,
     HomePageComponent,
     HeaderComponent,
@@ -39,7 +36,7 @@ export function tokenGetter() {
     ProdListComponent,
     DetailsComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,13 +46,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5001"],
-        disallowedRoutes: []
-      }
-    }
-    ),
+        allowedDomains: ['localhost:5001'],
+        disallowedRoutes: [],
+      },
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
