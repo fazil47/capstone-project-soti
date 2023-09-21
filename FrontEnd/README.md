@@ -17,5 +17,7 @@ To do this, follow these steps:
 
 2. Navigate to the root directory of your Angular project. You can use the `cd` command to change your working directory if needed.
 
-3. Run the following command to install the missing package as a development dependency:
+3. Run the following command to install the missing package as a development dependency: `npm install --save-dev @angular-devkit/build-angular`
+
+
 
