@@ -19,5 +19,7 @@ To do this, follow these steps:
 
 3. Run the following command to install the missing package as a development dependency: `npm install --save-dev @angular-devkit/build-angular`
 
+4. Run the following command after completing the above steps: `npm install`
+
 
 
