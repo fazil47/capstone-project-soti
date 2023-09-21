@@ -8,6 +8,7 @@ You encounter the following error message or something similar when trying to ru
 
 
 ## Solution
+Try running `npm install` and it should work . If there exist warning due to difference in cli versions try solution below
 
 The solution to this problem is straightforward and involves installing the missing package `@angular-devkit/build-angular` as a development dependency in your project.
 
