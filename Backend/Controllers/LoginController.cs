@@ -48,7 +48,7 @@ namespace Backend.Controllers
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
 
-                return Ok(new AuthenticatedResponse { Token = tokenString });
+                return Ok(new AuthenticatedResponse { Token = tokenString, Name = dbUser.FirstName + " " + dbUser.LastName });
             }
 
             return Unauthorized();

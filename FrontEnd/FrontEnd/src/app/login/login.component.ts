@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Login } from '../models/login.model';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -6,15 +6,15 @@ import { Router } from '@angular/router';
 import { AuthenticatedResponse } from '../models/authenticated-response.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   credentials: Login = {emailid:'', password:''};
   invalidLogin: boolean;
+  name:string;
 
   constructor(private router: Router, private jwtHelper: JwtHelperService,private http: HttpClient){}
 
@@ -25,9 +25,13 @@ export class LoginComponent {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
-        next: (response: AuthenticatedResponse) => {
+        next: (response:AuthenticatedResponse) => {
           const token = response.token;
-          localStorage.setItem("jwt", token); 
+          this.name = response.name;
+          
+          console.log(this.name);
+          localStorage.setItem('currentUser', JSON.stringify({ token: token, name: this.name }))
+
           this.invalidLogin = false; 
           this.router.navigate(["/login"]);
         },
@@ -35,9 +39,20 @@ export class LoginComponent {
       })
     }
   }
+  ngOnInit(): void {
+    if(localStorage.getItem("currentUser")!=null)
+    {
+    this.name = JSON.parse(localStorage.getItem("currentUser")).name;
+    }
+  }
 
   isUserAuthenticated = (): boolean => {
-    const token = localStorage.getItem("jwt");
+    if(localStorage.getItem("currentUser")==null)
+    {
+      return false;
+    }
+    const token = JSON.parse(localStorage.getItem("currentUser")).token;
+
 
     if (token && !this.jwtHelper.isTokenExpired(token)){
       return true;
@@ -47,7 +62,10 @@ export class LoginComponent {
   }
 
   logOut = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("currentUser");
+   
+
+    this.name = "";
   }
 
 }
