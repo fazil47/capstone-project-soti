@@ -1,22 +1,25 @@
 <div class="container" *ngIf="!isUserAuthenticated()">
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-      <h2 class="form-signin-heading">Login</h2>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <h2 class="form-signin-heading text-center">Login</h2>
         <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
-        <br/>
+        <br />
         <label for="username" class="sr-only">Email address</label>
-        <input type="email" id="username" name="username" [(ngModel)]="credentials.emailid" 
-          class="form-control" placeholder="User Name" required>
-        <br/>
+        <input type="email" id="username" name="username" [(ngModel)]="credentials.emailid" class="form-control"
+          placeholder="User Name" required>
+        <br />
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="credentials.password" 
-          class="form-control" placeholder="Password" required>
-        <br/>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.password" class="form-control"
+          placeholder="Password" required>
+        <br />
         <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">Log in</button>
-    </form>
+      </form>
+    </div>
   </div>
+</div>
 
-  <ul>
-    <h2 *ngIf="isUserAuthenticated()">Login Successful</h2>
-    <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></li>
-  </ul>
-  
+<ul>
+  <h2 *ngIf="isUserAuthenticated()">Login Successful</h2>
+  <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></li>
+</ul>

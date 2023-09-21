@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Backend.Controllers
 {
@@ -21,7 +23,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Products
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
           if (_context.Products == null)
@@ -32,7 +34,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Products/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
           if (_context.Products == null)
@@ -51,7 +53,7 @@ namespace Backend.Controllers
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.Id)
@@ -82,7 +84,7 @@ namespace Backend.Controllers
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
           if (_context.Products == null)
@@ -96,7 +98,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Products/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             if (_context.Products == null)

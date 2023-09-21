@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Backend.Controllers
 {
@@ -21,7 +23,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Categories
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
           if (_context.Categories == null)
@@ -32,7 +34,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Categories/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
           if (_context.Categories == null)
@@ -51,7 +53,7 @@ namespace Backend.Controllers
 
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
             if (id != category.Id)
@@ -82,7 +84,7 @@ namespace Backend.Controllers
 
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "User")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
           if (_context.Categories == null)
@@ -96,7 +98,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Categories/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if (_context.Categories == null)
