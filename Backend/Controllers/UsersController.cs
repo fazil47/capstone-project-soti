@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Backend.Controllers
 {
@@ -25,7 +27,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
           if (_context.Users == null)
@@ -36,7 +38,7 @@ namespace Backend.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
           if (_context.Users == null)
@@ -55,7 +57,7 @@ namespace Backend.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
@@ -100,7 +102,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             if (_context.Users == null)
