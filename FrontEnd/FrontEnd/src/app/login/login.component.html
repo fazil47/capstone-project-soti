@@ -20,6 +20,7 @@
 </div>
 
 <ul>
-  <h2 *ngIf="isUserAuthenticated()">Login Successful</h2>
+  <h2 *ngIf="isUserAuthenticated()">Login Successful, Welcome {{this.name}}</h2>
+  
   <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Logout</a></li>
 </ul>
