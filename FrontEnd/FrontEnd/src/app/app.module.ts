@@ -18,6 +18,8 @@ import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.com
 import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
+
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -51,7 +53,7 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
