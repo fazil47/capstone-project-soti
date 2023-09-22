@@ -18,10 +18,11 @@ export class ProductService {
 
   refreshProductList() {
     console.log(`Bearer ${localStorage.getItem('jwt')}`);
+    const bearerToken = (localStorage.getItem('currentUser') as any).token;
 
     this.objHttp
       .get(this.apiURL, {
-        headers: { Authentication: `Bearer ${localStorage.getItem('jwt')}` },
+        headers: { Authentication: `Bearer ${bearerToken}` },
       })
       .toPromise()
       .then((res) => {
