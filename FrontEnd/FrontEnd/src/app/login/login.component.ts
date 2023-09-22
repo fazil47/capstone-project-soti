@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit{
 
   
   logOut = () => {
-    localStorage.removeItem("currentUser");
-    this.logServ.name = "";
+    this.logServ.logout();
   }
 
 }

@@ -11,10 +11,10 @@ namespace Backend.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly OnlineGroceryStoreContext _context;
-        public LoginController(OnlineGroceryStoreContext context)
+        public AuthController(OnlineGroceryStoreContext context)
         {
             _context = context;
         }
@@ -38,6 +38,13 @@ namespace Backend.Controllers
                     new Claim(ClaimTypes.Role, "User")
                 };
 
+                if (user.EmailId=="admin@123" && user.Password=="admin123")
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                }
+
+               
+
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:5001",
                     audience: "https://localhost:4200",
@@ -53,5 +60,6 @@ namespace Backend.Controllers
 
             return Unauthorized();
         }
+
     }
 }
