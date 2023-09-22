@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
-import { Login } from '../models/login.model';
-import { LoginService } from '../shared/login.service';
+import { Login } from '../shared/models/login.model';
 import { NgForm } from '@angular/forms';
+import { LoginService } from '../shared/services/login.service';
 
 
 @Component({
@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit{
   
   logOut = () => {
     localStorage.removeItem("currentUser");
-   
-
     this.logServ.name = "";
   }
 

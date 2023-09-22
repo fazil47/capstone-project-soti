@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Backend.Controllers {
     [Authorize(AuthenticationSchemes = "Bearer")]
@@ -23,11 +24,14 @@ namespace Backend.Controllers {
 
         // GET: api/Products
         [HttpGet, Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts() {
-            if (_context.Products == null) {
-                return NotFound();
-            }
-            return await _context.Products.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        {
+          if (_context.Products == null)
+          {
+              return NotFound();
+          }
+           return await _context.Products.ToListAsync();
+           
         }
 
         // GET: api/Products/5

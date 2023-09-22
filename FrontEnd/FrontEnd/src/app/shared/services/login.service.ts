@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../models/login.model';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,9 +26,11 @@ export class LoginService {
       .subscribe({
         next: (response:AuthenticatedResponse) => {
           const token = response.token;
+          console.log(token);
           this.name = response.name;
           
           console.log(this.name);
+          localStorage.setItem('jwt',token);
           localStorage.setItem('currentUser', JSON.stringify({ token: token, name: this.name }))
 
           this.invalidLogin = false; 

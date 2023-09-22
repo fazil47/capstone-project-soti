@@ -21,10 +21,12 @@ import { HttpClient } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 
 
-export function tokenGetter() {
-  return localStorage.getItem('currentUser');
+export function tokenGetter() { 
+  // return (localStorage.getItem("currentUser") as any).token;
+  return localStorage.getItem("jwt"); 
 }
-
+// return localStorage.getItem("jwt"); 
+//
 @NgModule({
   declarations: [
     AppComponent,
