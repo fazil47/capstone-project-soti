@@ -21,7 +21,7 @@ export class LoginComponent {
   login(form:NgForm)
   {
     if (form.valid) {
-      this.http.post<AuthenticatedResponse>("http://localhost:5204/api/user/login", this.credentials, {
+      this.http.post<AuthenticatedResponse>("http://localhost:5001/api/user/login", this.credentials, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
