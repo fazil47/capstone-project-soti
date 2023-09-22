@@ -21,13 +21,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #508bfc;
+    background-color: #3C486B;
     height: 660px;
     font-family: 'Courier New', Courier, monospace;
     
 }
 
-.logout{
+.logoutbtn{
     border-radius: 10px;
-    background-color: #E57C23;
+    background-color: #ffffff;
+    color: black;
+    ;
 }
