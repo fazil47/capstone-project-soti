@@ -1,5 +1,5 @@
 import { Component,OnInit} from '@angular/core';
-import { ProductsService } from '../shared/products.service';
+
 
 
 @Component({
@@ -8,8 +8,8 @@ import { ProductsService } from '../shared/products.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
-  constructor(public productServ:ProductsService){}
+  constructor(){}
   ngOnInit(): void {
-    this.productServ.fetchProducts();
+  
   }
 }
