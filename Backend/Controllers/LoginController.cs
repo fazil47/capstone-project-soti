@@ -40,7 +40,7 @@ namespace Backend.Controllers
 
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:5001",
-                    audience: "https://localhost:5001",
+                    audience: "https://localhost:4200",
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials

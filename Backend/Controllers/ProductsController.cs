@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Backend.Controllers
 {
@@ -30,7 +31,8 @@ namespace Backend.Controllers
           {
               return NotFound();
           }
-            return await _context.Products.ToListAsync();
+           return await _context.Products.ToListAsync();
+           
         }
 
         // GET: api/Products/5

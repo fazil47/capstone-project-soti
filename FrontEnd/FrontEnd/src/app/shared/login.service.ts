@@ -19,15 +19,17 @@ export class LoginService {
 
   login(form:NgForm,credentials)
   {
-      this.http.post<AuthenticatedResponse>("http://localhost:5204/api/user/login", credentials, {
+      this.http.post<AuthenticatedResponse>("http://localhost:5001/api/user/login", credentials, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
         next: (response:AuthenticatedResponse) => {
           const token = response.token;
+          console.log(token);
           this.name = response.name;
           
           console.log(this.name);
+          localStorage.setItem('jwt',token);
           localStorage.setItem('currentUser', JSON.stringify({ token: token, name: this.name }))
 
           this.invalidLogin = false; 

@@ -24,12 +24,12 @@ builder.Services.AddAuthentication(opt => {
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuer = false,
+            ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = "https://localhost:5001",
-            ValidAudience = "http://localhost:5001",
+            ValidAudience = "http://localhost:4200",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
         };
     });
@@ -58,7 +58,14 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwaggerUI();
 }
 app.UseCors("EnableCORS");
+
+//First UseAuthentication then UserAuthorization
+
+app.UseAuthentication();
+
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 
