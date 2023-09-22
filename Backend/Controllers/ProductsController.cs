@@ -10,16 +10,15 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace Backend.Controllers
-{
+namespace Backend.Controllers {
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
-    {
+    public class ProductsController : ControllerBase {
         private readonly OnlineGroceryStoreContext _context;
 
-        public ProductsController(OnlineGroceryStoreContext context)
-        {
+        public ProductsController(OnlineGroceryStoreContext context) {
             _context = context;
         }
 
@@ -37,16 +36,13 @@ namespace Backend.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
-        {
-          if (_context.Products == null)
-          {
-              return NotFound();
-          }
+        public async Task<ActionResult<Product>> GetProduct(int id) {
+            if (_context.Products == null) {
+                return NotFound();
+            }
             var product = await _context.Products.FindAsync(id);
 
-            if (product == null)
-            {
+            if (product == null) {
                 return NotFound();
             }
 
@@ -56,27 +52,19 @@ namespace Backend.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
-        {
-            if (id != product.Id)
-            {
+        public async Task<IActionResult> PutProduct(int id, Product product) {
+            if (id != product.Id) {
                 return BadRequest();
             }
 
             _context.Entry(product).State = EntityState.Modified;
 
-            try
-            {
+            try {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
+            } catch (DbUpdateConcurrencyException) {
+                if (!ProductExists(id)) {
                     return NotFound();
-                }
-                else
-                {
+                } else {
                     throw;
                 }
             }
@@ -87,12 +75,10 @@ namespace Backend.Controllers
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost, Authorize(Roles = "User")]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-          if (_context.Products == null)
-          {
-              return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
-          }
+        public async Task<ActionResult<Product>> PostProduct(Product product) {
+            if (_context.Products == null) {
+                return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
+            }
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
@@ -101,15 +87,12 @@ namespace Backend.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> DeleteProduct(int id)
-        {
-            if (_context.Products == null)
-            {
+        public async Task<IActionResult> DeleteProduct(int id) {
+            if (_context.Products == null) {
                 return NotFound();
             }
             var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
+            if (product == null) {
                 return NotFound();
             }
 
@@ -119,8 +102,7 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        private bool ProductExists(int id)
-        {
+        private bool ProductExists(int id) {
             return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }

@@ -1,1 +1,24 @@
-<h5>Products under specified Category in a grid</h5>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <!-- <th>Discontinued</th>
+      <th>Category</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of serv.pList">
+      <td>{{ p.ID }}</td>
+      <td>{{ p.Name }}</td>
+      <td>{{ p.Description }}</td>
+      <td>{{ p.Price }}</td>
+      <td>{{ p.Stock }}</td>
+      <!-- <td>{{ p.Discontinued }}</td>
+      <td>{{ p.Category }}</td> -->
+    </tr>
+  </tbody>
+</table>

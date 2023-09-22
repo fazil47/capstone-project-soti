@@ -57,6 +57,8 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseAuthentication();
+app.UseRouting();
 app.UseCors("EnableCORS");
 
 //First UseAuthentication then UserAuthorization
@@ -64,6 +66,10 @@ app.UseCors("EnableCORS");
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 
 
