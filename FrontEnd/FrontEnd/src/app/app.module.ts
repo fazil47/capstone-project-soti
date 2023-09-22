@@ -22,7 +22,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 export function tokenGetter() {
-  return localStorage.getItem('jwt');
+  return localStorage.getItem('currentUser');
 }
 
 @NgModule({
