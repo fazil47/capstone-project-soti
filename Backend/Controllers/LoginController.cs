@@ -11,10 +11,10 @@ namespace Backend.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class LoginController : ControllerBase
     {
         private readonly OnlineGroceryStoreContext _context;
-        public AuthController(OnlineGroceryStoreContext context)
+        public LoginController(OnlineGroceryStoreContext context)
         {
             _context = context;
         }
