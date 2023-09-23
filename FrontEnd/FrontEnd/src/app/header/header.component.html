@@ -22,8 +22,11 @@
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
     </div>
-    <div class="ml-auto">
-      <a class="btn btn-primary" routerLink="login">Login</a>
+    <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
+      <a   class="btn btn-primary" routerLink="login">Login/Register</a>
+    </div>
+    <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
+      <a   class="btn btn-primary" (click)="this.loginServ.logout()">Logout</a>
     </div>
   </div>
 </nav>

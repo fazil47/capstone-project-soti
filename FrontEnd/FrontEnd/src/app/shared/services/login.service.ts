@@ -39,6 +39,8 @@ export class LoginService {
         error: (err: HttpErrorResponse) => this.invalidLogin = true
       })
   }
+
+  
   isUserAuthenticated = (): boolean => {
     if(localStorage.getItem("currentUser")==null)
     {
@@ -52,6 +54,13 @@ export class LoginService {
     }
 
     return false;
+  }
+
+  logout()
+  {
+    localStorage.removeItem("currentUser");
+    this.name = "";
+    this.router.navigate(["/login"]);
   }
 
 }
