@@ -1,1 +1,11 @@
-<h5>subcategories from api and display in sidebar</h5>
+<div class="sidebar">
+    <!-- Sidebar content goes here -->
+    <ul class="list-unstyled">
+      <li>
+        <a href="#" class="sidebar-link" *ngFor="let side of pD.pCategory">
+         {{side.categoryName}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  
