@@ -26,7 +26,7 @@ namespace Backend.Controllers
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/User
         [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -37,7 +37,7 @@ namespace Backend.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/User/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -55,7 +55,7 @@ namespace Backend.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutUser(int id, User user)
@@ -86,7 +86,7 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("register")]
         public async Task<ActionResult<User>> AddUser(User user)
@@ -132,7 +132,7 @@ namespace Backend.Controllers
             return StatusCode(409, $"User with email '{user.EmailId}' already exists.");
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/User/5
         [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteUser(int id)
         {

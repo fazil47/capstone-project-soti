@@ -24,11 +24,8 @@ export class SubcatComponent implements OnInit {
     
   }
   
-
-  
-
-
-
-
-
+  refreshProductList(categoryId:number)
+  {
+    this.pD.refreshProductsByCategory(categoryId);
+  }
 }

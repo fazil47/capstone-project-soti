@@ -48,6 +48,23 @@ namespace Backend.Controllers {
 
             return product;
         }
+        [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
+        public async Task<ActionResult<Product>> GetProductByCatId(int catId)
+        {
+            if (_context.Products == null)
+            {
+                return NotFound();
+            }
+
+            var products = await _context.Products.
+                                Where(p => p.CategoryId == catId).ToListAsync();
+
+
+            if (!products.Any())
+                return NotFound();
+
+            return Ok(products);
+        }
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
