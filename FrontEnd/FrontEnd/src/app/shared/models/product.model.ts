@@ -4,6 +4,7 @@ export class Product {
     productDescription?: string;
     unitPrice?: number;
     unitsInStock?: number;
+    categoryId?:number;
     discontinued:boolean;
     category:null;
 }

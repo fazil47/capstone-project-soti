@@ -12,10 +12,14 @@ import { ProductService } from 'src/app/shared/services/product.service';
   styleUrls: ['./prod-list.component.css'],
 })
 export class ProdListComponent implements OnInit {
-  constructor(public serv: ProductService) {}
 
+  constructor(public serv: ProductService) {}
   ngOnInit(): void {
+
     this.serv.refreshProductList();
    
   }
+
+
+  
 }
