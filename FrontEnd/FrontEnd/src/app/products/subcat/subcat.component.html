@@ -1,7 +1,7 @@
 <div class="sidebar">
     <!-- Sidebar content goes here -->
     <ul class="list-unstyled">
-      <li class="sidebar-link" *ngFor="let side of pD.pCategory" (click)="logCategoryId(side.id)">          
+      <li class="sidebar-link" *ngFor="let side of pD.pCategory" (click)="refreshProductList(side.id)">          
          {{side.categoryName}}        
       </li>
     </ul>

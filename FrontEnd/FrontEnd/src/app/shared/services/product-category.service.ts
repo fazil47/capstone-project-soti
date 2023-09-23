@@ -3,6 +3,8 @@ import { ProductCategory } from "../models/product-category";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { ProductService } from "./product.service";
+import { Product } from "../models/product.model";
 
 
 @Injectable({
@@ -13,6 +15,7 @@ export class ProductCategoryService  {
     pCategory:ProductCategory[] =[];
 
     constructor(
+        private prodServ:ProductService,
         private objHttp: HttpClient,
         private jwtHelper: JwtHelperService
       ) {}
@@ -27,6 +30,25 @@ export class ProductCategoryService  {
               Array.prototype.push.apply(this.pCategory, response as ProductCategory[]);
             },
             error: (err: HttpErrorResponse) => console.log(err)
+          });
+      }
+
+    readonly apiProductUrl='http://localhost:5001/api/Products/cat/';
+
+      refreshProductsByCategory(catId:number)
+      {
+        this.objHttp.get(this.apiProductUrl+catId)
+          .subscribe({
+            next: (response) => {
+              this.prodServ.PList = response as Product[];
+            },
+            error: (err: HttpErrorResponse) => {
+              console.log(err)
+              if(err.statusText=="Not Found")
+              {
+                this.prodServ.PList = []
+              }
+            }
           });
       }
 
