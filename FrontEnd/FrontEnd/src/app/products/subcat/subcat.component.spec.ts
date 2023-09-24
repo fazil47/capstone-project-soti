@@ -8,7 +8,7 @@ describe('SubcatComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SubcatComponent]
+      declarations: [SubcatComponent],
     });
     fixture = TestBed.createComponent(SubcatComponent);
     component = fixture.componentInstance;
