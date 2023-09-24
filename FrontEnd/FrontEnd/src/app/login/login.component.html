@@ -81,9 +81,5 @@
     <h2 *ngIf="logServ.isUserAuthenticated()">
       Login Successful, Welcome {{ logServ.name }}
     </h2>
-
-    <li *ngIf="logServ.isUserAuthenticated()" id="logoutbtn">
-      <a class="logout" (click)="logOut()">Logout</a>
-    </li>
   </ul>
 </section>
