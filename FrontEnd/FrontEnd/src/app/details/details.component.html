@@ -1,37 +1,21 @@
-<div class="container">
-    <h1 class="text-center">Details</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet est
-      pulvinar risus egestas euismod. Fusce vehicula faucibus massa, et consequat
-      ligula vehicula vel. Proin porta mi at erat fermentum, vel euismod nulla
-      pharetra. Praesent tincidunt turpis sit amet massa volutpat faucibus.
-      Phasellus ullamcorper luctus eros et congue. Phasellus accumsan pellentesque
-      ex, ullamcorper congue tellus pulvinar eu. Donec nec est ex. Nulla facilisi.
-      Suspendisse id lacus sit amet ipsum imperdiet auctor eu vel erat. Fusce eget
-      sapien a tellus euismod placerat sit amet in nisl. Phasellus commodo orci ac
-      dui mollis, ut faucibus leo fringilla. Cras eget vulputate odio, a porta
-      lorem. Mauris ante elit, vehicula tincidunt nisl at, finibus viverra neque.
-      Nam sagittis at ipsum et euismod. Nam hendrerit arcu ac iaculis aliquet.
-      Etiam diam ante, rutrum at elit ac, porttitor feugiat nulla. Nulla tincidunt
-      imperdiet ante a vestibulum. Sed sagittis metus suscipit neque porttitor, a
-      ultricies ante maximus. Sed ac massa lacus. Aliquam cursus diam non velit
-      maximus, non blandit tortor dapibus. Fusce consequat tortor quis pulvinar
-      maximus. Praesent viverra, libero ut dignissim mollis, massa sem maximus
-      est, eget vehicula sem est a arcu. Mauris et pharetra ligula. Vestibulum non
-      rhoncus purus. Nulla ut accumsan nisi. Nulla vehicula sapien sed nibh
-      sollicitudin convallis. Integer bibendum luctus dui id varius. Aenean
-      ultrices sapien a ante maximus tristique. Phasellus fermentum magna vel
-      ultrices ultricies. Aliquam tellus est, varius id finibus ac, dignissim vel
-      dui. Morbi eu purus egestas, rhoncus turpis laoreet, pharetra diam.
-      Phasellus eget orci sit amet sapien placerat lobortis et eu dui. Ut gravida
-      suscipit diam eu blandit. In hac habitasse platea dictumst. Pellentesque sem
-      orci, laoreet a metus at, vulputate cursus lacus. Phasellus sed malesuada
-      diam. Morbi convallis venenatis quam eget luctus. Aenean feugiat sed justo
-      eu feugiat. Morbi eget odio neque. Sed in purus euismod, vestibulum massa
-      eget, sodales dui. Cras facilisis vehicula eros vitae aliquam. Etiam non
-      nisi ac tellus facilisis pulvinar ac id eros. Cras id consectetur libero,
-      nec eleifend felis. Nunc tempor sed urna quis varius. Aliquam mattis nunc
-      magna, id blandit tellus feugiat in.
-    </p>
+   <div class="container">
+    <h1 class="text-center">Choose Your Product</h1>
+    <div class="row mt-5">
+      <!-- Product cards -->
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let p of products.PList">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ p.productName }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Product ID: {{ p.id }}</h6>
+            <p class="card-text">{{ p.productDescription }}</p>
+            <button class="btn btn-primary mt-auto">
+             Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End of Product cards -->
+    </div>
   </div>
-  
+  <app-shopping-cart></app-shopping-cart>
+
