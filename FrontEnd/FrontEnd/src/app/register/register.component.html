@@ -1,85 +1,139 @@
+<section style="background-color: #3c486b; height: 100%; border-radius: 10px">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign Up</h3>
 
-<section class="vh-100" style="background-color: #508bfc;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-  
-              <h3 class="mb-5">Sign Up</h3>
-  
-              <form #loginForm="ngForm" (ngSubmit)="register(loginForm)" autocomplete="off">
+            <form
+              #loginForm="ngForm"
+              (ngSubmit)="register(loginForm)"
+              autocomplete="off"
+            >
+              <div class="form-outline mb-4">
+                <input
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  [(ngModel)]="this.user.firstName"
+                  class="form-control form-control-lg"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <input
+                  type="text"
+                  id="lname"
+                  name="lname"
+                  [(ngModel)]="this.user.lastName"
+                  class="form-control form-control-lg"
+                  placeholder="Last Name"
+                  required
+                />
+              </div>
 
-                <div class="form-outline mb-4">
-                  <input type="text" id="fname" name="fname" [(ngModel)]="this.user.firstName" class="form-control form-control-lg"
-                  placeholder="First Name" required  />
-                  
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="text" id="lname" name="lname" [(ngModel)]="this.user.lastName" class="form-control form-control-lg"
-                  placeholder="Last Name" required  />
-                </div>
+              <div class="form-outline mb-4">
+                <select
+                  class="form-select"
+                  name="gender"
+                  id="gender"
+                  [(ngModel)]="this.user.gender"
+                >
+                  <option value="" disabled selected>Select gender</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
+                  <option value="OTHER">Other</option>
+                </select>
+              </div>
 
-                <div class="form-outline mb-4">
-                  <select class="form-select" name="gender"  id="gender" [(ngModel)]="this.user.gender" >
-                      <option value="" disabled selected>Select gender</option>
-                      <option value="MALE">Male</option> 
-                      <option value="FEMALE">Female</option> 
-                      <option value="OTHER">Other</option> 
-                  </select>
-                </div>
+              <div class="form-outline mb-4">
+                <input
+                  type="email"
+                  id="username"
+                  name="username"
+                  [(ngModel)]="this.user.emailId"
+                  autocomplete="off"
+                  class="form-control form-control-lg"
+                  placeholder="User Name"
+                  required
+                />
+              </div>
 
-                <div class="form-outline mb-4">
-                  <input type="email" id="username" name="username" [(ngModel)]="this.user.emailId" autocomplete="off" class="form-control form-control-lg"
-                  placeholder="User Name" required  />
-                </div>
+              <div class="form-outline mb-4">
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  [(ngModel)]="this.user.dateOfBirth"
+                  class="form-control form-control-lg"
+                  placeholder="date"
+                  required
+                />
+              </div>
 
-                <div class="form-outline mb-4">
-                  <input type="date" id="date" name="date" [(ngModel)]="this.user.dateOfBirth" class="form-control form-control-lg"
-                  placeholder="date" required  />
-                  
-                </div>
-    
-                <div class="form-outline mb-4">
-                  <input type="password" id="password" name="password" [(ngModel)]="this.user.password" autocomplete="off" class="form-control form-control-lg"
-                  placeholder="Password" required  />
-                  
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="text" id="phone" name="phone" [(ngModel)]="this.user.mobileNo" class="form-control form-control-lg"
-                  placeholder="Phone" required  />
-                  
-                </div>
+              <div class="form-outline mb-4">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  [(ngModel)]="this.user.password"
+                  autocomplete="off"
+                  class="form-control form-control-lg"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  [(ngModel)]="this.user.mobileNo"
+                  class="form-control form-control-lg"
+                  placeholder="Phone"
+                  required
+                />
+              </div>
 
-                <div class="form-check d-flex justify-content-start mb-4">
-                  <input class="form-check-input" type="checkbox" value="" id="checkbox" />
-                  <label class="form-check-label" for="checkbox"> &nbsp; Remember password </label>
-                </div>
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="checkbox"
+                />
+                <label class="form-check-label" for="checkbox">
+                  &nbsp; Remember password
+                </label>
+              </div>
 
-    
-                <button class="btn btn-lg btn-block btn-primary form-control form-control-lg" type="submit" [disabled]="!loginForm.valid">Register</button>
-  
-              </form>
-  
-              
-  
-              <hr class="my-4">
-  
-              <!-- <button class="btn btn-lg btn-block btn-primary form-control form-control-lg" style="background-color: #3b5998;"
+              <button
+                class="btn btn-lg btn-block btn-primary form-control form-control-lg"
+                type="submit"
+                [disabled]="!loginForm.valid"
+              >
+                Register
+              </button>
+            </form>
+
+            <hr class="my-4" />
+
+            <!-- <button class="btn btn-lg btn-block btn-primary form-control form-control-lg" style="background-color: #3b5998;"
                 type="submit"><i class="fa fa-google me-2"></i> Sign in with google</button> -->
 
-                <button class="btn btn-lg btn-block btn-primary form-control form-control-lg" style="background-color: #3b5998;"
-                type="submit" routerLink="/login"> Login</button>
-              
-              
-  
-            </div>
+            <button
+              class="btn btn-lg btn-block btn-primary form-control form-control-lg"
+              style="background-color: #3b5998"
+              type="submit"
+              routerLink="/login"
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
     </div>
-  
-   
-  </section>
-  
-  
+  </div>
+</section>
