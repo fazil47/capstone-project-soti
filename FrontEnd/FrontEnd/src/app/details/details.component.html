@@ -1,4 +1,21 @@
-<section style="background-color: #3c486b; height: 670px; border-radius: 10px">
-  <h5>Fetch from product id</h5>
+   <div class="container">
+    <h1 class="text-center">Choose Your Product</h1>
+    <div class="row mt-5">
+      <!-- Product cards -->
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let p of products.PList">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ p.productName }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Product ID: {{ p.id }}</h6>
+            <p class="card-text">{{ p.productDescription }}</p>
+            <button class="btn btn-primary mt-auto">
+             Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End of Product cards -->
+    </div>
+  </div>
   <app-shopping-cart></app-shopping-cart>
-</section>
+

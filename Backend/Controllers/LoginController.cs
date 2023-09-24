@@ -38,9 +38,16 @@ namespace Backend.Controllers
                     new Claim(ClaimTypes.Role, "User")
                 };
 
+                if (user.EmailId=="admin@123" && user.Password=="admin123")
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                }
+
+               
+
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:5001",
-                    audience: "https://localhost:5001",
+                    audience: "https://localhost:4200",
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
@@ -53,5 +60,6 @@ namespace Backend.Controllers
 
             return Unauthorized();
         }
+
     }
 }

@@ -29,7 +29,7 @@ builder.Services.AddAuthentication(opt => {
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = "https://localhost:5001",
-            ValidAudience = "http://localhost:5001",
+            ValidAudience = "https://localhost:4200",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
         };
     });
@@ -57,8 +57,21 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseAuthentication();
+app.UseRouting();
 app.UseCors("EnableCORS");
+
+//First UseAuthentication then UserAuthorization
+
+app.UseAuthentication();
+
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+
 
 app.MapControllers();
 
