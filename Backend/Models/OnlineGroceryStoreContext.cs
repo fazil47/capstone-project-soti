@@ -61,11 +61,13 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07595BF830");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC070FA392A5");
 
-            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE182F0EF9").IsUnique();
+            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE2099B2DD").IsUnique();
 
-            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A86906716BE").IsUnique();
+            entity.HasIndex(e => e.Password, "UQ__Users__87909B15E9664732").IsUnique();
+
+            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A86A289CB8D").IsUnique();
 
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
