@@ -1,27 +1,24 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Category Id</th>
-      <!-- <th>Discontinued</th>
-      <th>Category</th> -->
-    </tr>
-  </thead>
-  <tbody  *ngFor="let p of serv.PList">
-    <tr *ngIf="!p.discontinued">
+<div class="container mt-5">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category Id</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let p of serv.PList">
+      <tr  *ngIf="!p.discontinued">
         <td>{{ p.id }}</td>
         <td>{{ p.productName }}</td>
         <td>{{ p.productDescription }}</td>
-        <td>{{ p.unitPrice }}</td>
+        <td>${{ p.unitPrice }}</td>
         <td>{{ p.unitsInStock }}</td>
-        <td>{{p.categoryId}}</td>
-      <!-- <td>{{ p.Discontinued }}</td>
-      <td>{{ p.Category }}</td> -->
-    </tr>
-  </tbody>
-</table>
-
+        <td>{{ p.categoryId }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
