@@ -13,3 +13,12 @@ ul li {
   list-style: none;
   font-size: 25px;
 }
+
+.page {
+  background-color: #3c486b;
+  height: 670px;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+}
