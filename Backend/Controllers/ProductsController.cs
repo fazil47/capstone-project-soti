@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Backend.Controllers {
     [Authorize(AuthenticationSchemes = "Bearer")]
@@ -23,11 +24,14 @@ namespace Backend.Controllers {
 
         // GET: api/Products
         [HttpGet, Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts() {
-            if (_context.Products == null) {
-                return NotFound();
-            }
-            return await _context.Products.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        {
+          if (_context.Products == null)
+          {
+              return NotFound();
+          }
+           return await _context.Products.ToListAsync();
+           
         }
 
         // GET: api/Products/5
@@ -44,10 +48,27 @@ namespace Backend.Controllers {
 
             return product;
         }
+        [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
+        public async Task<ActionResult<Product>> GetProductByCatId(int catId)
+        {
+            if (_context.Products == null)
+            {
+                return NotFound();
+            }
+
+            var products = await _context.Products.
+                                Where(p => p.CategoryId == catId).ToListAsync();
+
+
+            if (!products.Any())
+                return NotFound();
+
+            return Ok(products);
+        }
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}"), Authorize(Roles = "User")]
+        [HttpPut("{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutProduct(int id, Product product) {
             if (id != product.Id) {
                 return BadRequest();
@@ -70,8 +91,8 @@ namespace Backend.Controllers {
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost, Authorize(Roles = "User")]
-        public async Task<ActionResult<Product>> PostProduct(Product product) {
+        [HttpPost, Authorize(Roles = "Admin")]
+        public async Task<ActionResult<Product>> AddProduct(Product product) {
             if (_context.Products == null) {
                 return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
             }
@@ -82,7 +103,7 @@ namespace Backend.Controllers {
         }
 
         // DELETE: api/Products/5
-        [HttpDelete("{id}"), Authorize(Roles = "User")]
+        [HttpDelete("{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id) {
             if (_context.Products == null) {
                 return NotFound();

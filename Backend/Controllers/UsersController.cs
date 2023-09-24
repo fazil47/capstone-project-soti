@@ -15,7 +15,7 @@ using System.Data;
 
 namespace Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace Backend.Controllers
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/User
         [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -37,7 +37,7 @@ namespace Backend.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/User/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -55,7 +55,7 @@ namespace Backend.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutUser(int id, User user)
@@ -86,22 +86,53 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> AddUser(User user)
         {
           if (_context.Users == null)
           {
               return Problem("Entity set 'OnlineGroceryStoreContext.Users'  is null.");
           }
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            if (user is null)
+            {
+                return BadRequest("Invalid client request");
+            }
+            var dbUser = _context.Users.SingleOrDefault(u => u.EmailId == user.EmailId);
+            if (dbUser == null)
+            {
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Email, user.EmailId),
+                    new Claim(ClaimTypes.Role, "User")
+                };
+
+               
+                var tokeOptions = new JwtSecurityToken(
+                    issuer: "https://localhost:5001",
+                    audience: "https://localhost:4200",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(5),
+                    signingCredentials: signinCredentials
+                );
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                return Ok(new AuthenticatedResponse { Token = tokenString, Name = user.FirstName + " " + user.LastName });
+            }
+
+
+            return StatusCode(409, $"User with email '{user.EmailId}' already exists.");
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/User/5
         [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteUser(int id)
         {

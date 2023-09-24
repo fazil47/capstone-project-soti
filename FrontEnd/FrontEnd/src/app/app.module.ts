@@ -19,10 +19,12 @@ import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 
-export function tokenGetter() {
-  return localStorage.getItem('currentUser');
+export function tokenGetter() { 
+
+  return localStorage.getItem("jwt"); 
 }
 
 @NgModule({
@@ -39,6 +41,7 @@ export function tokenGetter() {
     DetailsComponent,
     ShoppingCartComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

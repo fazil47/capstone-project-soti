@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ProductService } from 'src/app/shared/product.service';
+import { ProductCategory } from 'src/app/shared/models/product-category';
+import { ProductCategoryService } from 'src/app/shared/services/product-category.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+
+
 
 @Component({
   selector: 'app-prod-list',
@@ -8,9 +12,14 @@ import { ProductService } from 'src/app/shared/product.service';
   styleUrls: ['./prod-list.component.css'],
 })
 export class ProdListComponent implements OnInit {
-  constructor(public serv: ProductService) {}
 
+  constructor(public serv: ProductService) {}
   ngOnInit(): void {
+
     this.serv.refreshProductList();
+   
   }
+
+
+  
 }

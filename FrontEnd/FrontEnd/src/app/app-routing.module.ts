@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'contact',component:ContactComponent, canActivate: [AuthGuard]},
   {path:'products',component:ProductsComponent, canActivate: [AuthGuard]},
   {path:'details',component:DetailsComponent, canActivate: [AuthGuard]},
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent}
 ];
 
 @NgModule({
