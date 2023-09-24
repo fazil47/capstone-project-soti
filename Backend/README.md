@@ -1,7 +1,7 @@
 ﻿1. Install `Microsoft.EntityFrameworkCore.SqlServer` and `Microsoft.EntityFrameworkCore.Tools`.
 2. In package manager console:
 ```
-Scaffold-DbContext "server=INL666;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
+Scaffold-DbContext "server=INL680;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
 ```
 3. Add to `appsettings.json`:
 ```  
