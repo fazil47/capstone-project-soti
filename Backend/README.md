@@ -27,6 +27,7 @@ dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Micr
 ```
 
 Or you can automate it by making a `post-merge` file in the directory `.git/hooks` with contents:
-```
+```bash
+#!/bin/sh
 exec dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
 ```
