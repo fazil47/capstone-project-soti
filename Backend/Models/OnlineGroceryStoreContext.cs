@@ -22,14 +22,13 @@ public partial class OnlineGroceryStoreContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=INL680;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;");
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:OnlineGroceryStoreStr");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC0704BEBCA3");
+            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC07181E8541");
 
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(100)
@@ -38,7 +37,7 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC0769D17C39");
+            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC078E76527D");
 
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
@@ -62,13 +61,11 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07DB75D1E0");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07595BF830");
 
-            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE318950F2").IsUnique();
+            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE182F0EF9").IsUnique();
 
-            entity.HasIndex(e => e.Password, "UQ__Users__87909B15C646844E").IsUnique();
-
-            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A8600083E7B").IsUnique();
+            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A86906716BE").IsUnique();
 
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
