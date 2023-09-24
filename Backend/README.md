@@ -26,8 +26,9 @@ In terminal, scaffold database connection again:
 dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
 ```
 
-Or you can automate it by making a `post-merge` file in the directory `.git/hooks` with contents:
+Or you can automate it by making a `post-merge` file (with no file extension) in the directory `.git/hooks` with contents:
 ```bash
 #!/bin/sh
+cd Backend
 exec dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
 ```
