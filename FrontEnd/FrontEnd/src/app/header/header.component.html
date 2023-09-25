@@ -25,13 +25,29 @@
           id="hover4"
           >Products</a
         >
-        <a
+        <!-- <a
           class="nav-link"
           routerLink="details"
           routerLinkActive="active"
           id="hover5"
           >Details</a
+        > -->
+        <a
+          class="nav-link"
+          *ngIf="this.loginServ.isAdmin()"
+          routerLink="products/edit"
+          routerLinkActive="active"
+          id="hover5"
+          >Edit Products</a
         >
+        <a
+        class="nav-link"
+        *ngIf="this.loginServ.isAdmin()"
+        routerLink="categories/edit"
+        routerLinkActive="active"
+        id="hover5"
+        >Edit Category</a
+      >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
     </div>

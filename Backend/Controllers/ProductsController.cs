@@ -24,14 +24,11 @@ namespace Backend.Controllers {
 
         // GET: api/Products
         [HttpGet, Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        {
-          if (_context.Products == null)
-          {
-              return NotFound();
-          }
-           return await _context.Products.ToListAsync();
-           
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts() {
+            if (_context.Products == null) {
+                return NotFound();
+            }
+            return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
         // GET: api/Products/5
@@ -49,14 +46,12 @@ namespace Backend.Controllers {
             return product;
         }
         [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
-        public async Task<ActionResult<Product>> GetProductByCatId(int catId)
-        {
-            if (_context.Products == null)
-            {
+        public async Task<ActionResult<Product>> GetProductByCatId(int catId) {
+            if (_context.Products == null) {
                 return NotFound();
             }
 
-            var products = await _context.Products.
+            var products = await _context.Products.Include(p => p.Category).
                                 Where(p => p.CategoryId == catId).ToListAsync();
 
 
@@ -66,10 +61,10 @@ namespace Backend.Controllers {
             return Ok(products);
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}"), Authorize(Roles = "Admin")]
-        public async Task<IActionResult> PutProduct(int id, Product product) {
+        // PUT: api/Products/edit/5
+
+        [HttpPut("edit/{id}"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditProduct(int id, Product product) {
             if (id != product.Id) {
                 return BadRequest();
             }
@@ -89,9 +84,9 @@ namespace Backend.Controllers {
             return NoContent();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost, Authorize(Roles = "Admin")]
+        // POST: api/Products/edit
+
+        [HttpPost("edit"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<Product>> AddProduct(Product product) {
             if (_context.Products == null) {
                 return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
@@ -102,8 +97,8 @@ namespace Backend.Controllers {
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
-        // DELETE: api/Products/5
-        [HttpDelete("{id}"), Authorize(Roles = "Admin")]
+        // DELETE: api/Products/edit/5
+        [HttpDelete("edit/{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id) {
             if (_context.Products == null) {
                 return NotFound();

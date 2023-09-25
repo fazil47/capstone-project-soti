@@ -13,3 +13,7 @@
   background-color: #4881bb;
   color: rgb(82, 96, 202);
 }
+
+tbody > tr {
+  cursor: pointer;
+}
