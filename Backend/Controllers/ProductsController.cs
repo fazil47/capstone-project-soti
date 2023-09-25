@@ -24,14 +24,11 @@ namespace Backend.Controllers {
 
         // GET: api/Products
         [HttpGet, Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        {
-          if (_context.Products == null)
-          {
-              return NotFound();
-          }
-           return await _context.Products.ToListAsync();
-           
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts() {
+            if (_context.Products == null) {
+                return NotFound();
+            }
+            return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
         // GET: api/Products/5
@@ -49,14 +46,12 @@ namespace Backend.Controllers {
             return product;
         }
         [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
-        public async Task<ActionResult<Product>> GetProductByCatId(int catId)
-        {
-            if (_context.Products == null)
-            {
+        public async Task<ActionResult<Product>> GetProductByCatId(int catId) {
+            if (_context.Products == null) {
                 return NotFound();
             }
 
-            var products = await _context.Products.
+            var products = await _context.Products.Include(p => p.Category).
                                 Where(p => p.CategoryId == catId).ToListAsync();
 
 
