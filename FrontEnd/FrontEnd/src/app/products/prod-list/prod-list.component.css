@@ -1,15 +1,15 @@
 .rounded-table {
-    border-radius: 10px;
-    overflow: hidden;
-  }
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-  .table thead th {
-    background-color: #497eb3; /* Change this to your desired background color */
-    color: white;
-  }
+.table thead th {
+  background-color: #497eb3; /* Change this to your desired background color */
+  color: white;
+}
 
-  /* Style the table header background */
-  .rounded-table thead {
-    background-color: #4881bb;
-    color: rgb(82, 96, 202);
-  }
+/* Style the table header background */
+.rounded-table thead {
+  background-color: #4881bb;
+  color: rgb(82, 96, 202);
+}

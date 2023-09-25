@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Product } from '../models/product.model';
 
@@ -16,20 +16,15 @@ export class ProductService {
     private jwtHelper: JwtHelperService
   ) {}
 
+  PList: Product[];
 
-
-  PList : Product[];
-
-  refreshProductList()
-  {
-    
-      this.objHttp.get("http://localhost:5001/api/products")
-      .subscribe({
-        next: (response) => {
-          this.PList = response as Product[];
-        },
-        error: (err: HttpErrorResponse) => console.log(err)
-      })
+  refreshProductList() {
+    this.objHttp.get('http://localhost:5001/api/products').subscribe({
+      next: (response) => {
+        this.PList = response as Product[];
+      },
+      error: (err: HttpErrorResponse) => console.log(err),
+    });
   }
 
   // refreshProductList() {
