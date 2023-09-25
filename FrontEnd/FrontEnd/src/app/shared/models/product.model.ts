@@ -1,3 +1,5 @@
+import { Category } from './category.model';
+
 export class Product {
   id?: number;
   productName?: string;
@@ -6,5 +8,5 @@ export class Product {
   unitsInStock?: number;
   categoryId?: number;
   discontinued: boolean;
-  category: null;
+  category?: Category;
 }
