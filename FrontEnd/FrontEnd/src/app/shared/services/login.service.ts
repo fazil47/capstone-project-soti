@@ -65,6 +65,26 @@ export class LoginService {
     return false;
   };
 
+  isAdmin = (): boolean => {
+    if (localStorage.getItem('currentUser') == null) {
+      return false;
+    }
+    const token = JSON.parse(localStorage.getItem('currentUser')).token;
+
+    let jwtData = token.split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData);
+    
+    let isAdmin :Boolean= decodedJwtData["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"].includes("Admin");
+
+
+    if (token && !this.jwtHelper.isTokenExpired(token) &&isAdmin) {
+      return true;
+    }
+
+    return false;
+  };
+
   logout() {
     localStorage.removeItem('currentUser');
     this.name = '';
