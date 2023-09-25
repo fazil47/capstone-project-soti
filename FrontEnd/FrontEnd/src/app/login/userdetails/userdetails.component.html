@@ -1,0 +1,15 @@
+<div class="user-details-container">
+    <div *ngFor="let user of details.userDetails" class="user-card">
+      <div class="user-avatar">
+      </div>
+      <div class="user-info">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p>Email: {{ user.emailId }}</p>
+        <p>Mobile: {{ user.mobileNo }}</p>
+        <p>Gender: {{ user.gender }}</p>
+        <p>Date of Birth: {{ user.dateOfBirth }}</p>
+        <p>Created Date: {{ user.createdDate }}</p>
+      </div>
+    </div>
+  </div>
+  
