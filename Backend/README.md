@@ -1,16 +1,34 @@
-﻿1. Install `Microsoft.EntityFrameworkCore.SqlServer` and `Microsoft.EntityFrameworkCore.Tools`.
-2. In package manager console:
+﻿# Backend
+
+## Setup
+
+1. Install `Microsoft.EntityFrameworkCore.SqlServer` and `Microsoft.EntityFrameworkCore.Tools` in the project.
+2. In terminal, install `dotnet-ef`:
+```ps
+dotnet tool install --global dotnet-ef
 ```
-Scaffold-DbContext "server=INL680;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
+3. In terminal, set your connection string:
+```ps
+#dotnet user-secrets init
+
+dotnet user-secrets set ConnectionStrings:OnlineGroceryStoreStr "server=INL666;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;"
 ```
-3. Add to `appsettings.json`:
-```  
-"ConnectionStrings": { "OnlineGroceryStoreStr": "server=INL666;database=OnlineGroceryStore;trusted_connection=true;TrustServerCertificate=true;" }
-```
-4. Add to `Program.cs` after creating `builder`:
-```
-builder.Services.AddDbContext<OnlineGroceryStoreContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineGroceryStoreStr"))
-);
+4. In terminal, scaffold database connection:
+```ps  
+dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
 ```
 5. Run project.
+
+## After pulling
+
+In terminal, scaffold database connection again:
+```ps  
+dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
+```
+
+Or you can automate it by making a `post-merge` file (with no file extension) in the directory `.git/hooks` with contents:
+```bash
+#!/bin/sh
+cd Backend
+exec dotnet ef dbcontext scaffold "Name=ConnectionStrings:OnlineGroceryStoreStr" Microsoft.EntityFrameworkCore.SqlServer -o Models -f
+```

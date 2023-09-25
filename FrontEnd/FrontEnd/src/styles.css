@@ -1,15 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-.form-control.ng-touched.ng-invalid{
-    border: 2px solid red;
+.form-control.ng-touched.ng-invalid {
+  border: 2px solid red;
 }
 
-.logout:hover{
-    cursor: pointer;
+.logout:hover {
+  cursor: pointer;
 }
 
-ul li{
-    text-decoration: none;
-    list-style: none;
-    font-size: 25px;
+ul li {
+  text-decoration: none;
+  list-style: none;
+  font-size: 25px;
+}
+
+.page {
+  background-color: #3c486b;
+  height: 670px;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
 }

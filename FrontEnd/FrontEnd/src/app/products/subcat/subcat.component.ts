@@ -7,25 +7,26 @@ import { ProductService } from 'src/app/shared/services/product.service';
 @Component({
   selector: 'app-subcat',
   templateUrl: './subcat.component.html',
-  styleUrls: ['./subcat.component.css']
+  styleUrls: ['./subcat.component.css'],
 })
 export class SubcatComponent implements OnInit {
-  catIdNum:number =101;
-  constructor(public pD:ProductCategoryService,public serv: ProductService,public objHttp: HttpClient){}
+  catIdNum: number = 101;
+  constructor(
+    public pD: ProductCategoryService,
+    public serv: ProductService,
+    public objHttp: HttpClient
+  ) {}
   ngOnInit(): void {
     this.pD.refreshProductCategoryList();
-    console.log(this.pD.pCategory); 
+    console.log(this.pD.pCategory);
   }
 
-  
   logCategoryId(categoryId: number) {
     this.catIdNum = categoryId;
     console.log(categoryId);
-    
   }
-  
-  refreshProductList(categoryId:number)
-  {
+
+  refreshProductList(categoryId: number) {
     this.pD.refreshProductsByCategory(categoryId);
   }
 }
