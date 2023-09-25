@@ -2,7 +2,6 @@ create database OnlineGroceryStore
 
 use OnlineGroceryStore
 
-
 create table Categories
 (
     Id int primary key identity(101,1),
@@ -33,7 +32,7 @@ create table Users
     DateOfBirth datetime check (datediff(year,DateOfBirth, getdate()) > 18),
     MobileNo char(10) unique not null,
     EmailId varchar(150) unique not null,
-    Password varchar(150) unique not null,
+    Password varchar(150) not null,
     CreatedDate datetime not null default getdate()
 )
 
@@ -75,11 +74,13 @@ INSERT INTO Users
     (FirstName, LastName, Gender, DateOfBirth, MobileNo, EmailId, Password)
 VALUES
     ('John', 'Doe', 'Male', '1985-05-15', '1234567890', 'johndoe@example.com', 'password1'),
-    ('Jane', 'Smith', 'Female', '1990-09-20', '9876543210', 'janesmith@example.com', 'password2'),
+    ('Jane', 'Smith', 'Female', '1990-09-20', '9876543210', 'janesmith@example.com', 'password1'),
     ('Chris', 'Johnson', 'Other', '1998-03-10', '5555555555', 'chris@example.com', 'password3'),
     ('Emily', 'Brown', 'Female', '1980-12-05', '7777777777', 'emily@example.com', 'password4'),
     ('Michael', 'Williams', 'Male', '1995-02-25', '6666666666', 'michael@example.com', 'password5'),
-    ('Sophia', 'Davis', 'Female', '2000-08-15', '9999999999', 'sophia@example.com', 'password6');
+    ('Sophia', 'Davis', 'Female', '2000-08-15', '9999999999', 'sophia@example.com', 'password6'),
+    ('App', 'Admin', 'Male', '2001-12-04', '7902390615', 'admin@123', 'admin123');
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -96,5 +97,3 @@ from Users
 
 ----------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------
-
---drop database OnlineGroceryStore
