@@ -17,7 +17,7 @@ export class CategoryListService {
   ) {}
 
   refreshCategoryList() {
-    this.objHttp.get('http://localhost:5204/api/categories').subscribe({
+    this.objHttp.get('http://localhost:5001/api/categories').subscribe({
       next: (response) => {
         this.CList = response as Category[];
       },

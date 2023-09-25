@@ -40,7 +40,6 @@ export class LoginService {
       })
   }
 
-  
   isUserAuthenticated = (): boolean => {
     if(localStorage.getItem("currentUser")==null)
     {

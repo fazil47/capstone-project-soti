@@ -1,19 +1,26 @@
-<section>
-  <h4>Category List :</h4>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">ID</th>
-        <th scope="col">Category Name</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let c of serv.CList">
-      <tr *ngIf="!c.discontinued">
-        <!-- <th scope="row">1</th> -->
-        <td>{{c.id}}</td>
-        <td>{{c.categoryName}}</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<div class="main">
+  <div class="row">
+    <h4>Category List :</h4>
+    <div class="column1">
+      <br />
+      <table class="table table-borderless table-dark rounded-table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">ID</th>
+            <th scope="col">Category Name</th> -->
+          </tr>
+        </thead>
+        <tbody *ngFor="let c of serv.CList">
+          <tr *ngIf="!c.discontinued">
+            <!-- <th scope="row">1</th> -->
+            <!-- <td>{{ c.id }}</td> -->
+            <td>{{ c.categoryName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="column2">
+      <img src="../../assets/grocery store.jpg" alt="" id="image" />
+    </div>
+  </div>
+</div>
