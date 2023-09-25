@@ -24,6 +24,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { EditproductsComponent } from './admin/editproducts/editproducts.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -46,6 +47,7 @@ export function tokenGetter() {
     RegisterComponent,
     ProductDetailsComponent,
     EditproductsComponent,
+    EditCategoryComponent,
   ],
   imports: [
     BrowserModule,
