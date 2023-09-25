@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { EditproductsComponent } from './admin/editproducts/editproducts.component';
 import { RoleGuard } from './guards/role.guard';
+import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
@@ -19,14 +20,19 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   {
+    path: 'products/edit',
+    component: EditproductsComponent,
+    canActivate: [AuthGuard, RoleGuard],
+  },
+  {
     path: 'products/:productId',
     component: ProductDetailsComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
   // { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'products/edit', component: EditproductsComponent, canActivate: [AuthGuard,RoleGuard]},
 ];
 
 @NgModule({
