@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Product } from '../models/product.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,12 @@ export class ProductService {
       },
       error: (err: HttpErrorResponse) => console.log(err),
     });
+  }
+
+  getProductById(productIdFromRoute: number): Observable<Product> {
+    return this.objHttp.get<Product>(
+      `http://localhost:5001/api/products/${productIdFromRoute}`
+    );
   }
 
   // refreshProductList() {
