@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <h2 class="text-center text-white">Edit Products</h2>
+        <h2 class="text-center text-white">Edit Product</h2>
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
           <input type="hidden" name="Id" [value]="this.PData.id" />
           <input type="date" style="display: none;" name="createdDate" [value]="this.PData.createdDate" />
@@ -74,13 +74,13 @@
               type="submit"
               [disabled]="form.invalid"
             >
-              <i class="fa fa-database"></i> Create/Update Product Table
+              <i class="fa fa-database"></i> Create/Update Product
             </button>
           </div>
         </form>
       </div>
       <div class="col-md-8">
-        <h2 class="text-center text-white">Product Display</h2>
+        <h2 class="text-center text-white">Products Display</h2>
         <div class="container">
           <table
             class="table table-striped table-bordered table-hover rounded-table "

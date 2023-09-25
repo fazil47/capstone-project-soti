@@ -85,8 +85,9 @@ export class EditproductsComponent implements OnInit{
     .subscribe({
       next: (response) => {
         this.toastr.info('Updation', 'Updation Success');
-        this.serv.refreshProductList();
         this.resetForm(form);
+        this.PData = {id:0,modifiedDate:new Date(),createdDate:new Date(),discontinued:false};
+        this.serv.refreshProductList();
       },
       error: (err: HttpErrorResponse) => {
         this.toastr.error('Updation', 'Updation Failed');
@@ -106,6 +107,7 @@ export class EditproductsComponent implements OnInit{
       next: (response) => {
         this.toastr.success('Deletion', 'Deletion Success');
         this.serv.refreshProductList();
+        this.resetForm();
         
       },
       error: (err: HttpErrorResponse) => {
