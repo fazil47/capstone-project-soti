@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryListService } from './categorylist.service';
+import { ProductCategoryService } from '../shared/services/product-category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -7,9 +7,9 @@ import { CategoryListService } from './categorylist.service';
   styleUrls: ['./category-list.component.css'],
 })
 export class CategoryListComponent implements OnInit {
-  constructor(public serv: CategoryListService) {}
+  constructor(public serv: ProductCategoryService) {}
 
   ngOnInit(): void {
-    this.serv.refreshCategoryList();
+    this.serv.refreshProductCategoryList();
   }
 }
