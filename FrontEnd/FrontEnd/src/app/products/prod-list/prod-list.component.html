@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let p of serv.PList">
-      <tr *ngIf="!p.discontinued">
+      <tr *ngIf="!p.discontinued" [routerLink]="['/products', p.id]">
         <td>{{ p.id }}</td>
         <td>{{ p.productName }}</td>
         <td>{{ p.productDescription }}</td>
