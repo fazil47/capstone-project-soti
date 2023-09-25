@@ -21,6 +21,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { EditproductsComponent } from './admin/editproducts/editproducts.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -48,6 +50,8 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

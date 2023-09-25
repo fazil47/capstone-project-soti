@@ -3,6 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editproducts',
@@ -13,7 +14,7 @@ export class EditproductsComponent implements OnInit{
 
   PData : Product = new Product();
 
-  constructor(public serv:ProductService,public http:HttpClient){}
+  constructor(public serv:ProductService,public http:HttpClient,private toastr: ToastrService){}
 
   ngOnInit(): void {
     this.serv.refreshProductList();
@@ -59,12 +60,14 @@ export class EditproductsComponent implements OnInit{
     )
     .subscribe({
       next: (response) => {
-        console.log("Insertion Success..");
+        this.toastr.success('Insertion', 'Insertion Success');
         this.serv.refreshProductList();
         this.resetForm(form);
 
       },
-      error: (err: HttpErrorResponse) => {console.log("Insertion failed" +err)}})
+      error: (err: HttpErrorResponse) => {
+        this.toastr.error('Insertion', 'Insertion Failed');
+        console.log("Insertion failed" +err)}})
      
   
   }
@@ -81,11 +84,13 @@ export class EditproductsComponent implements OnInit{
     )
     .subscribe({
       next: (response) => {
-        console.log("Updation Success..");
+        this.toastr.info('Updation', 'Updation Success');
         this.serv.refreshProductList();
         this.resetForm(form);
       },
-      error: (err: HttpErrorResponse) => {console.log("Updation failed" +err)}})
+      error: (err: HttpErrorResponse) => {
+        this.toastr.error('Updation', 'Updation Failed');
+        console.log("Updation failed" +err)}})
       
     }
 
@@ -99,11 +104,13 @@ export class EditproductsComponent implements OnInit{
     )
     .subscribe({
       next: (response) => {
-        console.log("Deletion Success..");
+        this.toastr.success('Deletion', 'Deletion Success');
         this.serv.refreshProductList();
         
       },
-      error: (err: HttpErrorResponse) => {console.log("Deletion failed" +err)}})
+      error: (err: HttpErrorResponse) => {
+        this.toastr.error('Deletion', 'Deletion Failed');
+        console.log("Deletion failed" +err)}})
       
     }
   }
