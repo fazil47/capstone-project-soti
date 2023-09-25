@@ -20,6 +20,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { EditproductsComponent } from './admin/editproducts/editproducts.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,6 +44,7 @@ export function tokenGetter() {
     ShoppingCartComponent,
     LoginComponent,
     RegisterComponent,
+    ProductDetailsComponent,
     EditproductsComponent,
   ],
   imports: [
