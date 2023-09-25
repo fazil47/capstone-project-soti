@@ -1,0 +1,40 @@
+
+/*
+createdDate
+: 
+"2023-09-21T11:58:08.51"
+dateOfBirth
+: 
+"1985-05-15T00:00:00"
+emailId
+: 
+"johndoe@example.com"
+firstName
+: 
+"John"
+gender
+: 
+"Male  "
+id
+: 
+1
+lastName
+: 
+"Doe"
+mobileNo
+: 
+"1234567890"
+password
+: 
+"password1"
+ */
+export class userDetails{
+  id?:number;
+  firstName?:string;
+  lastName?:string;
+  emailId?:string;
+  mobileNo?:string;
+  gender?:string;
+  dateOfBirth?:string;
+  createdDate?:string;
+}
