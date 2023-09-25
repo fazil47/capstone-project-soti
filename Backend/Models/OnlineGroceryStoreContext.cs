@@ -28,10 +28,7 @@ public partial class OnlineGroceryStoreContext : DbContext
     {
         modelBuilder.Entity<Category>(entity =>
         {
-]
-
             entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC07E1FAB516");
-
 
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(100)
@@ -40,7 +37,6 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-
             entity.HasKey(e => e.Id).HasName("PK__Products__3214EC075C1B3CC0");
 
             entity.Property(e => e.CreatedDate)
@@ -65,12 +61,9 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC0785A43B70");
 
             entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACEA2916CD7").IsUnique();
-
-            entity.HasIndex(e => e.Password, "UQ__Users__87909B1513FEC7AA").IsUnique();
 
             entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A867ED96918").IsUnique();
 
