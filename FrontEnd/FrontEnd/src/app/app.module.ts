@@ -21,10 +21,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 
-
-export function tokenGetter() { 
-
-  return localStorage.getItem("jwt"); 
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
 }
 
 @NgModule({

@@ -68,7 +68,7 @@ VALUES
     ('Jeans', 'Blue jeans', 39.99, 80, 0, 102),
     ('Dress', 'Elegant dress', 79.99, 50, 0, 102),
     ('Socks', 'Cotton socks', 4.99, 200, 0, 102);
-	
+
 
 INSERT INTO Users
     (FirstName, LastName, Gender, DateOfBirth, MobileNo, EmailId, Password)
@@ -80,7 +80,7 @@ VALUES
     ('Michael', 'Williams', 'Male', '1995-02-25', '6666666666', 'michael@example.com', 'password5'),
     ('Sophia', 'Davis', 'Female', '2000-08-15', '9999999999', 'sophia@example.com', 'password6'),
     ('App', 'Admin', 'Male', '2001-12-04', '7902390615', 'admin@123', 'admin123');
-	
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------

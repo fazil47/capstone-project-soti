@@ -2,21 +2,20 @@
 #hover2:hover,
 #hover3:hover,
 #hover4:hover,
-#hover5:hover
- {
-    background-color: #47547a;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+#hover5:hover {
+  background-color: #47547a;
+  color: white;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hover1,
 #hover2,
 #hover3,
 #hover4,
-#hover5
-{
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 5px;
+#hover5 {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
 }
