@@ -7,7 +7,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Stock</th>
-        <th>Category Id</th>
+        <th>Category</th>
       </tr>
     </thead>
     <tbody *ngFor="let p of serv.PList">
@@ -17,7 +17,9 @@
         <td>{{ p.productDescription }}</td>
         <td>${{ p.unitPrice }}</td>
         <td>{{ p.unitsInStock }}</td>
-        <td>{{ p.categoryId }}</td>
+        <td>
+          {{ p?.category?.categoryName ? p.category.categoryName : "NONE" }}
+        </td>
       </tr>
     </tbody>
   </table>

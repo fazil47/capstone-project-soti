@@ -1,3 +1,5 @@
+import { Category } from './category.model';
+
 export class Product {
   id: number;
   productName?: string;
@@ -8,5 +10,5 @@ export class Product {
   createdDate: Date;
   modifiedDate: Date;
   discontinued: boolean;
-  category: null;
+  category?: Category;
 }
