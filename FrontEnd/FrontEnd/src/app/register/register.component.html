@@ -7,8 +7,8 @@
             <h3 class="mb-5">Sign Up</h3>
 
             <form
-              #loginForm="ngForm"
-              (ngSubmit)="register(loginForm)"
+              #registrationForm="ngForm"
+              (ngSubmit)="register(registrationForm)"
               autocomplete="off"
             >
               <div class="form-outline mb-4">
@@ -49,16 +49,27 @@
               </div>
 
               <div class="form-outline mb-4">
+              
                 <input
                   type="email"
                   id="username"
                   name="username"
+                  ngModel [email]="true"
                   [(ngModel)]="this.user.emailId"
+                  #usernameInput = "ngModel"
                   autocomplete="off"
                   class="form-control form-control-lg"
-                  placeholder="User Name"
+                  placeholder="User Name(Email)"
                   required
                 />
+                <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="text-danger  text-start">
+                  <div *ngIf="usernameInput.errors['required']">
+                    Email is required.
+                  </div>
+                  <div *ngIf="usernameInput.hasError('email')">
+                    Invalid email format.
+                  </div>
+                </div>
               </div>
 
               <div class="form-outline mb-4">
@@ -67,10 +78,13 @@
                   id="date"
                   name="date"
                   [(ngModel)]="this.user.dateOfBirth"
+                  (ngModelChange)="validateAge($event)"
                   class="form-control form-control-lg"
                   placeholder="date"
                   required
+                  
                 />
+                <div class="text-danger text-start" *ngIf="!isAgeValid">Age must be greater than 18</div>
               </div>
 
               <div class="form-outline mb-4">
@@ -112,7 +126,7 @@
               <button
                 class="btn btn-lg btn-block btn-primary form-control form-control-lg"
                 type="submit"
-                [disabled]="!loginForm.valid"
+                [disabled]="!registrationForm.valid"
               >
                 Register
               </button>
@@ -120,8 +134,7 @@
 
             <hr class="my-4" />
 
-            <!-- <button class="btn btn-lg btn-block btn-primary form-control form-control-lg" style="background-color: #3b5998;"
-                type="submit"><i class="fa fa-google me-2"></i> Sign in with google</button> -->
+            
 
             <button
               class="btn btn-lg btn-block btn-primary form-control form-control-lg"
