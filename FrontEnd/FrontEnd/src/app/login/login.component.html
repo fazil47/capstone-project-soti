@@ -3,8 +3,8 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <h3 class="mb-5">Sign in</h3>
+          <div class="card-body p-5">
+            <h3 class="mb-5 text-center">Sign in</h3>
 
             <form
               #loginForm="ngForm"
@@ -12,6 +12,7 @@
               autocomplete="off"
             >
               <div class="form-outline mb-4">
+                <label for="">Email</label>
                 <input
                   type="email"
                   id="username"
@@ -24,6 +25,7 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label for="">Password</label>
                 <input
                   type="password"
                   id="password"
@@ -76,11 +78,14 @@
       </div>
     </div>
   </div>
-
-  <ul *ngIf="logServ.isUserAuthenticated()" class="success text-white">
+  
+  <!-- <div *ngIf="logServ.isUserAuthenticated()">
+    <app-home-page></app-home-page>
+  </div> -->
+  <!-- <ul *ngIf="logServ.isUserAuthenticated()" class="success text-white">
     <h2 *ngIf="logServ.isUserAuthenticated()">
       Login Successful, Welcome {{ logServ.name }}
       <app-userdetails></app-userdetails>
     </h2>
-  </ul>
+  </ul> -->
 </section>
