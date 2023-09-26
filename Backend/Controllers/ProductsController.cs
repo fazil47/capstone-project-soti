@@ -37,7 +37,7 @@ namespace Backend.Controllers {
             if (_context.Products == null) {
                 return NotFound();
             }
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(pr => pr.Id == id);
 
             if (product == null) {
                 return NotFound();

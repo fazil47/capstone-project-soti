@@ -5,9 +5,17 @@
         <h5 class="card-title">{{ product.productName }}</h5>
         <p>{{ product.discontinued ? "Discontinued" : null }}</p>
         <p class="card-text">{{ product.productDescription }}</p>
-        <button class="btn btn-primary mt-auto" (click)="addToCart()">
-          Add to Cart
-        </button>
+        <div *ngIf="isProductInCart(); then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>
+          <button class="btn btn-danger mt-auto" (click)="removeFromCart()">
+            Remove from Cart
+          </button>
+        </ng-template>
+        <ng-template #elseBlock>
+          <button class="btn btn-primary mt-auto" (click)="addToCart()">
+            Add to Cart
+          </button>
+        </ng-template>
       </div>
     </div>
   </div>
