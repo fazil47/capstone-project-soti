@@ -1,26 +1,27 @@
-import { HttpHeaders,HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Component,OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Product } from 'src/app/shared/models/product.model';
-import { ProductService } from 'src/app/shared/services/product.service';
+import { Category } from 'src/app/shared/models/category.model';
 import { ToastrService } from 'ngx-toastr';
+import { HttpHeaders,HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { ProductCategoryService } from 'src/app/shared/services/product-category.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
-  selector: 'app-editproducts',
-  templateUrl: './editproducts.component.html',
-  styleUrls: ['./editproducts.component.css']
+  selector: 'app-edit-category',
+  templateUrl: './edit-category.component.html',
+  styleUrls: ['./edit-category.component.css']
 })
-export class EditproductsComponent implements OnInit{
+export class EditCategoryComponent implements OnInit{
+  CData:Category=new Category();
 
-  PData : Product = new Product();
+  constructor(public http:HttpClient,private toastr: ToastrService,public serv:ProductCategoryService){}
 
-  constructor(public serv:ProductService,public http:HttpClient,private toastr: ToastrService){}
+  readonly apiUrl = 'http://localhost:5001/api/categories/edit';
 
   ngOnInit(): void {
-    this.serv.refreshProductList();
-    this.resetForm();
+    this.serv.refreshProductCategoryList();
+    this.resetForm()
   }
-
 
   resetForm(form?:NgForm){
     if(form!=null)
@@ -29,13 +30,14 @@ export class EditproductsComponent implements OnInit{
     }
     else
     {
-      this.PData = {id:0,productName:"",productDescription:"",discontinued:false,category:null,modifiedDate:new Date(),createdDate:new Date()}
+      this.CData = {id:0,categoryName:"",products:[]}
     }
   }
 
   onSubmit(form:NgForm)
   {
-    if(this.PData.id==0)
+    console.log(this.CData.id)
+    if(this.CData.id==0)
     {
       this.insertRecord(form);
     }
@@ -47,13 +49,12 @@ export class EditproductsComponent implements OnInit{
 
   insertRecord(form:NgForm)
   {
-    this.PData.createdDate = new Date();
 
-    console.log("insert"+this.PData);
+    console.log("insert"+this.CData);
     this.http
     .post(
-      'http://localhost:5001/api/products/edit',
-      this.PData,
+      this.apiUrl,
+      this.CData,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       }
@@ -61,23 +62,21 @@ export class EditproductsComponent implements OnInit{
     .subscribe({
       next: (response) => {
         this.toastr.success('Insertion', 'Insertion Success');
-        this.serv.refreshProductList();
         this.resetForm(form);
+        this.serv.refreshProductCategoryList();
+       
 
       },
       error: (err: HttpErrorResponse) => {
         this.toastr.error('Insertion', 'Insertion Failed');
         console.log("Insertion failed" +err)}})
-     
-  
   }
   updateRecord(form:NgForm)
   {
-    this.PData.createdDate = new Date(this.PData.createdDate);
     this.http
     .put(
-      'http://localhost:5001/api/products/edit/'+this.PData.id,
-      this.PData,
+      this.apiUrl+'/'+this.CData.id,
+      this.CData,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       }
@@ -86,8 +85,9 @@ export class EditproductsComponent implements OnInit{
       next: (response) => {
         this.toastr.info('Updation', 'Updation Success');
         this.resetForm(form);
-        this.PData = {id:0,modifiedDate:new Date(),createdDate:new Date(),discontinued:false};
-        this.serv.refreshProductList();
+        this.CData.id = 0;
+        this.serv.refreshProductCategoryList();
+        
       },
       error: (err: HttpErrorResponse) => {
         this.toastr.error('Updation', 'Updation Failed');
@@ -95,20 +95,19 @@ export class EditproductsComponent implements OnInit{
       
     }
 
-  delProduct(id:number)
+  delCategory(id:number)
   {
     if(confirm("Are you sure you want to delete?")){
 
       this.http
     .delete(
-      'http://localhost:5001/api/products/edit/'+id,
+      this.apiUrl+'/'+id,
     )
     .subscribe({
       next: (response) => {
         this.toastr.success('Deletion', 'Deletion Success');
-        this.serv.refreshProductList();
+        this.serv.refreshProductCategoryList();
         this.resetForm();
-        
       },
       error: (err: HttpErrorResponse) => {
         this.toastr.error('Deletion', 'Deletion Failed');
@@ -116,8 +115,8 @@ export class EditproductsComponent implements OnInit{
       
     }
   }
-  fillForm(selectedP:Product)
+  fillForm(selectedP:Category)
   {
-    this.PData = Object.assign({},selectedP);
+    this.CData = Object.assign({},selectedP);
   }
 }

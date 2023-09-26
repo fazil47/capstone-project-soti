@@ -80,6 +80,7 @@
   <ul *ngIf="logServ.isUserAuthenticated()" class="success text-white">
     <h2 *ngIf="logServ.isUserAuthenticated()">
       Login Successful, Welcome {{ logServ.name }}
+      <app-userdetails></app-userdetails>
     </h2>
   </ul>
 </section>

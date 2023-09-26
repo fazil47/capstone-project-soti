@@ -53,8 +53,8 @@ namespace Backend.Controllers
 
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        [HttpPut("edit/{id}"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddCategory(int id, Category category)
         {
             if (id != category.Id)
             {
@@ -84,7 +84,7 @@ namespace Backend.Controllers
 
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost, Authorize(Roles = "User")]
+        [HttpPost("edit"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
           if (_context.Categories == null)
@@ -98,7 +98,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Categories/5
-        [HttpDelete("{id}"), Authorize(Roles = "User")]
+        [HttpDelete("edit/{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if (_context.Categories == null)

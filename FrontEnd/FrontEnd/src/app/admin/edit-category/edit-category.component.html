@@ -1,0 +1,59 @@
+
+<section class="page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2 class="text-center text-white">Edit Category</h2>
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <input type="hidden" name="Id" [value]="this.CData.id" />
+            <div class="form-outline mb-4">
+              <input
+                name="categoryName"
+                #Cateogory Name="ngModel"
+                [(ngModel)]="this.CData.categoryName"
+                placeholder="Category Name"
+                class="form-control"
+                required
+              />
+            </div>
+           
+    
+            <div class="form-group mt-3">
+              <button
+                class="btn btn-success btn-lg"
+                type="submit"
+                [disabled]="form.invalid"
+              >
+                <i class="fa fa-database"></i> Create/Update Category
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <h2 class="text-center text-white">Categories Display</h2>
+          <div class="container">
+            <table
+              class="table table-striped table-bordered table-hover rounded-table "
+            >
+              <thead class="thead-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                 
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let p of serv.pCategory">
+                <tr (click)="fillForm(p)" style="cursor: pointer;">
+                  <td>{{ p.id }}</td>
+                  <td>{{ p.categoryName }}</td>
+                  <td><i (click)="delCategory(p.id)" aria-hidden="true" class="fa fa-trash text-danger"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
