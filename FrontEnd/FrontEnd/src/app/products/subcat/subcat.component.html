@@ -5,6 +5,7 @@
       class="sidebar-link"
       *ngFor="let side of pD.pCategory"
       (click)="refreshProductList(side.id)"
+      [class.clicked]="pD.clickedId==side.id"
     >
       {{ side.categoryName }}
     </li>
