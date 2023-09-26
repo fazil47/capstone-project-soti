@@ -19,51 +19,53 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
-      <div class="navbar-nav">
+      <div class="navbar-nav fs-5 text">
         <a
-          class="nav-link active"
+          class="nav-link"
           aria-current="page"
           routerLink="about"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover2"
           >About</a
         >
         <a
           class="nav-link"
           routerLink="contact"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover3"
           >Contact</a
         >
         <a
           class="nav-link"
           routerLink="products"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover4"
+          [routerLinkActiveOptions]="{ exact: true }"
           >Products</a
-        >
-        <a
-          class="nav-link"
-          routerLink="cart"
-          routerLinkActive="active"
-          id="hover5"
-          >Cart</a
         >
         <a
           class="nav-link"
           *ngIf="this.loginServ.isAdmin()"
           routerLink="products/edit"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover5"
+          [routerLinkActiveOptions]="{ exact: true }"
           >Edit Products</a
         >
         <a
           class="nav-link"
           *ngIf="this.loginServ.isAdmin()"
           routerLink="categories/edit"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover5"
           >Edit Categories</a
+        >
+        <a
+          class="nav-link"
+          routerLink="cart"
+          routerLinkActive="active fw-bold"
+          id="hover5"
+          >Cart</a
         >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
