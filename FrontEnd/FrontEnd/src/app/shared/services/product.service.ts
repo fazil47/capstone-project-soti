@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Product } from '../models/product.model';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +28,16 @@ export class ProductService {
     });
   }
 
-  getProductById(productIdFromRoute: number): Observable<Product> {
-    return this.objHttp.get<Product>(
-      `http://localhost:5001/api/products/${productIdFromRoute}`
+  async getProductById(productId: number): Promise<Product> {
+    return await firstValueFrom(
+      this.objHttp.get<Product>(
+        `http://localhost:5001/api/products/${productId}`
+      )
     );
+  }
+
+  async getProductsById(productIds: number[]): Promise<Product[]> {
+    return Promise.all(productIds.map((id) => this.getProductById(id)));
   }
 
   // refreshProductList() {
