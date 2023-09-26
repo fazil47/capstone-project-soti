@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar bg-dark navbar-expand-lg">
   <div class="container-fluid" id="navbarMain">
     <a class="navbar-brand" routerLink="" id="hover1"
       ><img
-        src="../../assets/Images/grocery_logo.svg"
+        src="../../assets/Images/pngwing.com.png"
         alt="Grocery"
         width="90"
         height="90"
@@ -18,10 +18,10 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
+    <div class="collapse navbar-collapse bg-dark" id="navbarContent">
       <div class="navbar-nav fs-5 text">
         <a
-          class="nav-link"
+          class="nav-link text-white"
           aria-current="page"
           routerLink="about"
           routerLinkActive="active fw-bold"
@@ -29,14 +29,14 @@
           >About</a
         >
         <a
-          class="nav-link"
+          class="nav-link text-white"
           routerLink="contact"
           routerLinkActive="active fw-bold"
           id="hover3"
           >Contact</a
         >
         <a
-          class="nav-link"
+          class="nav-link text-white"
           routerLink="products"
           routerLinkActive="active fw-bold"
           id="hover4"
@@ -46,14 +46,14 @@
         >
        
         <a
-          class="nav-link"
+          class="nav-link text-white"
           routerLink="cart"
           routerLinkActive="active fw-bold"
           id="hover5"
           >Cart</a
         >
         <a
-        class="nav-link"
+        class="nav-link text-white"
         *ngIf="this.loginServ.isAdmin()"
         routerLink="products/edit"
         routerLinkActive="active fw-bold"
@@ -62,7 +62,7 @@
         >Edit Products</a
       >
       <a
-        class="nav-link"
+        class="nav-link text-white"
         *ngIf="this.loginServ.isAdmin()"
         routerLink="categories/edit"
         routerLinkActive="active fw-bold"
