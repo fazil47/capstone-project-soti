@@ -1,7 +1,7 @@
 <section class="page" style="min-height: 70vh">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 rounded" style="background-color: #5cb85c">
+      <div class="col-md-4 rounded" style="background-color: #5cb85c; padding: 20px">
         <h2 class="text-center text-white">Edit Product</h2>
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
           <input type="hidden" name="Id" [value]="this.PData.id" />
