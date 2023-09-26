@@ -21,6 +21,30 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <div class="navbar-nav fs-5 text">
         <a
+        class="nav-link"
+        routerLink="products"
+        routerLinkActive="active fw-bold"
+        id="hover4"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="refreshProductList()"
+        >Products</a
+      >
+     
+      <a
+        class="nav-link"
+        routerLink="cart"
+        routerLinkActive="active fw-bold"
+        id="hover5"
+        >Cart</a
+      >
+      <a
+      class="nav-link"
+      routerLink="contact"
+      routerLinkActive="active fw-bold"
+      id="hover3"
+      >Contact</a
+      >
+        <a
           class="nav-link"
           aria-current="page"
           routerLink="about"
@@ -28,30 +52,8 @@
           id="hover2"
           >About</a
         >
-        <a
-          class="nav-link"
-          routerLink="contact"
-          routerLinkActive="active fw-bold"
-          id="hover3"
-          >Contact</a
-        >
-        <a
-          class="nav-link"
-          routerLink="products"
-          routerLinkActive="active fw-bold"
-          id="hover4"
-          [routerLinkActiveOptions]="{ exact: true }"
-          (click)="refreshProductList()"
-          >Products</a
-        >
        
-        <a
-          class="nav-link"
-          routerLink="cart"
-          routerLinkActive="active fw-bold"
-          id="hover5"
-          >Cart</a
-        >
+      
         <a
         class="nav-link"
         *ngIf="this.loginServ.isAdmin()"
@@ -67,6 +69,7 @@
         routerLink="categories/edit"
         routerLinkActive="active fw-bold"
         id="hover5"
+        
         >Edit Categories</a
       >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
