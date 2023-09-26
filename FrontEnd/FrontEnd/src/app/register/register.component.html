@@ -3,15 +3,17 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <h3 class="mb-5">Sign Up</h3>
+          <div class="card-body p-5">
+            <h3 class="mb-5 text-center">Sign Up</h3>
 
             <form
               #registrationForm="ngForm"
               (ngSubmit)="register(registrationForm)"
               autocomplete="off"
             >
+            
               <div class="form-outline mb-4">
+                <label for="" class="text-start">First Name</label>
                 <input
                   type="text"
                   id="fname"
@@ -23,6 +25,7 @@
                 />
               </div>
               <div class="form-outline mb-4">
+                <label for="" class="text-start">Last Name</label>
                 <input
                   type="text"
                   id="lname"
@@ -35,6 +38,7 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label for="" class="text-start">Gender</label>
                 <select
                   class="form-select"
                   name="gender"
@@ -49,7 +53,8 @@
               </div>
 
               <div class="form-outline mb-4">
-              
+                <label for="" class="text-start">Email</label>
+                
                 <input
                   type="email"
                   id="username"
@@ -73,6 +78,7 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label for="" class="text-start">Date of Birth</label>
                 <input
                   type="date"
                   id="date"
@@ -88,6 +94,7 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label for="" class="text-start">Password</label>
                 <input
                   type="password"
                   id="password"
@@ -95,11 +102,13 @@
                   [(ngModel)]="this.user.password"
                   autocomplete="off"
                   class="form-control form-control-lg"
+                  autocomplete="off"
                   placeholder="Password"
                   required
                 />
               </div>
               <div class="form-outline mb-4">
+                <label for="" class="text-start">Phone</label>
                 <input
                   type="text"
                   id="phone"
@@ -114,6 +123,7 @@
               <div class="form-check d-flex justify-content-start mb-4">
                 <input
                   class="form-check-input"
+                  style="border: 1px solid black;"
                   type="checkbox"
                   value=""
                   id="checkbox"
