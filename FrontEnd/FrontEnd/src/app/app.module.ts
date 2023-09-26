@@ -26,6 +26,7 @@ import { EditproductsComponent } from './admin/editproducts/editproducts.compone
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
+import { FooterComponent } from './footer/footer.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -50,6 +51,7 @@ export function tokenGetter() {
     ProductDetailsComponent,
     EditproductsComponent,
     EditCategoryComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
