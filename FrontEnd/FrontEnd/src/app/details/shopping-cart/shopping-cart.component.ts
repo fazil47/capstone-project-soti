@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -11,5 +12,9 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.loadCart();
+    console.log(this.cartService.products);
+  }
+  removeFromCart(product:Product){
+    this.cartService.removeFromCart(product);
   }
 }

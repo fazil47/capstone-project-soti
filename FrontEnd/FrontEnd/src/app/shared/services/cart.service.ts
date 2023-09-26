@@ -37,6 +37,7 @@ export class CartService {
       this.products.push(product);
       this.productIds.push(product.id);
       localStorage.setItem('cart', JSON.stringify(this.productIds));
+      
     } catch (error) {
       console.error(error);
     }
