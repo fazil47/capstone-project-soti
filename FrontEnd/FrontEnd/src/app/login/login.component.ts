@@ -49,14 +49,12 @@ import { UserDetailService } from '../shared/services/userDetails.service';
 export class LoginComponent implements OnInit {
   credentials: Login = { emailid: '', password: '' };
 
-  constructor(public logServ: LoginService,public cred:UserDetailService) {}
+  constructor(public logServ: LoginService, public cred: UserDetailService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') != null) {
       this.logServ.name = JSON.parse(localStorage.getItem('currentUser')).name;
     }
-
-
   }
 
   login(form: NgForm) {
@@ -64,19 +62,9 @@ export class LoginComponent implements OnInit {
       this.logServ.login(form, this.credentials);
     }
     this.cred.setEmail(this.credentials.emailid);
-
   }
 
   logOut = () => {
     this.logServ.logout();
   };
-
-  
-
-
-  
-
-
-
-
 }
