@@ -1,11 +1,16 @@
-<section class="page">
+<section class="page" style="min-height: 70vh">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 rounded" style="background-color: #5CB85C;">
+      <div class="col-md-4 rounded" style="background-color: #5cb85c">
         <h2 class="text-center text-white">Edit Product</h2>
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
           <input type="hidden" name="Id" [value]="this.PData.id" />
-          <input type="date" style="display: none;" name="createdDate" [value]="this.PData.createdDate" />
+          <input
+            type="date"
+            style="display: none"
+            name="createdDate"
+            [value]="this.PData.createdDate"
+          />
           <div class="form-outline mb-4">
             <input
               name="ProductName"
@@ -25,7 +30,7 @@
               class="form-control"
             />
           </div>
-  
+
           <div class="form-outline mb-4">
             <input
               name="ProductPrice"
@@ -53,7 +58,7 @@
               required
             />
           </div>
-  
+
           <div class="form-outline mb-4">
             <label class="form-check-label" for="checkbox">
               Discontinued &nbsp;&nbsp;
@@ -67,7 +72,7 @@
               id="checkbox"
             />
           </div>
-  
+
           <div class="form-group mt-3">
             <button
               class="btn btn-success btn-lg"
@@ -79,11 +84,11 @@
           </div>
         </form>
       </div>
-      <div class="col-md-8 ">
+      <div class="col-md-8">
         <h2 class="text-center text-dark">Products Display</h2>
         <div class="container">
           <table
-            class="table table-dark  table-bordered table-hover rounded-table "
+            class="table table-dark table-bordered table-hover rounded-table"
           >
             <thead class="thead-dark">
               <tr>
@@ -98,7 +103,7 @@
               </tr>
             </thead>
             <tbody *ngFor="let p of serv.PList">
-              <tr (click)="fillForm(p)" style="cursor: pointer;">
+              <tr (click)="fillForm(p)" style="cursor: pointer">
                 <td>{{ p.id }}</td>
                 <td>{{ p.productName }}</td>
                 <td>{{ p.productDescription }}</td>
@@ -106,8 +111,14 @@
                 <td>{{ p.unitsInStock }}</td>
                 <td>{{ p.categoryId }}</td>
                 <td>{{ p.discontinued }}</td>
-                <td style="display: none;"> {{p.createdDate}}</td>
-                <td><i (click)="delProduct(p.id)" aria-hidden="true" class="fa fa-trash text-danger"></i></td>
+                <td style="display: none">{{ p.createdDate }}</td>
+                <td>
+                  <i
+                    (click)="delProduct(p.id)"
+                    aria-hidden="true"
+                    class="fa fa-trash text-danger"
+                  ></i>
+                </td>
               </tr>
             </tbody>
           </table>
