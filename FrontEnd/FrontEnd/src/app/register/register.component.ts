@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../shared/models/user.model';
 import { RegisterService } from '../shared/services/register.service';
@@ -8,10 +8,14 @@ import { RegisterService } from '../shared/services/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   constructor(public serv:RegisterService){
 
   }
+  ngOnInit(): void {
+    
+  }
+  
   user:User= new User()
   isAgeValid:boolean = true;
 
