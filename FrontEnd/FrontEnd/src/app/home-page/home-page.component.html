@@ -103,7 +103,7 @@
     <!-- Loop through your categories using *ngFor -->
     <div *ngFor="let cat of pD.pCategory" class="col-md-4 mb-5">
       <div class="card h-100">
-        <div class="card-body" style="background-color: #ff5733; color: #fff;">
+        <div class="card-body" style="background-color: #ff5733; color: #fff; border-radius: 4px;">
           <!-- Display category name and description from the data -->
           <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" (click)="refreshProductCategoryList(cat.id)" routerLinkActive="active">{{ cat.categoryName }}</h5>
         </div>
