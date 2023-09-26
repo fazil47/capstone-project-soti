@@ -22,12 +22,15 @@
           <div *ngIf="isProductInCart(); then thenBlock; else elseBlock"></div>
           <ng-template #thenBlock>
             <button class="btn btn-danger mt-auto" (click)="removeFromCart()">
+              <i class="fa-solid fa-cart-shopping"></i>
+            &nbsp;
               Remove from Cart
             </button>
           </ng-template>
           <ng-template #elseBlock>
             <button class="btn btn-primary mt-auto" (click)="addToCart()">
-              Add to Cart
+            <i class="fa-solid fa-cart-shopping"></i>
+            &nbsp;Add to Cart
             </button>
           </ng-template>
         </div>
