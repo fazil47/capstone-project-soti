@@ -51,31 +51,24 @@ WHERE TABLE_NAME='Users';
 INSERT INTO Categories
     (CategoryName)
 VALUES
-    ('Electronics'),
-    ('Clothing'),
-    ('Furniture'),
-    ('Books'),
-    ('Toys'),
-    ('Sports Gear'),
-    ('Appliances');
+    ('Vegetables'),
+    ('Fruits'),
+    ('Snacks'),
+    ('Fish'),
+    ('Meat'),
+    ('Beverages');
 
 
 INSERT INTO Products
     (ProductName, ProductDescription, UnitPrice, UnitsInStock, Discontinued, CategoryId)
 VALUES
-    ('Smartphone', 'High-end smartphone', 599.99, 50, 0, 101),
-    ('Laptop', 'Powerful laptop', 1299.99, 30, 0, 101),
-    ('Tablet', '10-inch tablet', 299.99, 20, 0, 101),
-    ('LED TV', '55-inch LED TV', 799.99, 15, 0, 101);
-
-
-INSERT INTO Products
-    (ProductName, ProductDescription, UnitPrice, UnitsInStock, Discontinued, CategoryId)
-VALUES
-    ('T-Shirt', 'Cotton t-shirt', 19.99, 100, 0, 102),
-    ('Jeans', 'Blue jeans', 39.99, 80, 0, 102),
-    ('Dress', 'Elegant dress', 79.99, 50, 0, 102),
-    ('Socks', 'Cotton socks', 4.99, 200, 0, 102);
+    ('Carrots', 'Fresh carrots.', 599.99, 50, 0, 101),
+    ('Onions', 'Fresh onions.', 1299.99, 30, 0, 101),
+    ('Salmon', 'Decent salmon.', 299.99, 20, 0, 104),
+    ('Apples', 'Fresh apples.', 299.99, 20, 0, 103),
+    ('Oranges', 'Fresh oranges.', 299.99, 20, 0, 103),
+    ('Red Bull', 'Red Bull.', 199.99, 20, 0, 106),
+    ('Chicken', 'Good chicken.', 799.99, 15, 0, 105);
 
 
 INSERT INTO Users
