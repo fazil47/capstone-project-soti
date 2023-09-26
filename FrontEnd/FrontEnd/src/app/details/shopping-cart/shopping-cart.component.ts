@@ -17,15 +17,32 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
   removeFromCart(product:Product){
+    this.price-=product.unitPrice;
     this.cartService.removeFromCart(product);
   }
   getTotalPrice():number{
     return this.price
   }
-  emptyCart(){
-    this.cartService.clearCart();
-    this.price=0;
-    this.cartService.loadCart();
+  buyCart(){
+    Swal.fire({
+      title: 'proceed with the purchase',
+      text: 'Hi ' + this.loginServ.name + ', are you sure you want to proceed with the purchase',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+
+      icon: 'warning',
+      centre: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Purchase', 'Successfully completed', 'success');
+        this.cartService.clearCart()
+        this.price=0;
+        this.cartService.loadCart();
+      } else if (result.isDenied) {
+        Swal.fire('Continue shopping', '', 'info');
+      }
+    });  
     
   }
 }
