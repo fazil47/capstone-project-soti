@@ -8,6 +8,7 @@ create table Categories
     CategoryName varchar(100) not null
 )
 
+drop table Products
 create table Products
 (
     Id int primary key identity,
@@ -18,10 +19,11 @@ create table Products
     Discontinued bit not null default 1,
     CategoryId int foreign key references Categories(Id),
     CreatedDate datetime not null default getdate(),
-    ModifiedDate datetime
+    ModifiedDate datetime,
+	ImgUrl nvarchar(1000)
 )
 
---drop table Users
+drop table Users
 
 create table Users
 (
@@ -58,18 +60,18 @@ VALUES
     ('Meat'),
     ('Beverages');
 
-
+	
 INSERT INTO Products
-    (ProductName, ProductDescription, UnitPrice, UnitsInStock, Discontinued, CategoryId)
+    (ProductName, ProductDescription, UnitPrice, UnitsInStock, Discontinued, CategoryId,ImgUrl)
 VALUES
-    ('Carrots', 'Fresh carrots.', 599.99, 50, 0, 101),
-    ('Onions', 'Fresh onions.', 1299.99, 30, 0, 101),
-    ('Salmon', 'Decent salmon.', 299.99, 20, 0, 104),
-    ('Apples', 'Fresh apples.', 299.99, 20, 0, 102),
-    ('Oranges', 'Fresh oranges.', 299.99, 20, 0, 102),
-    ('KurKure', 'Eatables Snacks.', 99.99, 20, 0, 103),
-    ('Red Bull', 'Red Bull.', 199.99, 20, 0, 106),
-    ('Chicken', 'Good chicken.', 799.99, 15, 0, 105);
+    ('Carrots', 'Fresh carrots.', 599.99, 50, 0, 101,'https://www.bigbasket.com/media/uploads/p/m/10000270_14-fresho-carrot-ooty.jpg?tr=w-1920,q=80'),
+    ('Onions', 'Fresh onions.', 1299.99, 30, 0, 101,'https://www.bigbasket.com/media/uploads/p/m/40005834_4-fresho-red-onion-skinned-peeled.jpg?tr=w-1920,q=80'),
+    ('Salmon', 'Decent salmon.', 299.99, 20, 0, 104,'https://www.bigbasket.com/media/uploads/p/l/40021108_9-big-sams-atlantic-salmon-fillet.jpg?tr=w-640,q=80'),
+    ('Apples', 'Fresh apples.', 299.99, 20, 0, 102,'https://www.bigbasket.com/media/uploads/p/m/40201319_1-fresho-rockit-apple.jpg?tr=w-1920,q=80'),
+    ('Oranges', 'Fresh oranges.', 299.99, 20, 0, 102,'https://www.bigbasket.com/media/uploads/p/m/20000909_18-fresho-orange-imported.jpg?tr=w-1920,q=80'),
+    ('KurKure', 'Eatables Snacks.', 99.99, 20, 0, 103,'https://www.bigbasket.com/media/uploads/p/l/102761_17-kurkure-namkeen-masala-munch.jpg?tr=w-640,q=80'),
+    ('Red Bull', 'Red Bull.', 199.99, 20, 0, 106,'https://www.bigbasket.com/media/uploads/p/m/40311389_1-red-bull-sugar-free-energy-drink.jpg?tr=w-1920,q=80'),
+    ('Chicken', 'Good chicken.', 799.99, 15, 0, 105,'https://www.bigbasket.com/media/uploads/p/m/10000909_8-fresho-chicken-curry-cut-without-skin-antibiotic-residue-free.jpg?tr=w-1920,q=80');
 
 
 INSERT INTO Users

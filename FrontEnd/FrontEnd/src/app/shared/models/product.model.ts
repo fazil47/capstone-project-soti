@@ -10,5 +10,6 @@ export class Product {
   createdDate: Date;
   modifiedDate: Date;
   discontinued: boolean;
+  imgUrl?:string;
   category?: Category;
 }
