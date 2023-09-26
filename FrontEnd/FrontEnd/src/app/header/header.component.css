@@ -14,6 +14,8 @@
 
 #navbarContent {
   background-color: white;
+  margin-left: 20px;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 992px) {
@@ -24,6 +26,8 @@
     align-items: center;
     align-content: center;
     justify-items: center;
+    margin-left: 0;
+    padding-bottom: 0;
   }
 
   #navbarMain {
