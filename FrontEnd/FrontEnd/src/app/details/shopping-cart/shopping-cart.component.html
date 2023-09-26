@@ -1,29 +1,49 @@
-<section class="page">
-  <h1 class="text-center">Shopping cart</h1>
+<section class="page" style="border-radius: 0;">
+  <h1 class="text-center">My Cart</h1>
   <div class="container mt-5">
-    <table class="table table-striped table-bordered table-hover rounded-table">
-      <thead class="thead-dark">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Stock</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let p of cartService.products">
-        <tr *ngIf="!p.discontinued" [routerLink]="['/products', p.id]">
-          <td>{{ p.id }}</td>
-          <td>{{ p.productName }}</td>
-          <td>{{ p.productDescription }}</td>
-          <td>${{ p.unitPrice }}</td>
-          <td>{{ p.unitsInStock }}</td>
-          <td>
-            {{ p?.category?.categoryName ? p.category.categoryName : "NONE" }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="container mt-4">
+      <div class="container mt-4">
+        <div class="row" >
+          
+          <div class="col-md-4" *ngFor="let p of cartService.products">
+            <div class="product-card text-black" *ngIf="!p.discontinued" [routerLink]="['/products', p.id]">
+              <div class="row">
+                
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="product-title">{{ p.productName }}</span>
+                    </div>
+                    <div class="col-md-12">
+                      <p class="product-description">{{ p.productDescription }}</p>
+                    </div>
+                    <div class="col-md-12">
+                      <span class="product-price">Price: {{ p.unitPrice | currency }}/-</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <img class="cartimg img-fluid" src="../../assets/Images/cart.png" alt="">
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-12 text-center mt-3">
+                  <button class="btn btn-danger text-white" (click)="removeFromCart(p)">Remove From Cart</button>
+                  <span style="margin-right: 10px;"></span>
+                  <button class="btn btn-success text-white" (click)="removeFromCart(p)">  Buy  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          
+        </div>
+    </div>
+    </div>
+    
   </div>
+
 </section>
