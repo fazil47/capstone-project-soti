@@ -9,12 +9,23 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class ShoppingCartComponent implements OnInit {
   constructor(protected cartService: CartService) {}
-
+  price:number=0;
   ngOnInit(): void {
     this.cartService.loadCart();
-    console.log(this.cartService.products);
+  this.cartService.products.forEach(p => {
+      this.price+=p.unitPrice;
+    });
   }
   removeFromCart(product:Product){
     this.cartService.removeFromCart(product);
+  }
+  getTotalPrice():number{
+    return this.price
+  }
+  emptyCart(){
+    this.cartService.clearCart();
+    this.price=0;
+    this.cartService.loadCart();
+    
   }
 }
