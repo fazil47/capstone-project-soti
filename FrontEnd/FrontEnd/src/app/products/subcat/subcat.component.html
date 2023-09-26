@@ -3,9 +3,16 @@
   <ul class="list-unstyled">
     <li
       class="sidebar-link"
+      (click)="refreshProductList()"
+      [class.clicked]="pD.clickedId === undefined"
+    >
+      All
+    </li>
+    <li
+      class="sidebar-link"
       *ngFor="let side of pD.pCategory"
-      (click)="refreshProductList(side.id)"
-      [class.clicked]="pD.clickedId==side.id"
+      (click)="refreshProductListByCategory(side.id)"
+      [class.clicked]="pD.clickedId == side.id"
     >
       {{ side.categoryName }}
     </li>

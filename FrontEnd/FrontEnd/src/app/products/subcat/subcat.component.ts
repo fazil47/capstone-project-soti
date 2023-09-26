@@ -25,10 +25,14 @@ export class SubcatComponent implements OnInit {
     this.catIdNum = categoryId;
     console.log(categoryId);
   }
-  
 
-  refreshProductList(categoryId: number) {
-    this.pD.clickedId = categoryId
+  refreshProductList() {
+    this.pD.clickedId = undefined;
+    this.serv.refreshProductList();
+  }
+
+  refreshProductListByCategory(categoryId: number) {
+    this.pD.clickedId = categoryId;
     this.pD.refreshProductsByCategory(categoryId);
   }
 }

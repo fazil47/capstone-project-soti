@@ -4,8 +4,10 @@
   color: #fff; /* Text color */
   /* width: 250px; */
   padding: 20px;
-  height: 100%;
+  height: fit-content;
   border-radius: 10px;
+  position: sticky;
+  top: 10px;
 }
 
 /* Style for sidebar links */
@@ -16,6 +18,7 @@
   transition: color 0.3s; /* Smooth color transition on hover */
   display: block;
   padding: 10px 0;
+  padding: 5%;
 }
 
 /* Hover effect for sidebar links */
@@ -30,15 +33,13 @@
   margin-right: 5px;
 }
 
-.clicked{
+.clicked {
   color: black;
   border-radius: 8px;
   background-color: white;
-  padding: 5%;
 }
-.clicked:hover{
+.clicked:hover {
   color: red;
   border-radius: 8px;
   background-color: white;
-  padding: 5%;
 }
