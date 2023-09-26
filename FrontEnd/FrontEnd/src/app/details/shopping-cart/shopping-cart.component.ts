@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { LoginService } from 'src/app/shared/services/login.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,7 +10,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(protected cartService: CartService) {}
+  constructor(protected cartService: CartService,public loginServ:LoginService) {}
   price:number=0;
   ngOnInit(): void {
     this.cartService.loadCart();
@@ -17,15 +19,32 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
   removeFromCart(product:Product){
+    this.price-=product.unitPrice;
     this.cartService.removeFromCart(product);
   }
   getTotalPrice():number{
     return this.price
   }
-  emptyCart(){
-    this.cartService.clearCart();
-    this.price=0;
-    this.cartService.loadCart();
+  buyCart(){
+    Swal.fire({
+      title: 'proceed with the purchase',
+      text: 'Hi ' + this.loginServ.name + ', are you sure you want to proceed with the purchase',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+
+      icon: 'warning',
+      centre: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Purchase', 'Successfully completed', 'success');
+        this.cartService.clearCart()
+        this.price=0;
+        this.cartService.loadCart();
+      } else if (result.isDenied) {
+        Swal.fire('Continue shopping', '', 'info');
+      }
+    });  
     
   }
 }
