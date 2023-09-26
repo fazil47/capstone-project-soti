@@ -36,6 +36,14 @@ create table Users
     CreatedDate datetime not null default getdate()
 )
 
+-- -- Get Password unique contraint name
+-- alter table Users drop column Password
+-- -- Drop constraint
+-- alter table Users drop constraint UQ__Users__87909B1513FEC7AA
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME='Users';
 
 ----------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------
