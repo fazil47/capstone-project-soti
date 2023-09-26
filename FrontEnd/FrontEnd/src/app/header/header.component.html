@@ -77,7 +77,7 @@
         </a>
       </div>
       <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
-        <a class="btn btn-outline-danger" (click)="this.loginServ.logout()">
+        <a class="btn btn-outline-danger" (click)="logOut()">
           <span>Logout</span>
           <i class="fa fa-user"></i>
         </a>
