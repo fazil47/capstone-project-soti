@@ -1,63 +1,96 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="" id="hover1"> Grocery Shopping</a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+  <div class="container-fluid" id="navbarMain">
+    <a class="navbar-brand" routerLink="" id="hover1"
+      ><img
+        src="../../assets/Images/grocery_logo.svg"
+        alt="Grocery"
+        width="90"
+        height="90"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="navbar-nav fs-5 text">
         <a
-          class="nav-link active"
+          class="nav-link"
           aria-current="page"
           routerLink="about"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover2"
           >About</a
         >
         <a
           class="nav-link"
           routerLink="contact"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover3"
           >Contact</a
         >
         <a
           class="nav-link"
           routerLink="products"
-          routerLinkActive="active"
+          routerLinkActive="active fw-bold"
           id="hover4"
+          [routerLinkActiveOptions]="{ exact: true }"
           (click)="prodServ.refreshProductList()"
           >Products</a
         >
         <a
           class="nav-link"
-          routerLink="cart"
-          routerLinkActive="active"
+          *ngIf="this.loginServ.isAdmin()"
+          routerLink="products/edit"
+          routerLinkActive="active fw-bold"
           id="hover5"
-          >Cart</a
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Edit Products</a
         >
         <a
           class="nav-link"
           *ngIf="this.loginServ.isAdmin()"
-          routerLink="products/edit"
-          routerLinkActive="active"
+          routerLink="categories/edit"
+          routerLinkActive="active fw-bold"
           id="hover5"
-          >Edit Products</a
+          >Edit Categories</a
         >
         <a
-        class="nav-link"
-        *ngIf="this.loginServ.isAdmin()"
-        routerLink="categories/edit"
-        routerLinkActive="active"
-        id="hover5"
-        >Edit Category</a
-      >
+          class="nav-link"
+          routerLink="cart"
+          routerLinkActive="active fw-bold"
+          id="hover5"
+          >Cart</a
+        >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
-    </div>
-
-    <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
-      <a class="btn btn-primary" routerLink="login">Login/Register</a>
-    </div>
-    <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
-      <a class="btn btn-primary" (click)="logOut()">Logout</a>
+      <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
+        <a class="btn btn-outline-primary" routerLink="login">
+          <span>Login/Register</span>
+          <i class="fa fa-user"></i>
+        </a>
+      </div>
+      <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
+        <a class="btn btn-outline-danger" (click)="this.loginServ.logout()">
+          <span>Logout</span>
+          <i class="fa fa-user"></i>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
+<!-- <form class="d-flex p-4 pt-1" role="search">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search for products"
+    aria-label="Search"
+  />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form> -->

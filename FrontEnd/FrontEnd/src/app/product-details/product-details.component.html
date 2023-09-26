@@ -1,22 +1,42 @@
-<div *ngIf="product != null">
-  <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ product.productName }}</h5>
-        <p>{{ product.discontinued ? "Discontinued" : null }}</p>
-        <p class="card-text">{{ product.productDescription }}</p>
-        <div *ngIf="isProductInCart(); then thenBlock; else elseBlock"></div>
-        <ng-template #thenBlock>
-          <button class="btn btn-danger mt-auto" (click)="removeFromCart()">
-            Remove from Cart
-          </button>
-        </ng-template>
-        <ng-template #elseBlock>
-          <button class="btn btn-primary mt-auto" (click)="addToCart()">
-            Add to Cart
-          </button>
-        </ng-template>
+<div *ngIf="product != null; then showProduct; else showEmpty"></div>
+<ng-template #showProduct>
+  <div class="product-page">
+    <div class="product-wrapper">
+      <img
+        class="product-image"
+        alt="ProductImage"
+        src="../../assets/Images/grocery1.jpg"
+      />
+      <div class="product-card card">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fs-1">{{ product.productName }}</h5>
+          <p>{{ product.discontinued ? "Discontinued" : null }}</p>
+          <p class="card-text fs-7 text-secondary">
+            {{ product.category.categoryName }}
+          </p>
+          <p class="card-text fs-6">{{ product.productDescription }}</p>
+          <p class="card-text fs-7">
+            Left in stock: {{ product.unitsInStock }}
+          </p>
+          <p class="card-text fs-7">{{ product.unitPrice | currency }}</p>
+          <div *ngIf="isProductInCart(); then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock>
+            <button class="btn btn-danger mt-auto" (click)="removeFromCart()">
+              Remove from Cart
+            </button>
+          </ng-template>
+          <ng-template #elseBlock>
+            <button class="btn btn-primary mt-auto" (click)="addToCart()">
+              Add to Cart
+            </button>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+<ng-template #showEmpty>
+  <div class="product-page">
+    <h1>Loading...</h1>
+  </div>
+</ng-template>
