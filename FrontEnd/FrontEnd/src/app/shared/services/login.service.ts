@@ -44,7 +44,7 @@ export class LoginService {
           );
 
           this.invalidLogin = false;
-          this.router.navigate(['/login']);
+          this.router.navigate(['']);
         },
         error: (err: HttpErrorResponse) => (this.invalidLogin = true),
       });
