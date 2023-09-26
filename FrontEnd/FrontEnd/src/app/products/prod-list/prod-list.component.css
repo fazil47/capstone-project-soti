@@ -8,12 +8,12 @@
 .productWrapper {
   cursor: pointer;
   max-width: 400px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
   .productGrid {
     grid-template-columns: auto auto;
-    justify-items: left;
   }
 }
 
