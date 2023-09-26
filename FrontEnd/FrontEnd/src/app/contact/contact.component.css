@@ -18,3 +18,18 @@
     background-color: #0056b3;
   }
   
+  .footer {
+    display: flex;
+    align-items: flex-end;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .container-fluid{
+    background-color: #343a40;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 55px;
+    border-radius: 10px;
+  }

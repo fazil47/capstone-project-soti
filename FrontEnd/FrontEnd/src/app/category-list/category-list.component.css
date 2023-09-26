@@ -1,4 +1,4 @@
-.table{
+.table {
     display: flexbox;
     align-items: center;
     justify-content: center;
@@ -6,26 +6,24 @@
     height: 400px;
     border-radius: 10px;
 }
-.row
-{
+
+.row {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     height: 500px;
 }
 
-.column1
-{
+.column1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width : 500px;
-    background-color: rgb(32, 31, 31);
+    width: 500px;
+    background-color: #343a40;
     border-radius: 10px;
 }
 
-.column2
-{
+.column2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -35,7 +33,7 @@
     padding: 10px;
 }
 
-#image{
+#image {
     height: auto;
-    width:80%; 
+    width: 80%;
 }
