@@ -19,6 +19,8 @@ export class ProductCategoryService {
     private jwtHelper: JwtHelperService
   ) {}
 
+  clickedId:number;
+
   refreshProductCategoryList() {
     this.objHttp.get(this.apiUrl).subscribe({
       next: (response) => {

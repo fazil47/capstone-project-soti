@@ -27,5 +27,18 @@
 
 /* Style for sidebar icons */
 .sidebar-link i {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.clicked{
+  color: black;
+  border-radius: 8px;
+  background-color: white;
+  padding: 5%;
+}
+.clicked:hover{
+  color: red;
+  border-radius: 8px;
+  background-color: white;
+  padding: 5%;
 }
