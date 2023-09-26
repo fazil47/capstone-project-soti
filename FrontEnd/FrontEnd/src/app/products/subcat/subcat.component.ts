@@ -18,16 +18,20 @@ export class SubcatComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.pD.refreshProductCategoryList();
-    console.log(this.pD.pCategory);
+    //console.log(this.pD.pCategory);
   }
 
   logCategoryId(categoryId: number) {
     this.catIdNum = categoryId;
     console.log(categoryId);
   }
-  
+  refreshProductList(id:number)
+  {
+    this.pD.clickedId = id;
+    this.serv.refreshProductList();
+  }
 
-  refreshProductList(categoryId: number) {
+  refreshProductCategoryList(categoryId: number) {
     this.pD.clickedId = categoryId
     this.pD.refreshProductsByCategory(categoryId);
   }

@@ -105,7 +105,7 @@
       <div class="card h-100">
         <div class="card-body" style="background-color: #ff5733; color: #fff;">
           <!-- Display category name and description from the data -->
-          <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" routerLinkActive="active">{{ cat.categoryName }}</h5>
+          <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" (click)="refreshProductCategoryList(cat.id)" routerLinkActive="active">{{ cat.categoryName }}</h5>
         </div>
       </div>
     </div>

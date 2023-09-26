@@ -13,6 +13,10 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.pD.refreshProductCategoryList();
   }
-
+  refreshProductCategoryList(id:number)
+  {
+    this.pD.clickedId = id;
+    this.pD.refreshProductsByCategory(id);
+  }
 
 }

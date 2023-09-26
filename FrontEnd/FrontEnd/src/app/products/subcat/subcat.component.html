@@ -1,10 +1,13 @@
 <div class="sidebar">
   <!-- Sidebar content goes here -->
   <ul class="list-unstyled">
+    <li  class="sidebar-link" [class.clicked]="pD.clickedId==1" (click)="refreshProductList(1)">
+      All Products
+    </li>
     <li
       class="sidebar-link"
       *ngFor="let side of pD.pCategory"
-      (click)="refreshProductList(side.id)"
+      (click)="refreshProductCategoryList(side.id)"
       [class.clicked]="pD.clickedId==side.id"
     >
       {{ side.categoryName }}
