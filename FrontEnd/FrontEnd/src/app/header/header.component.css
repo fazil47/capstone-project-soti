@@ -1,21 +1,41 @@
-#hover1:hover,
-#hover2:hover,
-#hover3:hover,
-#hover4:hover,
-#hover5:hover {
-  background-color: #47547a;
-  color: white;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+#navbarMain .btn {
+  display: flex;
+  flex-direction: row;
+  gap: 8px !important;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  max-width: fit-content;
 }
 
-#hover1,
-#hover2,
-#hover3,
-#hover4,
-#hover5 {
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 5px;
+.navbar-nav {
+  margin-bottom: 20px;
+}
+
+#navbarContent {
+  background-color: white;
+}
+
+@media (min-width: 992px) {
+  #navbarContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  }
+
+  #navbarMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .navbar-nav {
+    margin-bottom: 0px;
+  }
 }
