@@ -67,4 +67,8 @@ export class CartService {
   isProductInClass(product: Product) {
     return this.productIds?.includes(product.id);
   }
+
+  clearCart(){
+    localStorage.setItem('cart', JSON.stringify([]));
+  }
 }
