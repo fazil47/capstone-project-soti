@@ -1,4 +1,4 @@
-.container {
+/* .container {
   text-align: center;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -44,7 +44,7 @@
   font-size: 36px;
   font-weight: bold;
   color: white;
-  /* color: #333;  */
+  
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 20px;
@@ -65,4 +65,15 @@
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
+} */
+
+.img-fluid{
+  width:176px ;
+  height: auto;
 }
+
+.test{
+  width: 600px;
+  height: auto;;
+}
+
