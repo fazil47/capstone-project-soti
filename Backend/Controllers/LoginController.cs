@@ -7,28 +7,22 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Backend.Controllers
-{
+namespace Backend.Controllers {
     [Route("api/user")]
     [ApiController]
-    public class LoginController : ControllerBase
-    {
+    public class LoginController : ControllerBase {
         private readonly OnlineGroceryStoreContext _context;
-        public LoginController(OnlineGroceryStoreContext context)
-        {
+        public LoginController(OnlineGroceryStoreContext context) {
             _context = context;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] Login user)
-        {
-            if (user is null)
-            {
+        public IActionResult Login([FromBody] Login user) {
+            if (user is null) {
                 return BadRequest("Invalid client request");
             }
             var dbUser = _context.Users.SingleOrDefault(u => u.EmailId == user.EmailId && u.Password == user.Password);
-            if (dbUser != null)
-            {
+            if (dbUser != null) {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
@@ -38,18 +32,17 @@ namespace Backend.Controllers
                     new Claim(ClaimTypes.Role, "User")
                 };
 
-                if (user.EmailId=="admin@123" && user.Password=="admin123")
-                {
+                if (user.EmailId == "admin@123" && user.Password == "admin123") {
                     claims.Add(new Claim(ClaimTypes.Role, "Admin"));
                 }
 
-               
+
 
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:5001",
                     audience: "https://localhost:4200",
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(5),
+                    expires: DateTime.Now.AddMinutes(60 * 24),
                     signingCredentials: signinCredentials
                 );
 
