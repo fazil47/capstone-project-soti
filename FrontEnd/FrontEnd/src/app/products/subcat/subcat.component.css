@@ -1,21 +1,67 @@
 /* Custom CSS for the sidebar */
-.sidebar {
-  background-color: #333; /* Background color */
-  color: #fff; /* Text color */
-  /* width: 250px; */
-  padding: 20px;
-  height: 100%;
-  border-radius: 10px;
+.sidbar {
+  display: none;
 }
 
-/* Style for sidebar links */
+#sidebar-all-button {
+  display: none;
+}
+
 .sidebar-link {
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  transition: color 0.3s; /* Smooth color transition on hover */
-  display: block;
-  padding: 10px 0;
+  display: none;
+}
+
+#sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+#category-dropdown {
+  margin-bottom: 30px;
+}
+
+#category-dropdown > .dropdown-toggle {
+  border: 1px solid black;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  #category-dropdown {
+    display: none;
+  }
+
+  #sidebar-all-button {
+    display: block;
+  }
+
+  .sidebar {
+    background-color: #86962b; /* Background color */
+    color: #fff; /* Text color */
+    padding: 10px;
+    height: fit-content;
+    border-radius: 10px;
+    min-width: 200px;
+    position: sticky;
+    top: 10px;
+  }
+
+  /* Style for sidebar links */
+  .sidebar-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s; /* Smooth color transition on hover */
+    display: block;
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+  }
 }
 
 /* Hover effect for sidebar links */
@@ -30,15 +76,19 @@
   margin-right: 5px;
 }
 
-.clicked{
+.clicked {
   color: black;
   border-radius: 8px;
   background-color: white;
-  padding: 5%;
 }
-.clicked:hover{
+.clicked:hover {
   color: red;
   border-radius: 8px;
   background-color: white;
-  padding: 5%;
+}
+
+#category-dropdown .clicked {
+  color: white;
+  background-color: #86962b;
+  border-radius: 0;
 }

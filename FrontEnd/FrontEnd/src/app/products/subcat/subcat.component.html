@@ -1,16 +1,53 @@
-<div class="sidebar">
-  <!-- Sidebar content goes here -->
-  <ul class="list-unstyled">
-    <li  class="sidebar-link" [class.clicked]="pD.clickedId==1" (click)="refreshProductList(1)">
-      All Products
-    </li>
-    <li
-      class="sidebar-link"
-      *ngFor="let side of pD.pCategory"
-      (click)="refreshProductCategoryList(side.id)"
-      [class.clicked]="pD.clickedId==side.id"
+<div id="sidebar-wrapper">
+  <div class="sidebar" id="category-sidebar">
+    <!-- Sidebar content goes here -->
+    <ul class="list-unstyled">
+      <li
+        class="sidebar-link"
+        id="sidebar-all-button"
+        (click)="refreshProductList()"
+        [class.clicked]="pD.clickedId === undefined"
+      >
+        All
+      </li>
+      <li
+        class="sidebar-link"
+        *ngFor="let side of pD.pCategory"
+        (click)="refreshProductListByCategory(side.id)"
+        [class.clicked]="pD.clickedId == side.id"
+      >
+        {{ side.categoryName }}
+      </li>
+    </ul>
+  </div>
+  <div class="dropdown" id="category-dropdown">
+    <button
+      class="btn btn-white dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
     >
-      {{ side.categoryName }}
-    </li>
-  </ul>
+      Category
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a
+          class="dropdown-item"
+          (click)="refreshProductList()"
+          [class.clicked]="pD.clickedId === undefined"
+          >All</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          *ngFor="let side of pD.pCategory"
+          (click)="refreshProductListByCategory(side.id)"
+          [class.clicked]="pD.clickedId == side.id"
+        >
+          {{ side.categoryName }}</a
+        >
+      </li>
+    </ul>
+  </div>
 </div>
