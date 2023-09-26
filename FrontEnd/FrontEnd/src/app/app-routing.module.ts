@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { EditproductsComponent } from './admin/editproducts/editproducts.component';
+import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
 import { RoleGuard } from './guards/role.guard';
 import { ShoppingCartComponent } from './details/shopping-cart/shopping-cart.component';
 
@@ -25,6 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
   },
   {
+    path: 'products/edit',
+    component: EditproductsComponent,
+    canActivate: [AuthGuard, RoleGuard],
+  },
+  {
     path: 'products/:productId',
     component: ProductDetailsComponent,
     canActivate: [AuthGuard],
@@ -33,6 +39,11 @@ const routes: Routes = [
   // { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'categories/edit',
+    component: EditCategoryComponent,
+    canActivate: [AuthGuard, RoleGuard],
+  },
 ];
 
 @NgModule({

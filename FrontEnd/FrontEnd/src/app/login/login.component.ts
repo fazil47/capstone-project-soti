@@ -37,6 +37,7 @@ import { Login } from '../shared/models/login.model';
 import { NgForm } from '@angular/forms';
 
 import { LoginService } from '../shared/services/login.service';
+import { UserDetailService } from '../shared/services/userDetails.service';
 
 @Component({
   selector: 'app-login',
@@ -48,21 +49,34 @@ import { LoginService } from '../shared/services/login.service';
 export class LoginComponent implements OnInit {
   credentials: Login = { emailid: '', password: '' };
 
-  constructor(public logServ: LoginService) {}
+  constructor(public logServ: LoginService,public cred:UserDetailService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') != null) {
       this.logServ.name = JSON.parse(localStorage.getItem('currentUser')).name;
     }
+
+
   }
 
   login(form: NgForm) {
     if (form.valid) {
       this.logServ.login(form, this.credentials);
     }
+    this.cred.setEmail(this.credentials.emailid);
+
   }
 
   logOut = () => {
     this.logServ.logout();
   };
+
+  
+
+
+  
+
+
+
+
 }
