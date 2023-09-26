@@ -12,4 +12,9 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
     this.serv.refreshProductCategoryList();
   }
+  refreshProductCategoryList(id:number)
+  {
+    this.serv.clickedId = id;
+    this.serv.refreshProductsByCategory(id);
+  }
 }

@@ -15,7 +15,8 @@
           <tr>
             <!-- <th scope="row">1</th> -->
             <!-- <td>{{ c.id }}</td> -->
-            <td>{{ c.categoryName }}</td>
+            <td class="sidebar" (click)="refreshProductCategoryList(c.id)" routerLink="products">{{ c.categoryName }}</td>
+            
           </tr>
         </tbody>
       </table>
