@@ -1,4 +1,4 @@
-<section class="page">
+<!-- <section class="page">
   <div class="container">
     <br />
     <h1 class="text-center">HOME PAGE</h1>
@@ -6,4 +6,109 @@
       <app-category-list></app-category-list>
     </div>
   </div>
+</section> -->
+<header class="bg-dark py-5">
+  <div class="container px-5">
+      <div class="row gx-5 align-items-center justify-content-center">
+          <div class="col-lg-8 col-xl-7 col-xxl-6">
+              <div class="my-5 text-center text-xl-start">
+                  <h1 class="display-5 fw-bolder text-white mb-2">Welcome to GroceMart </h1>
+                  <p class="lead fw-normal text-white-50 mb-4">Your One-Stop Shop for Fresh, Fast, and Fabulous: GroceMart - Where Convenience Meets Quality!</p>
+                  <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                      <a class="btn btn-custom" href="#features">Get Started</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="..." /></div>
+      </div>
+  </div>
+</header>
+
+<section class="py-5" id="features">
+  <div class="container px-5 my-5">
+      <div class="row gx-5">
+          <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">A better way to start shopping <i class="bi bi-cart2"></i></h2></div>
+          <div class="col-lg-8">
+              <div class="row gx-5 row-cols-1 row-cols-md-2">
+                  <div class="col mb-5 h-100">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                      <h2 class="h5">Everything You Need, All in One Place</h2>
+                      <p class="mb-0"> GroceMart boasts an extensive product range that goes beyond groceries. </p>
+                  </div>
+                  <div class="col mb-5 h-100">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-browser-edge"></i></div>
+                      <h2 class="h5">Shop Anytime, Anywhere</h2>
+                      <p class="mb-0">Experience hassle-free shopping with our user-friendly online platform.</p>
+                  </div>
+                  <div class="col mb-5 mb-md-0 h-100">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-pin-angle-fill"></i></div>
+                      <h2 class="h5">Quality You Can Trust</h2>
+                      <p class="mb-0"> Our commitment to quality is unwavering. We rigorously meet the highest standards, so you can shop with confidence.</p>
+                  </div>
+                  <div class="col h-100">
+                      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                      <h2 class="h5">Swift and Reliable Delivery</h2>
+                      <p class="mb-0">We value your time, which is why we offer fast and reliable delivery services. Your groceries will be at your door when you need them.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
+
+<div class="py-5 bg-light">
+  <div class="container px-5 my-5">
+      <div class="row gx-5 justify-content-center">
+          <div class="col-lg-10 col-xl-7">
+              <div class="text-center">
+                  <div class="fs-4 mb-4 fst-italic">"Amidst launching Starship and overseeing multiple companies, GroceMart's reliability delivered fresh groceries promptly, allowing me to focus on conquering Mars."</div>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <img class="rounded-circle me-3" src="https://variety.com/wp-content/uploads/2022/07/Elon-Musk-Twitter-Lawsuit.jpg?w=100&h=100&crop=1&resize=50%2C50" alt="..." />
+                    <div class="fw-bold">
+                          Elon Musk
+                          <span class="fw-bold text-primary mx-1">/</span>
+                          CEO of SpaceX and Tesla, Inc
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- <div class="container px-5 my-5">
+  <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+          <div class="text-center">
+              <h2 class="fw-bolder">From our store</h2>
+              <p class="lead fw-normal text-muted mb-5">These are some of our category</p>
+          </div>
+      </div>
+  </div>
+    <div *ngFor="let cat of pD.pCategory"></div>
+</div> -->
+
+<div class="container px-5 my-5">
+  <div class="row gx-5 justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+      <div class="text-center">
+        <h2 class="fw-bolder">Explore Our Categories</h2>
+        <p class="lead fw-normal text-muted mb-5">Discover a variety of categories available at our store.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-4 gx-lg-5">
+    <!-- Loop through your categories using *ngFor -->
+    <div *ngFor="let cat of pD.pCategory" class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body" style="background-color: #ff5733; color: #fff;">
+          <!-- Display category name and description from the data -->
+          <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" routerLinkActive="active">{{ cat.categoryName }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
