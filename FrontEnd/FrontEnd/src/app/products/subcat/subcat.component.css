@@ -1,24 +1,42 @@
 /* Custom CSS for the sidebar */
-.sidebar {
-  background-color: #333; /* Background color */
-  color: #fff; /* Text color */
-  /* width: 250px; */
-  padding: 20px;
-  height: fit-content;
-  border-radius: 10px;
-  position: sticky;
-  top: 10px;
+.sidbar {
+  display: none;
 }
 
-/* Style for sidebar links */
+#sidebar-all-button {
+  display: none;
+}
+
 .sidebar-link {
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  transition: color 0.3s; /* Smooth color transition on hover */
-  display: block;
-  padding: 10px 0;
-  padding: 5%;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  #sidebar-all-button {
+    display: block;
+  }
+
+  .sidebar {
+    background-color: #333; /* Background color */
+    color: #fff; /* Text color */
+    padding: 10px;
+    height: fit-content;
+    border-radius: 10px;
+    position: sticky;
+    top: 10px;
+  }
+
+  /* Style for sidebar links */
+  .sidebar-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s; /* Smooth color transition on hover */
+    display: block;
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+  }
 }
 
 /* Hover effect for sidebar links */
