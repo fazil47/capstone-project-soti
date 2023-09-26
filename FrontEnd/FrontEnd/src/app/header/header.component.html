@@ -40,7 +40,7 @@
       <a class="btn btn-primary" routerLink="login">Login/Register</a>
     </div>
     <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
-      <a class="btn btn-primary" (click)="this.loginServ.logout()">Logout</a>
+      <a class="btn btn-primary" (click)="logOut()">Logout</a>
     </div>
   </div>
 </nav>
