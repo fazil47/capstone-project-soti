@@ -62,6 +62,7 @@ export class LoginService {
       return true;
     }
 
+    localStorage.removeItem('cart');
     return false;
   };
 
