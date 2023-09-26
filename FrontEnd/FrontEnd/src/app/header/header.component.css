@@ -12,6 +12,10 @@
   margin-bottom: 20px;
 }
 
+#navbarContent {
+  background-color: white;
+}
+
 @media (min-width: 992px) {
   #navbarContent {
     display: flex;
