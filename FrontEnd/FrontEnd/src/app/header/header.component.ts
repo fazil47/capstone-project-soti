@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../shared/services/login.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { ProductService } from '../shared/services/product.service';
+import { ProductCategoryService } from '../shared/services/product-category.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ProductService } from '../shared/services/product.service';
 ],
 })
 export class HeaderComponent {
-  constructor(public loginServ: LoginService,public prodServ:ProductService) {}
+  constructor(public loginServ: LoginService,public prodServ:ProductService,public catServ:ProductCategoryService) {}
 
   logOut(): void {
 
@@ -37,6 +38,15 @@ export class HeaderComponent {
     })
 
     
+
+  }
+
+  refreshProductList()
+  {
+    this.catServ.clickedId = 1;
+    console.log(this.catServ.clickedId);
+
+    this.prodServ.refreshProductList()
 
   }
 }

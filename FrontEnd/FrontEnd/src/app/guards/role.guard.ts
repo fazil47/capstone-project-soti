@@ -33,7 +33,6 @@ export class RoleGuard implements CanActivate {
     let isAdmin :Boolean= decodedJwtData["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"].includes("Admin");
 
     if (token && !this.jwtHelper.isTokenExpired(token)) {
-      console.log(this.jwtHelper.decodeToken(token));
       if(isAdmin)
       {
         return true;

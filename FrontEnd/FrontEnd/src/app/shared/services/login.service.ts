@@ -35,10 +35,8 @@ export class LoginService {
       .subscribe({
         next: (response: AuthenticatedResponse) => {
           const token = response.token;
-          console.log(token);
           this.name = response.name;
 
-          console.log(this.name);
           localStorage.setItem('jwt', token);
           localStorage.setItem(
             'currentUser',
