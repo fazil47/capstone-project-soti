@@ -4,6 +4,7 @@ import { Product } from '../shared/models/product.model';
 import { ProductService } from '../shared/services/product.service';
 import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CartService } from '../shared/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,7 +16,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -23,13 +25,21 @@ export class ProductDetailsComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
 
-    this.productService.getProductById(productIdFromRoute).subscribe({
-      next: (response) => (this.product = response as Product),
-      error: (err: HttpErrorResponse) => console.log(err),
-    });
+    this.productService
+      .getProductById(productIdFromRoute)
+      .then((response) => (this.product = response as Product))
+      .catch((err: HttpErrorResponse) => console.log(err));
   }
 
   addToCart() {
-    alert('Not implemented yet');
+    this.cartService.addProductToCart(this.product);
+  }
+
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
+  }
+
+  isProductInCart(): boolean {
+    return this.cartService.isProductInClass(this.product);
   }
 }

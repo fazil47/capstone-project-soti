@@ -62,6 +62,7 @@ export class LoginService {
       return true;
     }
 
+    localStorage.removeItem('cart');
     return false;
   };
 
@@ -71,14 +72,16 @@ export class LoginService {
     }
     const token = JSON.parse(localStorage.getItem('currentUser')).token;
 
-    let jwtData = token.split('.')[1]
-    let decodedJwtJsonData = window.atob(jwtData)
+    let jwtData = token.split('.')[1];
+    let decodedJwtJsonData = window.atob(jwtData);
     let decodedJwtData = JSON.parse(decodedJwtJsonData);
-    
-    let isAdmin :Boolean= decodedJwtData["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"].includes("Admin");
 
+    let isAdmin: Boolean =
+      decodedJwtData[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      ].includes('Admin');
 
-    if (token && !this.jwtHelper.isTokenExpired(token) &&isAdmin) {
+    if (token && !this.jwtHelper.isTokenExpired(token) && isAdmin) {
       return true;
     }
 
@@ -87,6 +90,7 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('cart');
     this.name = '';
     this.router.navigate(['/login']);
   }

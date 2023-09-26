@@ -28,7 +28,7 @@ public partial class OnlineGroceryStoreContext : DbContext
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC0704BEBCA3");
+            entity.HasKey(e => e.Id).HasName("PK__Categori__3214EC075B73C50C");
 
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(100)
@@ -37,7 +37,7 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC0769D17C39");
+            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC07BA602139");
 
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
@@ -61,13 +61,13 @@ public partial class OnlineGroceryStoreContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07DB75D1E0");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC074746A8E3");
 
-            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE318950F2").IsUnique();
+            entity.HasIndex(e => e.EmailId, "UQ__Users__7ED91ACE65C3DFFC").IsUnique();
 
-            entity.HasIndex(e => e.Password, "UQ__Users__87909B15C646844E").IsUnique();
+            entity.HasIndex(e => e.Password, "UQ__Users__87909B15B46DDD7F").IsUnique();
 
-            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A8600083E7B").IsUnique();
+            entity.HasIndex(e => e.MobileNo, "UQ__Users__D6D73A86A4DD5791").IsUnique();
 
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
