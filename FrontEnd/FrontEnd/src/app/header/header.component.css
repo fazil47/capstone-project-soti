@@ -1,3 +1,17 @@
+#navbarMain .btn {
+  display: flex;
+  flex-direction: row;
+  gap: 8px !important;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  max-width: fit-content;
+}
+
+.navbar-nav {
+  margin-bottom: 20px;
+}
+
 @media (min-width: 992px) {
   #navbarContent {
     display: flex;
@@ -18,20 +32,6 @@
   }
 
   .navbar-nav {
-    margin-bottom: 0px !important;
+    margin-bottom: 0px;
   }
-}
-
-#navbarMain .btn {
-  display: flex;
-  flex-direction: row;
-  gap: 8px !important;
-  align-items: center;
-  align-content: center;
-  justify-items: center;
-  max-width: fit-content;
-}
-
-.navbar-nav {
-  margin-bottom: 20px !important;
 }
