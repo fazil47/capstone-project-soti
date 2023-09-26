@@ -65,8 +65,9 @@ VALUES
     ('Carrots', 'Fresh carrots.', 599.99, 50, 0, 101),
     ('Onions', 'Fresh onions.', 1299.99, 30, 0, 101),
     ('Salmon', 'Decent salmon.', 299.99, 20, 0, 104),
-    ('Apples', 'Fresh apples.', 299.99, 20, 0, 103),
-    ('Oranges', 'Fresh oranges.', 299.99, 20, 0, 103),
+    ('Apples', 'Fresh apples.', 299.99, 20, 0, 102),
+    ('Oranges', 'Fresh oranges.', 299.99, 20, 0, 102),
+    ('KurKure', 'Eatables Snacks.', 99.99, 20, 0, 103),
     ('Red Bull', 'Red Bull.', 199.99, 20, 0, 106),
     ('Chicken', 'Good chicken.', 799.99, 15, 0, 105);
 
