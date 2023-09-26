@@ -44,23 +44,7 @@
           (click)="refreshProductList()"
           >Products</a
         >
-        <a
-          class="nav-link"
-          *ngIf="this.loginServ.isAdmin()"
-          routerLink="products/edit"
-          routerLinkActive="active fw-bold"
-          id="hover5"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Edit Products</a
-        >
-        <a
-          class="nav-link"
-          *ngIf="this.loginServ.isAdmin()"
-          routerLink="categories/edit"
-          routerLinkActive="active fw-bold"
-          id="hover5"
-          >Edit Categories</a
-        >
+       
         <a
           class="nav-link"
           routerLink="cart"
@@ -68,6 +52,23 @@
           id="hover5"
           >Cart</a
         >
+        <a
+        class="nav-link"
+        *ngIf="this.loginServ.isAdmin()"
+        routerLink="products/edit"
+        routerLinkActive="active fw-bold"
+        id="hover5"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Edit Products</a
+      >
+      <a
+        class="nav-link"
+        *ngIf="this.loginServ.isAdmin()"
+        routerLink="categories/edit"
+        routerLinkActive="active fw-bold"
+        id="hover5"
+        >Edit Categories</a
+      >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
       <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
