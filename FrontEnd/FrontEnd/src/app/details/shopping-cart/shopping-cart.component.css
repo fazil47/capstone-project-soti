@@ -1,12 +1,13 @@
 .page{
   background-color: #212529;
   min-height: 500px;
+  
 }
 .product-card {
   border: 1px solid #ccc;
   background-color:#F9F5EB;
   
-  
+  border-radius: 5px;
   padding: 20px;
   margin: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
