@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../shared/services/login.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { ProductService } from '../shared/services/product.service';
+import { ProductCategoryService } from '../shared/services/product-category.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { ProductService } from '../shared/services/product.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(public loginServ: LoginService,public prodServ:ProductService) {}
+  constructor(public loginServ: LoginService,public prodServ:ProductService,public catServ:ProductCategoryService) {}
 
   logOut(): void {
     Swal.fire({
@@ -29,5 +30,14 @@ export class HeaderComponent {
         Swal.fire('Continue as ' + this.loginServ.name, '', 'info');
       }
     });
+  }
+
+  refreshProductList()
+  {
+    this.catServ.clickedId = 1;
+    console.log(this.catServ.clickedId);
+
+    this.prodServ.refreshProductList()
+
   }
 }

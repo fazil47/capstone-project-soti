@@ -76,11 +76,14 @@
       </div>
     </div>
   </div>
-
-  <ul *ngIf="logServ.isUserAuthenticated()" class="success text-white">
+  
+  <!-- <div *ngIf="logServ.isUserAuthenticated()">
+    <app-home-page></app-home-page>
+  </div> -->
+  <!-- <ul *ngIf="logServ.isUserAuthenticated()" class="success text-white">
     <h2 *ngIf="logServ.isUserAuthenticated()">
       Login Successful, Welcome {{ logServ.name }}
       <app-userdetails></app-userdetails>
     </h2>
-  </ul>
+  </ul> -->
 </section>

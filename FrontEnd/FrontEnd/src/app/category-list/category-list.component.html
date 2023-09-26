@@ -1,4 +1,4 @@
-<br>
+<br />
 <div class="main">
   <div class="row">
     <!-- <h4>Category List :</h4> -->
@@ -15,8 +15,13 @@
           <tr>
             <!-- <th scope="row">1</th> -->
             <!-- <td>{{ c.id }}</td> -->
-            <td class="sidebar" (click)="refreshProductCategoryList(c.id)" routerLink="products">{{ c.categoryName }}</td>
-            
+            <td
+              class="sidebar"
+              (click)="refreshProductCategoryList(c.id)"
+              routerLink="products"
+            >
+              {{ c.categoryName }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -26,4 +31,3 @@
     </div>
   </div>
 </div>
-
