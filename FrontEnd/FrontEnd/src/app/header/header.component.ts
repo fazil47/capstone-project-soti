@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../shared/services/login.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import { ProductService } from '../shared/services/product.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 ],
 })
 export class HeaderComponent {
-  constructor(public loginServ: LoginService) {}
+  constructor(public loginServ: LoginService,public prodServ:ProductService) {}
 
   logOut(): void {
 
