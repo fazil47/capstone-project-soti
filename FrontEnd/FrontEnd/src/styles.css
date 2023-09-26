@@ -29,3 +29,7 @@ ul li {
   border-radius: 10px;
   color: white;
 }
+
+:root {
+  background-color: #212529;
+}
