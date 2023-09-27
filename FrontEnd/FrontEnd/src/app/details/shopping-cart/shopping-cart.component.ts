@@ -11,29 +11,34 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(protected cartService: CartService, public loginServ:LoginService) {}
-  price:number=0;
-  isCartEmpty:boolean=true;
-  ngOnInit(): void {
-    this.cartService.loadCart();
-    if(this.cartService.products==null){
-      this.isCartEmpty=true;
-      this.price=0;
-    }else{
-      this.cartService.products.forEach(p => {
-        this.price+=p.unitPrice;
-        this.isCartEmpty=false;
-      });
-    }
-  
-  }
-  removeFromCart(product:Product){
-    this.price-=product.unitPrice;
-    this.cartService.removeFromCart(product);
-    if(this.cartService.products.length==0){
+  price: number = 0;
+  isCartEmpty: boolean = true;
 
-      this.isCartEmpty=true;
-      console.log("cart is empty")
+  constructor(
+    protected cartService: CartService,
+    public loginServ: LoginService
+  ) {}
+
+  ngOnInit(): void {
+    this.cartService.loadCart(() => {
+      if (this.cartService.products == null) {
+        this.isCartEmpty = true;
+        this.price = 0;
+      } else {
+        this.cartService.products.forEach((p) => {
+          this.price += p.unitPrice;
+          this.isCartEmpty = false;
+        });
+      }
+    });
+  }
+
+  removeFromCart(product: Product) {
+    this.price -= product.unitPrice;
+    this.cartService.removeFromCart(product);
+    if (this.cartService.products.length == 0) {
+      this.isCartEmpty = true;
+      console.log('cart is empty');
     }
   }
 
@@ -56,15 +61,13 @@ export class ShoppingCartComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Purchase', 'Successfully completed', 'success');
-        this.cartService.clearCart()
-        this.price=0;
-        this.isCartEmpty=true;
+        this.cartService.clearCart();
+        this.price = 0;
+        this.isCartEmpty = true;
         this.cartService.loadCart();
       } else if (result.isDenied) {
         Swal.fire('Continue shopping', '', 'info');
       }
     });
   }
-
- 
 }

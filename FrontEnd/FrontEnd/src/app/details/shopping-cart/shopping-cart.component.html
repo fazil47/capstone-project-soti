@@ -1,75 +1,80 @@
-<section class="page" style="border-radius: 0; min-height: 75vh;" >
+<section class="page" style="border-radius: 0; min-height: 75vh">
   <h1 class="text-center">My Cart</h1>
-  <div  >
-  <div *ngIf="isCartEmpty;else cartContent">
-    <div class="text-center" style="margin-top: 30vh;"><p style="font-size: 5vh;color: gray;">Your cart is empty :( </p></div>
-    
-  </div>
-<ng-template #cartContent>
-  <div class="container mt-5">
-    <div class="container mt-4">
-      <div class="container mt-4">
-        <div class="row">
-          <div class="col-md-4" *ngFor="let p of cartService.products">
-            <div
-              class="product-card text-black"
-              *ngIf="!p.discontinued"
-              [routerLink]="['/products', p.id]"
-            >
-              <div class="row">
-                <div class="col-md-8">
+  <div>
+    <div *ngIf="isCartEmpty; else cartContent">
+      <div class="text-center" style="margin-top: 30vh">
+        <p style="font-size: 5vh; color: gray">Your cart is empty :(</p>
+      </div>
+    </div>
+    <ng-template #cartContent>
+      <div class="container mt-5">
+        <div class="container mt-4">
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let p of cartService.products">
+                <div
+                  class="product-card text-black"
+                  *ngIf="!p.discontinued"
+                  [routerLink]="['/products', p.id]"
+                >
                   <div class="row">
-                    <div class="col-md-12">
-                      <span class="product-title">{{ p.productName }}</span>
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <span class="product-title">{{ p.productName }}</span>
+                        </div>
+                        <div class="col-md-12">
+                          <p class="product-description">
+                            {{ p.productDescription }}
+                          </p>
+                        </div>
+                        <div class="col-md-12">
+                          <span class="product-price"
+                            >Price: {{ p.unitPrice | currency : "INR" }}/-</span
+                          >
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-12">
-                      <p class="product-description">
-                        {{ p.productDescription }}
-                      </p>
-                    </div>
-                    <div class="col-md-12">
-                      <span class="product-price"
-                        >Price: {{ p.unitPrice | currency: 'INR' }}/-</span
-                      >
+
+                    <div class="col-md-4">
+                      <img
+                        class="cartimg img-fluid"
+                        src="{{ p.imgUrl }}"
+                        alt=""
+                      />
                     </div>
                   </div>
-                </div>
 
-                <div class="col-md-4">
-                  <img class="cartimg img-fluid" src="{{ p.imgUrl }}" alt="" />
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12 text-center mt-3">
-                  <button
-                    class="btn btn-danger text-white"
-                    (click)="removeFromCart(p)"
-                  >
-                    Remove From Cart
-                  </button>
+                  <div class="row">
+                    <div class="col-md-12 text-center mt-3">
+                      <button
+                        class="btn btn-danger text-white"
+                        (click)="removeFromCart(p)"
+                      >
+                        Remove From Cart
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h3>Total Price: {{ getTotalPrice() | currency: 'INR' }} /-</h3>
-        <button
-          class="btn btn-success text-white"
-          style="width: 200px"
-          (click)="buyCart()"
-        >
-          Buy
-        </button>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-6 offset-md-3 text-center">
+            <h3>Total Price: {{ getTotalPrice() | currency : "INR" }} /-</h3>
+            <button
+              class="btn btn-success text-white"
+              style="width: 200px"
+              (click)="buyCart()"
+            >
+              Buy
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </ng-template>
   </div>
-</ng-template>
-</div>
 </section>
