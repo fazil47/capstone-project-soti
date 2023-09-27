@@ -1,5 +1,4 @@
-<div id="sidebar-wrapper" style="position: sticky;
-top: 0px">
+<div id="sidebar-wrapper" style="position: sticky; top: 0px">
   <div class="sidebar" id="category-sidebar">
     <!-- Sidebar content goes here -->
     <ul class="list-unstyled">
@@ -7,7 +6,7 @@ top: 0px">
         class="sidebar-link"
         id="sidebar-all-button"
         (click)="refreshProductList()"
-        [class.clicked]="pD.clickedId === undefined"
+        [class.clicked]="pD.clickedId == 1 || pD.clickedId === undefined"
       >
         All
       </li>
@@ -21,7 +20,7 @@ top: 0px">
       </li>
     </ul>
   </div>
-  <div class="dropdown" id="category-dropdown">
+  <div class="dropdown" id="category-dropdown" style="z-index: 10">
     <button
       class="btn btn-white dropdown-toggle"
       type="button"
@@ -30,12 +29,13 @@ top: 0px">
     >
       Category
     </button>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" style="z-index: 10">
       <li>
         <a
           class="dropdown-item"
           (click)="refreshProductList()"
           [class.clicked]="pD.clickedId === undefined"
+          style="z-index: 10"
           >All</a
         >
       </li>
@@ -45,6 +45,7 @@ top: 0px">
           *ngFor="let side of pD.pCategory"
           (click)="refreshProductListByCategory(side.id)"
           [class.clicked]="pD.clickedId == side.id"
+          style="z-index: 10"
         >
           {{ side.categoryName }}</a
         >

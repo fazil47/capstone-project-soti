@@ -18,7 +18,7 @@
           <p class="card-text fs-7">
             Left in stock: {{ product.unitsInStock }}
           </p>
-          <p class="card-text fs-7">{{ product.unitPrice | currency }}</p>
+          <p class="card-text fs-7">{{ product.unitPrice | currency:'INR' }}</p>
           <div *ngIf="isProductInCart(); then thenBlock; else elseBlock"></div>
           <ng-template #thenBlock>
             <button class="btn btn-danger mt-auto" (click)="removeFromCart()">

@@ -1,0 +1,15 @@
+We have employed waterfall development methodology to design, develop then to test the app.
+
+First we created the database using SSMS. Then the api is made with.NET core web api
+
+and it is then integrated to frontend which is developed using angular framework
+
+
+Tools and technologies we have used for the website
+
+Frontend is developed using angular framework
+,NET core web api is used for the backend 
+The database is created with microsoft sql server and git github is used for 
+version control and team collaboration
+Bootstrap 5 is used for styling components and for responsive design and icons are
+taken from font awesome

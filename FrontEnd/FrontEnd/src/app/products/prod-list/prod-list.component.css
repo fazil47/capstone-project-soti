@@ -21,5 +21,6 @@
   .productGrid {
     grid-template-columns: auto auto auto;
     justify-items: left;
+    width: fit-content;
   }
 }
