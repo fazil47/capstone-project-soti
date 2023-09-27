@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isEmpty } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { LoginService } from 'src/app/shared/services/login.service';
@@ -10,23 +11,30 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  price: number = 0;
-
-  constructor(
-    protected cartService: CartService,
-    public loginServ: LoginService
-  ) {}
-
+  constructor(protected cartService: CartService, public loginServ:LoginService) {}
+  price:number=0;
+  isCartEmpty:boolean=true;
   ngOnInit(): void {
     this.cartService.loadCart();
-    this.cartService.products?.forEach((p) => {
-      this.price += p.unitPrice;
-    });
+    if(this.cartService.products==null){
+      this.isCartEmpty=true;
+      this.price=0;
+    }else{
+      this.cartService.products.forEach(p => {
+        this.price+=p.unitPrice;
+        this.isCartEmpty=false;
+      });
+    }
+  
   }
-
-  removeFromCart(product: Product) {
-    this.price -= product.unitPrice;
+  removeFromCart(product:Product){
+    this.price-=product.unitPrice;
     this.cartService.removeFromCart(product);
+    if(this.cartService.products.length==0){
+
+      this.isCartEmpty=true;
+      console.log("cart is empty")
+    }
   }
 
   getTotalPrice(): number {
@@ -48,12 +56,15 @@ export class ShoppingCartComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Purchase', 'Successfully completed', 'success');
-        this.cartService.clearCart();
-        this.price = 0;
+        this.cartService.clearCart()
+        this.price=0;
+        this.isCartEmpty=true;
         this.cartService.loadCart();
       } else if (result.isDenied) {
         Swal.fire('Continue shopping', '', 'info');
       }
     });
   }
+
+ 
 }
