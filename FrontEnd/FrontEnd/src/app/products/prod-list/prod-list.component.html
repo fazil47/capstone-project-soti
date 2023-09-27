@@ -12,7 +12,7 @@
       />
       <div class="card-body d-flex flex-column">
         <h5 class="card-title" style="color: green;">{{ p.productName }}</h5>
-        <p class="card-text text-dark"><strong>{{ p.unitPrice | currency }}</strong></p>
+        <p class="card-text text-dark"><strong>{{ p.unitPrice | currency: 'INR'}}</strong></p>
       </div>
     </div>
   </div>
