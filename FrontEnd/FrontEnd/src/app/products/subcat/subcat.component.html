@@ -7,7 +7,7 @@ top: 0px">
         class="sidebar-link"
         id="sidebar-all-button"
         (click)="refreshProductList()"
-        [class.clicked]="pD.clickedId == 1"
+        [class.clicked]="pD.clickedId == 1 || pD.clickedId===undefined"
       >
         All
       </li>
