@@ -47,7 +47,7 @@ export class RegisterService {
 
           this.loginserv.invalidLogin = false;
           alert('Registration success');
-          this.router.navigate(['/login']);
+          this.router.navigate(['']);
         },
         error: (err: HttpErrorResponse) => {
           this.loginserv.invalidLogin = true;
@@ -66,6 +66,10 @@ export class RegisterService {
           }
           if (age < 18) {
             alert('Age is less than 18....');
+          } else {
+            alert(
+              "Registration not successful, please check if email and phone number haven't been used to register here before."
+            );
           }
         },
       });
