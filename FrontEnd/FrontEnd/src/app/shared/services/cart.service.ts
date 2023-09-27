@@ -16,13 +16,17 @@ export class CartService {
       this.productIds = JSON.parse(localStorage.getItem('cart'));
       if (this.productIds === undefined || this.productIds === null) {
         this.products = [];
-        onSuccess();
+        if (onSuccess) {
+          onSuccess();
+        }
       } else {
         this.productService
           .getProductsById(this.productIds)
           .then((products) => {
             this.products = products;
-            onSuccess();
+            if (onSuccess) {
+              onSuccess();
+            }
           });
       }
     } catch (error) {
