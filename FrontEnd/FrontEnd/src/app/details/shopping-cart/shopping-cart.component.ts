@@ -3,7 +3,7 @@ import { isEmpty } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { LoginService } from 'src/app/shared/services/login.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -36,17 +36,21 @@ export class ShoppingCartComponent implements OnInit {
       console.log("cart is empty")
     }
   }
-  getTotalPrice():number{
-    return this.price
+
+  getTotalPrice(): number {
+    return this.price;
   }
-  buyCart(){
+
+  buyCart() {
     Swal.fire({
       title: 'proceed with the purchase',
-      text: 'Hi ' + this.loginServ.name + ', are you sure you want to proceed with the purchase',
+      text:
+        'Hi ' +
+        this.loginServ.name +
+        ', are you sure you want to proceed with the purchase',
       showDenyButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: `No`,
-
       icon: 'warning',
       centre: true,
     }).then((result) => {
@@ -59,8 +63,7 @@ export class ShoppingCartComponent implements OnInit {
       } else if (result.isDenied) {
         Swal.fire('Continue shopping', '', 'info');
       }
-    });  
-    
+    });
   }
 
  

@@ -9,6 +9,7 @@ using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Backend.Controllers {
     [Authorize(AuthenticationSchemes = "Bearer")]
@@ -45,6 +46,28 @@ namespace Backend.Controllers {
 
             return product;
         }
+
+        [HttpGet("name/{productName}"), Authorize(Roles = "User")]
+        public async Task<ActionResult<Product>> GetProduct(string productName,[BindRequired] decimal price)
+        {
+            if (_context.Products == null)
+            {
+                return NotFound();
+            }
+
+            var products = await _context.Products.Include(p => p.Category).
+                                Where(p => p.ProductName.Contains(productName) && p.UnitPrice<=price ).ToListAsync();
+
+
+            if (!products.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(products);
+        }
+
+
         [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> GetProductByCatId(int catId) {
             if (_context.Products == null) {
