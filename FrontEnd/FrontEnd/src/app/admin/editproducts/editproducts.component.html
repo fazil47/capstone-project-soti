@@ -115,7 +115,7 @@
                 <td>{{ p.id }}</td>
                 <td>{{ p.productName }}</td>
                 <td>{{ p.productDescription }}</td>
-                <td>${{ p.unitPrice }}</td>
+                <td>{{ p.unitPrice | currency:'INR' }}</td>
                 <td>{{ p.unitsInStock }}</td>
                 <td>{{ p.categoryId }}</td>
                 <td>{{ p.discontinued }}</td>
