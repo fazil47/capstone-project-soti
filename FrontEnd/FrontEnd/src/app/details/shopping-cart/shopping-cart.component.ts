@@ -10,7 +10,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(protected cartService: CartService) {}
+  constructor(protected cartService: CartService, public loginServ:LoginService) {}
   price:number=0;
   ngOnInit(): void {
     this.cartService.loadCart();
