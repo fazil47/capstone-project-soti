@@ -12,7 +12,10 @@ export class ProdListComponent implements OnInit {
   constructor(public serv: ProductService) {}
   ngOnInit(): void {
     if(this.serv.PList===undefined)
+    {
+      console.log(this.serv.PList)
     this.serv.refreshProductList();
+    }
 
   }
 }
