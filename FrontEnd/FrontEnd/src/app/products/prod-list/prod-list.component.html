@@ -3,7 +3,12 @@
   style="z-index: 0"
   *ngIf="serv.PList != undefined && serv.PList.length != 0"
 >
-  <div class="productWrapper" *ngFor="let p of serv.PList" style="z-index: 0">
+  <div
+    class="productWrapper"
+    *ngFor="let p of serv.PList"
+    style="z-index: 0"
+    [ngStyle]="p.discontinued ? { display: 'none' } : {}"
+  >
     <div
       class="card"
       *ngIf="!p.discontinued"
