@@ -13,7 +13,6 @@ import { EditProductsService } from 'src/app/shared/services/edit-products.servi
 })
 export class EditproductsComponent implements OnInit{
 
-
   constructor(public serv:ProductService,public http:HttpClient,private toastr: ToastrService,public pedit:EditProductsService){}
 
   ngOnInit(): void {
@@ -21,7 +20,7 @@ export class EditproductsComponent implements OnInit{
     this.resetForm();
   }
 
-
+  
   resetForm(form?:NgForm){
     if(form!=null)
     {

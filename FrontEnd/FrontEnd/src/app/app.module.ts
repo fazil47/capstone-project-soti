@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditCategoryComponent } from './admin/edit-category/edit-category.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -52,6 +53,7 @@ export function tokenGetter() {
     EditproductsComponent,
     EditCategoryComponent,
     FooterComponent,
+    SearchbarComponent,
   ],
   imports: [
     BrowserModule,

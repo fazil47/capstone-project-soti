@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Product } from '../models/product.model';
 import { firstValueFrom } from 'rxjs';
-
+import { SearchService } from './search.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,7 +14,8 @@ export class ProductService {
 
   constructor(
     private objHttp: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    public search:SearchService
   ) {}
 
   PList: Product[];
@@ -23,6 +24,9 @@ export class ProductService {
     this.objHttp.get('http://localhost:5001/api/products').subscribe({
       next: (response) => {
         this.PList = response as Product[];
+        this.search.data="";
+        this.search.price=null;
+
       },
       error: (err: HttpErrorResponse) => console.log(err),
     });
