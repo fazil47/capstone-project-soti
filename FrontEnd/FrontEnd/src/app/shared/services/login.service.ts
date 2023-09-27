@@ -46,7 +46,10 @@ export class LoginService {
           this.invalidLogin = false;
           this.router.navigate(['']);
         },
-        error: (err: HttpErrorResponse) => (this.invalidLogin = true),
+        error: (err: HttpErrorResponse) => {
+          this.invalidLogin = true;
+          alert('Login unsuccessful, please check email and password.');
+        },
       });
   }
 
@@ -90,6 +93,6 @@ export class LoginService {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('cart');
     this.name = '';
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 }
