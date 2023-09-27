@@ -5,6 +5,7 @@
         <input
           name="Name"
           type="search"
+          required="true"
           placeholder="Product Name"
           id="productName"
           [(ngModel)]="this.srchServ.data"
@@ -15,9 +16,10 @@
       <div class="form-outline">
         <input
           name="Price"
+          type="number"
+          required="true"
           placeholder="Max Price"
           [(ngModel)]="this.srchServ.price"
-          type="search"
           id="price"
           class="form-control"
           style="border-radius: 0"
