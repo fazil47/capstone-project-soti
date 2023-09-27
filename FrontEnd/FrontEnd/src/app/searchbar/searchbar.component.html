@@ -1,0 +1,18 @@
+
+<form #form1="ngForm" autocomplete="off" (submit)="onSubmit1()">
+
+    <div class="input-group">
+        <div class="form-outline">
+            <input name="Name" type="search" placeholder="Product Name" id="productName" [(ngModel)]="this.srchServ.data" class="form-control" />
+          </div>
+        <div class="form-outline">
+          <input name="Price" placeholder="Price" [(ngModel)]="this.srchServ.price" type="search" id="price" class="form-control" />
+        </div>
+      
+        <button type="button" class="btn btn-primary"  type="submit" [disabled]="form1.invalid">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    
+   
+  </form>

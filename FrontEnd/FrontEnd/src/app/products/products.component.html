@@ -1,8 +1,15 @@
-<div class="container-fluid py-5" id="productsPage">
+<div class="container-fluid py-3" id="productsPage">
+    <div class=" ms-auto col-lg-4 justify-content-end mb-4">
+      <div class="">
+        <app-searchbar></app-searchbar>
+        </div>
+    </div>
   <div class="row">
     <div class="col-lg-2" style="z-index: 10;">
       <app-subcat></app-subcat>
+      
     </div>
+    
     <div class="col-lg-10">
       <app-prod-list></app-prod-list>
     </div>

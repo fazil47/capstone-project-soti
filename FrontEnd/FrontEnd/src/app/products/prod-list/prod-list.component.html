@@ -1,5 +1,5 @@
-<div class="productGrid" style="z-index: 0;">
-  <div class="productWrapper" *ngFor="let p of serv.PList" style="z-index: 0;">
+<div class="productGrid" style="z-index: 0;" *ngIf="serv.PList!=undefined && serv.PList.length!=0 ">
+  <div class="productWrapper" *ngFor="let p of serv.PList" style="z-index: 0;" >
     <div
       class="card"
       *ngIf="!p.discontinued"
@@ -16,4 +16,7 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="serv.PList!=undefined && serv.PList.length==0 ">
+  <p>No products exists..</p>
 </div>
