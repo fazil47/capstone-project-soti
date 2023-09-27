@@ -3,13 +3,14 @@ import { Product } from 'src/app/shared/models/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(protected cartService: CartService,protected loginServ:LoginService) {}
+  constructor(protected cartService: CartService) {}
   price:number=0;
   ngOnInit(): void {
     this.cartService.loadCart();
