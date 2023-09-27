@@ -15,7 +15,7 @@
                   <h1 class="display-5 fw-bolder text-white mb-2">Welcome to GroceMart </h1>
                   <p class="lead fw-normal text-white-50 mb-4">Your One-Stop Shop for Fresh, Fast, and Fabulous: GroceMart - Where Convenience Meets Quality!</p>
                   <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                      <a class="btn btn-custom" href="#features">Get Started</a>
+                      <a class="btn btn-custom" href="#categoryList">Get Started</a>
                   </div>
               </div>
           </div>
@@ -23,6 +23,30 @@
       </div>
   </div>
 </header>
+
+<br><br>
+<div class="container px-5 my-5 " id="categoryList">
+  <div class="row gx-5 justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+      <div class="text-center">
+        <h2 class="fw-bolder">Explore Our Categories</h2>
+        <p class="lead fw-normal text-muted mb-5">Discover a variety of categories available at our store.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-4 gx-lg-5">
+    <!-- Loop through your categories using *ngFor -->
+    <div *ngFor="let cat of pD.pCategory" class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body" style="background-color: #ff5733; color: #fff; border-radius: 4px;">
+          <!-- Display category name and description from the data -->
+          <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" (click)="refreshProductCategoryList(cat.id)" routerLinkActive="active">{{ cat.categoryName }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="py-5" id="features">
   <div class="container px-5 my-5">
@@ -71,28 +95,6 @@
     <div *ngFor="let cat of pD.pCategory"></div>
 </div> -->
 
-<div class="container px-5 my-5">
-  <div class="row gx-5 justify-content-center">
-    <div class="col-lg-8 col-xl-6">
-      <div class="text-center">
-        <h2 class="fw-bolder">Explore Our Categories</h2>
-        <p class="lead fw-normal text-muted mb-5">Discover a variety of categories available at our store.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="row gx-4 gx-lg-5">
-    <!-- Loop through your categories using *ngFor -->
-    <div *ngFor="let cat of pD.pCategory" class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body" style="background-color: #ff5733; color: #fff; border-radius: 4px;">
-          <!-- Display category name and description from the data -->
-          <h5 class="card-title text-center" routerLink="products" style="cursor: pointer;" (click)="refreshProductCategoryList(cat.id)" routerLinkActive="active">{{ cat.categoryName }}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="py-5 bg-light">
   <div class="container px-5 my-5">
