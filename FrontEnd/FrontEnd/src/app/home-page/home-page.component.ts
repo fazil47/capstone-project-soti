@@ -7,17 +7,12 @@ import { ProductCategoryService } from '../shared/services/product-category.serv
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(
-    public pD: ProductCategoryService,
-  ) {}
+  constructor(public pD: ProductCategoryService) {}
   ngOnInit(): void {
     this.pD.refreshProductCategoryList();
   }
-  refreshProductCategoryList(id:number)
-  {
+  refreshProductCategoryList(id: number) {
     this.pD.clickedId = id;
     this.pD.refreshProductsByCategory(id);
-    
   }
-
 }

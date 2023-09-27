@@ -93,6 +93,6 @@ export class LoginService {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('cart');
     this.name = '';
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 }

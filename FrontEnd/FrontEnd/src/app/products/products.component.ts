@@ -7,7 +7,5 @@ import { ProductCategoryService } from '../shared/services/product-category.serv
 })
 export class ProductsComponent implements OnInit {
   constructor() {}
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 }
