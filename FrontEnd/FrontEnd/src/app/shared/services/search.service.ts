@@ -7,7 +7,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class SearchService {
 
-  data:string="sfk";
+  data:string;
   price:number;
 
   constructor(public http:HttpClient){}
