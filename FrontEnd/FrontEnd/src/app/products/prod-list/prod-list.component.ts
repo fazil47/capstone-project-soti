@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class ProdListComponent implements OnInit {
   constructor(public serv: ProductService) {}
   ngOnInit(): void {
+    if(this.serv.PList===undefined)
     this.serv.refreshProductList();
+
   }
 }
