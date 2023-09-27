@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   {
     this.pD.clickedId = id;
     this.pD.refreshProductsByCategory(id);
+    
   }
 
 }
