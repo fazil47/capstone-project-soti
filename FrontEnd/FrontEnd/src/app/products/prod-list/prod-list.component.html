@@ -6,13 +6,13 @@
       [routerLink]="['/products', p.id]"
     >
       <img
-        src="../../../assets/Images/grocery1.jpg"
+        src={{p.imgUrl}}
         class="card-img-top"
         alt="productImage"
       />
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ p.productName }}</h5>
-        <p class="card-text">{{ p.unitPrice | currency }}</p>
+        <h5 class="card-title" style="color: green;">{{ p.productName }}</h5>
+        <p class="card-text text-dark"><strong>{{ p.unitPrice | currency }}</strong></p>
       </div>
     </div>
   </div>
