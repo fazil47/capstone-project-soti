@@ -22,6 +22,8 @@ public partial class Product
     public DateTime CreatedDate { get; set; }
 
     public DateTime? ModifiedDate { get; set; }
-public string? ImgUrl { get; set; }
+
+    public string? ImgUrl { get; set; }
+
     public virtual Category? Category { get; set; }
 }
