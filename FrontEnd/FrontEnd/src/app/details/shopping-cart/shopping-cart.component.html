@@ -1,57 +1,67 @@
-<section class="page" style="border-radius: 0;">
+<section class="page" style="border-radius: 0; min-height: 75vh;" >
   <h1 class="text-center">My Cart</h1>
   <div class="container mt-5">
     <div class="container mt-4">
       <div class="container mt-4">
-        <div class="row" >
-          
+        <div class="row">
           <div class="col-md-4" *ngFor="let p of cartService.products">
-            <div class="product-card text-black" *ngIf="!p.discontinued" [routerLink]="['/products', p.id]">
+            <div
+              class="product-card text-black"
+              *ngIf="!p.discontinued"
+              [routerLink]="['/products', p.id]"
+            >
               <div class="row">
-                
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12">
                       <span class="product-title">{{ p.productName }}</span>
                     </div>
                     <div class="col-md-12">
-                      <p class="product-description">{{ p.productDescription }}</p>
+                      <p class="product-description">
+                        {{ p.productDescription }}
+                      </p>
                     </div>
                     <div class="col-md-12">
-                      <span class="product-price">Price: {{ p.unitPrice | currency }}/-</span>
+                      <span class="product-price"
+                        >Price: {{ p.unitPrice | currency }}/-</span
+                      >
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="col-md-4">
-                  <img class="cartimg img-fluid" src={{p.imgUrl}} alt="">
+                  <img class="cartimg img-fluid" src="{{ p.imgUrl }}" alt="" />
                 </div>
               </div>
-              
+
               <div class="row">
                 <div class="col-md-12 text-center mt-3">
-                  <button class="btn btn-danger text-white" (click)="removeFromCart(p)">Remove From Cart</button>
-                  
-                  
+                  <button
+                    class="btn btn-danger text-white"
+                    (click)="removeFromCart(p)"
+                  >
+                    Remove From Cart
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          
-
-          
         </div>
+      </div>
     </div>
-    </div>
-    
   </div>
   <div class="container mt-4">
     <div class="row">
       <div class="col-md-6 offset-md-3 text-center">
         <h3>Total Price: {{ getTotalPrice() | currency }} /-</h3>
-        <button class="btn btn-success text-white" style="width: 200px;" (click)="buyCart()" >Buy</button>
+        <button
+          class="btn btn-success text-white"
+          style="width: 200px"
+          (click)="buyCart()"
+        >
+          Buy
+        </button>
       </div>
     </div>
   </div>
-
 </section>
