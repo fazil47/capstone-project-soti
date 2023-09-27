@@ -17,6 +17,7 @@ export class SubcatComponent implements OnInit {
     public objHttp: HttpClient
   ) {}
   ngOnInit(): void {
+    
     this.pD.refreshProductCategoryList();
     //console.log(this.pD.pCategory);
   }

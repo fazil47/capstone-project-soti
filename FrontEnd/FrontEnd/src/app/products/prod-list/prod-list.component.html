@@ -1,4 +1,4 @@
-<div class="productGrid">
+<div class="productGrid" *ngIf="serv.PList!=undefined && serv.PList.length!=0 ">
   <div class="productWrapper" *ngFor="let p of serv.PList">
     <div
       class="card"
@@ -16,4 +16,7 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="serv.PList!=undefined && serv.PList.length==0 ">
+  <p>No products exists..</p>
 </div>
