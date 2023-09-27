@@ -37,7 +37,6 @@ export class CartService {
       this.products.push(product);
       this.productIds.push(product.id);
       localStorage.setItem('cart', JSON.stringify(this.productIds));
-      
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +67,7 @@ export class CartService {
     return this.productIds?.includes(product.id);
   }
 
-  clearCart(){
+  clearCart() {
     localStorage.setItem('cart', JSON.stringify([]));
   }
 }
