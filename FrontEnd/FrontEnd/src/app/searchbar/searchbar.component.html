@@ -1,18 +1,39 @@
-
 <form #form1="ngForm" autocomplete="off" (submit)="onSubmit1()">
-
-    <div class="input-group">
-        <div class="form-outline">
-            <input name="Name" type="search" placeholder="Product Name" id="productName" [(ngModel)]="this.srchServ.data" class="form-control" />
-          </div>
-        <div class="form-outline">
-          <input name="Price" placeholder="Price" [(ngModel)]="this.srchServ.price" type="search" id="price" class="form-control" />
-        </div>
-      
-        <button type="button" class="btn btn-primary"  type="submit" [disabled]="form1.invalid">
-          <i class="fas fa-search"></i>
-        </button>
+  <div class="searchbar-wrapper">
+    <div class="searchbar">
+      <div class="form-outline">
+        <input
+          name="Name"
+          type="search"
+          required="true"
+          placeholder="Product Name"
+          id="productName"
+          [(ngModel)]="this.srchServ.data"
+          class="form-control"
+          style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+        />
       </div>
-    
-   
-  </form>
+      <div class="form-outline">
+        <input
+          name="Price"
+          type="number"
+          required="true"
+          placeholder="Max Price"
+          [(ngModel)]="this.srchServ.price"
+          id="price"
+          class="form-control"
+          style="border-radius: 0"
+        />
+      </div>
+      <button
+        type="button"
+        class="btn btn-dark"
+        type="submit"
+        [disabled]="form1.invalid"
+        style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</form>

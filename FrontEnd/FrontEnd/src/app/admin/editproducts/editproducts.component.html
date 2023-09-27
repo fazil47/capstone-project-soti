@@ -1,8 +1,8 @@
 <section class="page" style="min-height: 70vh">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 rounded" >
-        <div class="rounded" style="background-color: #5CB85C; padding:3% ">
+      <div class="col-md-4 rounded">
+        <div class="rounded" style="background-color: #5cb85c; padding: 3%">
           <h2 class="text-center text-white">Edit Product</h2>
           <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
             <input type="hidden" name="Id" [value]="this.pedit.PData.id" />
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group mt-3">
               <button
-                class="btn btn-success btn-lg"
+                class="btn btn-success btn-lg form-control"
                 type="submit"
                 [disabled]="form.invalid"
               >
@@ -93,7 +93,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h2 class="text-center text-dark">Products Display</h2>
+        <h2 class="text-center text-dark">Products</h2>
         <div class="container">
           <table
             class="table table-dark table-bordered table-hover rounded-table"
@@ -115,7 +115,7 @@
                 <td>{{ p.id }}</td>
                 <td>{{ p.productName }}</td>
                 <td>{{ p.productDescription }}</td>
-                <td>{{ p.unitPrice | currency:'INR' }}</td>
+                <td>{{ p.unitPrice | currency : "INR" }}</td>
                 <td>{{ p.unitsInStock }}</td>
                 <td>{{ p.categoryId }}</td>
                 <td>{{ p.discontinued }}</td>
