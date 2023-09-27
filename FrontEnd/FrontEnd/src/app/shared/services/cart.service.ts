@@ -11,15 +11,19 @@ export class CartService {
 
   constructor(private productService: ProductService) {}
 
-  loadCart(): void {
+  loadCart(onSuccess?: () => void): void {
     try {
       this.productIds = JSON.parse(localStorage.getItem('cart'));
       if (this.productIds === undefined || this.productIds === null) {
         this.products = [];
+        onSuccess();
       } else {
         this.productService
           .getProductsById(this.productIds)
-          .then((products) => (this.products = products));
+          .then((products) => {
+            this.products = products;
+            onSuccess();
+          });
       }
     } catch (error) {
       console.error(error);

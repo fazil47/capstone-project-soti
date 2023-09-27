@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../shared/services/login.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ProductService } from '../shared/services/product.service';
 import { ProductCategoryService } from '../shared/services/product-category.service';
 
@@ -10,7 +10,11 @@ import { ProductCategoryService } from '../shared/services/product-category.serv
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(public loginServ: LoginService,public prodServ:ProductService,public catServ:ProductCategoryService) {}
+  constructor(
+    public loginServ: LoginService,
+    public prodServ: ProductService,
+    public catServ: ProductCategoryService
+  ) {}
 
   logOut(): void {
     Swal.fire({
@@ -19,7 +23,6 @@ export class HeaderComponent {
       showDenyButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: `No`,
-
       icon: 'warning',
       centre: true,
     }).then((result) => {
@@ -32,12 +35,10 @@ export class HeaderComponent {
     });
   }
 
-  refreshProductList()
-  {
+  refreshProductList() {
     this.catServ.clickedId = 1;
     console.log(this.catServ.clickedId);
 
-    this.prodServ.refreshProductList()
-
+    this.prodServ.refreshProductList();
   }
 }
