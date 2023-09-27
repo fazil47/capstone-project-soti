@@ -5,18 +5,18 @@
         <div class="rounded" style="background-color: #5CB85C; padding:3% ">
           <h2 class="text-center text-white">Edit Product</h2>
           <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-            <input type="hidden" name="Id" [value]="this.PData.id" />
+            <input type="hidden" name="Id" [value]="this.pedit.PData.id" />
             <input
               type="date"
               style="display: none"
               name="createdDate"
-              [value]="this.PData.createdDate"
+              [value]="this.pedit.PData.createdDate"
             />
             <div class="form-outline mb-4">
               <input
                 name="ProductName"
                 #ProductName="ngModel"
-                [(ngModel)]="this.PData.productName"
+                [(ngModel)]="this.pedit.PData.productName"
                 placeholder="Product Name"
                 class="form-control"
                 required
@@ -26,7 +26,7 @@
               <input
                 type="text"
                 name="ProductDetails"
-                [(ngModel)]="this.PData.productDescription"
+                [(ngModel)]="this.pedit.PData.productDescription"
                 placeholder="Product Description"
                 class="form-control"
               />
@@ -34,7 +34,7 @@
             <div class="form-outline mb-4">
               <input
                 name="ProductPrice"
-                [(ngModel)]="this.PData.unitPrice"
+                [(ngModel)]="this.pedit.PData.unitPrice"
                 placeholder="Unit Price"
                 class="form-control"
                 required
@@ -43,7 +43,7 @@
             <div class="form-outline mb-4">
               <input
                 name="unitsInStock"
-                [(ngModel)]="this.PData.unitsInStock"
+                [(ngModel)]="this.pedit.PData.unitsInStock"
                 placeholder="Units In Stock"
                 class="form-control"
                 required
@@ -52,7 +52,7 @@
             <div class="form-outline mb-4">
               <input
                 name="categoryId"
-                [(ngModel)]="this.PData.categoryId"
+                [(ngModel)]="this.pedit.PData.categoryId"
                 placeholder="Category Id"
                 class="form-control"
                 required
@@ -61,7 +61,7 @@
             <div class="form-outline mb-4">
               <input
                 name="url"
-                [(ngModel)]="this.PData.imgUrl"
+                [(ngModel)]="this.pedit.PData.imgUrl"
                 placeholder="Image Url"
                 class="form-control"
                 required
@@ -72,7 +72,7 @@
                 Discontinued &nbsp;&nbsp;
               </label>
               <input
-                [(ngModel)]="this.PData.discontinued"
+                [(ngModel)]="this.pedit.PData.discontinued"
                 name="discontinued"
                 class="form-check-input"
                 type="checkbox"

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders,HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { ProductCategoryService } from 'src/app/shared/services/product-category.service';
 import { NgForm } from '@angular/forms';
+import { EditCategoryService } from 'src/app/shared/services/edit-category.service';
 
 
 @Component({
@@ -12,11 +13,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit{
-  CData:Category=new Category();
 
-  constructor(public http:HttpClient,private toastr: ToastrService,public serv:ProductCategoryService){}
+  constructor(public http:HttpClient,private toastr: ToastrService,public serv:ProductCategoryService,public cedit:EditCategoryService){}
 
-  readonly apiUrl = 'http://localhost:5001/api/categories/edit';
 
   ngOnInit(): void {
     this.serv.refreshProductCategoryList();
@@ -30,14 +29,14 @@ export class EditCategoryComponent implements OnInit{
     }
     else
     {
-      this.CData = {id:0,categoryName:"",products:[]}
+      this.cedit.CData = {id:0,categoryName:"",products:[]}
     }
   }
 
   onSubmit(form:NgForm)
   {
-    console.log(this.CData.id)
-    if(this.CData.id==0)
+    
+    if(this.cedit.CData.id==0)
     {
       this.insertRecord(form);
     }
@@ -49,16 +48,7 @@ export class EditCategoryComponent implements OnInit{
 
   insertRecord(form:NgForm)
   {
-
-    console.log("insert"+this.CData);
-    this.http
-    .post(
-      this.apiUrl,
-      this.CData,
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      }
-    )
+    this.cedit.insertRecord()
     .subscribe({
       next: (response) => {
         this.toastr.success('Insertion', 'Insertion Success');
@@ -73,19 +63,12 @@ export class EditCategoryComponent implements OnInit{
   }
   updateRecord(form:NgForm)
   {
-    this.http
-    .put(
-      this.apiUrl+'/'+this.CData.id,
-      this.CData,
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      }
-    )
+    this.cedit.updateRecord()
     .subscribe({
       next: (response) => {
         this.toastr.info('Updation', 'Updation Success');
         this.resetForm(form);
-        this.CData.id = 0;
+        this.cedit.CData.id = 0;
         this.serv.refreshProductCategoryList();
         
       },
@@ -99,10 +82,7 @@ export class EditCategoryComponent implements OnInit{
   {
     if(confirm("Are you sure you want to delete?")){
 
-      this.http
-    .delete(
-      this.apiUrl+'/'+id,
-    )
+      this.cedit.delCategory(id)
     .subscribe({
       next: (response) => {
         this.toastr.success('Deletion', 'Deletion Success');
@@ -117,6 +97,6 @@ export class EditCategoryComponent implements OnInit{
   }
   fillForm(selectedP:Category)
   {
-    this.CData = Object.assign({},selectedP);
+    this.cedit.CData = Object.assign({},selectedP);
   }
 }

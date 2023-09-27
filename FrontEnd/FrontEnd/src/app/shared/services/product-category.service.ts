@@ -42,6 +42,7 @@ export class ProductCategoryService {
     this.objHttp.get(this.apiProductUrl + catId).subscribe({
       next: (response) => {
         this.prodServ.PList = response as Product[];
+        console.log(this.prodServ.PList)
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
