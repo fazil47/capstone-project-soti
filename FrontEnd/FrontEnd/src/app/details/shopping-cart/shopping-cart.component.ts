@@ -25,10 +25,12 @@ export class ShoppingCartComponent implements OnInit {
         this.isCartEmpty = true;
         this.price = 0;
       } else {
-        this.cartService.products.forEach((p) => {
-          this.price += p.unitPrice;
-          this.isCartEmpty = false;
-        });
+        this.cartService.products
+          .filter((p) => !p.discontinued)
+          .forEach((p) => {
+            this.price += p.unitPrice;
+            this.isCartEmpty = false;
+          });
       }
     });
   }
@@ -36,7 +38,7 @@ export class ShoppingCartComponent implements OnInit {
   removeFromCart(product: Product) {
     this.price -= product.unitPrice;
     this.cartService.removeFromCart(product);
-    if (this.cartService.products.length == 0) {
+    if (this.cartService.products.filter((p) => !p.discontinued).length == 0) {
       this.isCartEmpty = true;
       console.log('cart is empty');
     }
