@@ -18,6 +18,7 @@ namespace Backend.Controllers {
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] Login user) {
+            try { 
             if (user is null) {
                 return BadRequest("Invalid client request");
             }
@@ -52,6 +53,12 @@ namespace Backend.Controllers {
             }
 
             return Unauthorized();
+
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
         }
 
     }

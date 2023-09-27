@@ -26,29 +26,43 @@ namespace Backend.Controllers
         [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-          if (_context.Categories == null)
-          {
-              return NotFound();
-          }
-            return await _context.Categories.ToListAsync();
+            try {
+                if (_context.Categories == null)
+                {
+                    return NotFound();
+                }
+                return await _context.Categories.ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message} ");
+            }
+          
         }
 
         // GET: api/Categories/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-          if (_context.Categories == null)
-          {
-              return NotFound();
-          }
-            var category = await _context.Categories.FindAsync(id);
+            try {
+                if (_context.Categories == null)
+                {
+                    return NotFound();
+                }
+                var category = await _context.Categories.FindAsync(id);
 
-            if (category == null)
-            {
-                return NotFound();
+                if (category == null)
+                {
+                    return NotFound();
+                }
+
+                return category;
             }
-
-            return category;
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+            }
+          
         }
 
         // PUT: api/Categories/5
@@ -87,38 +101,55 @@ namespace Backend.Controllers
         [HttpPost("edit"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-          if (_context.Categories == null)
-          {
-              return Problem("Entity set 'OnlineGroceryStoreContext.Categories'  is null.");
-          }
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            try {
+                if (_context.Categories == null)
+                {
+                    return Problem("Entity set 'OnlineGroceryStoreContext.Categories'  is null.");
+                }
+                _context.Categories.Add(category);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+                return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            }catch(DbUpdateException dbex)
+            {
+                return StatusCode(500, $"Database error : {dbex.Message}");
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
+
         }
 
         // DELETE: api/Categories/5
         [HttpDelete("edit/{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            if (_context.Categories == null)
-            {
-                return NotFound();
-            }
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+            try {
+                if (_context.Categories == null)
+                {
+                    return NotFound();
+                }
+                var category = await _context.Categories.FindAsync(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
 
-            return NoContent();
+                return NoContent();
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+            }
+            
         }
 
         private bool CategoryExists(int id)
         {
+
             return (_context.Categories?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
