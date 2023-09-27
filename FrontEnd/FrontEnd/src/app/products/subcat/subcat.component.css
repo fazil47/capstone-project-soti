@@ -21,6 +21,7 @@
 
 #category-dropdown {
   margin-bottom: 30px;
+  z-index: 10;
 }
 
 #category-dropdown > .dropdown-toggle {
