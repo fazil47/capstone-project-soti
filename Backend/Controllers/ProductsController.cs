@@ -26,62 +26,96 @@ namespace Backend.Controllers {
         // GET: api/Products
         [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts() {
-            if (_context.Products == null) {
+            try {
+                if (_context.Products == null)
+                {
+                    return NotFound();
+                }
+                return await _context.Products.Include(p => p.Category).ToListAsync();
+            }catch(Exception ex)
+            {
+                if (_context.Products == null) {
                 return NotFound();
             }
             return await _context.Products.Include(p => p.Category).ToListAsync();
+            }
+            
         }
 
         // GET: api/Products/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> GetProduct(int id) {
-            if (_context.Products == null) {
-                return NotFound();
-            }
-            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(pr => pr.Id == id);
+            try {
+                if (_context.Products == null)
+                {
+                    return NotFound();
+                }
+                var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(pr => pr.Id == id);
 
-            if (product == null) {
-                return NotFound();
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                return product;
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
             }
 
-            return product;
         }
 
         [HttpGet("name/{productName}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> GetProduct(string productName,[BindRequired] decimal price)
         {
-            if (_context.Products == null)
+            try {
+                if (_context.Products == null)
+                {
+                    return NotFound();
+                }
+
+                var products = await _context.Products.Include(p => p.Category).
+                                    Where(p => p.ProductName.Contains(productName) && p.UnitPrice <= price).ToListAsync();
+
+
+                if (!products.Any())
+                {
+                    return NotFound();
+                }
+
+                return Ok(products);
+            }
+            catch (Exception ex)
             {
-                return NotFound();
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
             }
 
-            var products = await _context.Products.Include(p => p.Category).
-                                Where(p => p.ProductName.Contains(productName) && p.UnitPrice<=price ).ToListAsync();
-
-
-            if (!products.Any())
-            {
-                return NotFound();
-            }
-
-            return Ok(products);
         }
 
 
         [HttpGet("cat/{catid}"), Authorize(Roles = "User")]
         public async Task<ActionResult<Product>> GetProductByCatId(int catId) {
-            if (_context.Products == null) {
-                return NotFound();
+            try {
+                if (_context.Products == null)
+                {
+                    return NotFound();
+                }
+
+                var products = await _context.Products.Include(p => p.Category).
+                                    Where(p => p.CategoryId == catId).ToListAsync();
+
+
+                if (!products.Any())
+                    return NotFound();
+
+                return Ok(products);
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
             }
-
-            var products = await _context.Products.Include(p => p.Category).
-                                Where(p => p.CategoryId == catId).ToListAsync();
-
-
-            if (!products.Any())
-                return NotFound();
-
-            return Ok(products);
         }
 
         // PUT: api/Products/edit/5
@@ -111,30 +145,48 @@ namespace Backend.Controllers {
 
         [HttpPost("edit"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<Product>> AddProduct(Product product) {
-            if (_context.Products == null) {
-                return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
-            }
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            try {
+                if (_context.Products == null)
+                {
+                    return Problem("Entity set 'OnlineGroceryStoreContext.Products'  is null.");
+                }
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+                return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
+
         }
 
         // DELETE: api/Products/edit/5
         [HttpDelete("edit/{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id) {
-            if (_context.Products == null) {
-                return NotFound();
-            }
-            var product = await _context.Products.FindAsync(id);
-            if (product == null) {
-                return NotFound();
+            try {
+                if (_context.Products == null)
+                {
+                    return NotFound();
+                }
+                var product = await _context.Products.FindAsync(id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
             }
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool ProductExists(int id) {

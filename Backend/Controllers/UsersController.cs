@@ -30,17 +30,26 @@ namespace Backend.Controllers
         [HttpGet, Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            return await _context.Users.ToListAsync();
+            try {
+                if (_context.Users == null)
+                {
+                    return NotFound();
+                }
+                return await _context.Users.ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
+
         }
 
         // GET: api/User/5
         [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
+            try { 
           if (_context.Users == null)
           {
               return NotFound();
@@ -53,6 +62,12 @@ namespace Backend.Controllers
             }
 
             return user;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
         }
 
         // PUT: api/User/5
@@ -60,6 +75,7 @@ namespace Backend.Controllers
         [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
+            try { 
             if (id != user.Id)
             {
                 return BadRequest();
@@ -84,6 +100,12 @@ namespace Backend.Controllers
             }
 
             return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
+            }
         }
 
         // POST: api/User
@@ -91,65 +113,78 @@ namespace Backend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<User>> AddUser(User user)
         {
-          if (_context.Users == null)
-          {
-              return Problem("Entity set 'OnlineGroceryStoreContext.Users'  is null.");
-          }
-            if (user is null)
+            try
             {
-                return BadRequest("Invalid client request");
-            }
-            var dbUser = _context.Users.SingleOrDefault(u => u.EmailId == user.EmailId);
-            if (dbUser == null)
-            {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                if (_context.Users == null)
+                {
+                    return Problem("Entity set 'OnlineGroceryStoreContext.Users'  is null.");
+                }
+                if (user is null)
+                {
+                    return BadRequest("Invalid client request");
+                }
+                var dbUser = _context.Users.SingleOrDefault(u => u.EmailId == user.EmailId);
+                if (dbUser == null)
+                {
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-                var claims = new List<Claim>
+                    var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, user.EmailId),
                     new Claim(ClaimTypes.Role, "User")
                 };
 
-               
-                var tokeOptions = new JwtSecurityToken(
-                    issuer: "https://localhost:5001",
-                    audience: "https://localhost:4200",
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signinCredentials
-                );
 
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                    var tokeOptions = new JwtSecurityToken(
+                        issuer: "https://localhost:5001",
+                        audience: "https://localhost:4200",
+                        claims: claims,
+                        expires: DateTime.Now.AddMinutes(5),
+                        signingCredentials: signinCredentials
+                    );
 
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
 
-                return Ok(new AuthenticatedResponse { Token = tokenString, Name = user.FirstName + " " + user.LastName });
+                    _context.Users.Add(user);
+                    await _context.SaveChangesAsync();
+
+                    return Ok(new AuthenticatedResponse { Token = tokenString, Name = user.FirstName + " " + user.LastName });
+                }
+
+
+                return StatusCode(409, $"User with email '{user.EmailId}' already exists.");
+            }catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
             }
-
-
-            return StatusCode(409, $"User with email '{user.EmailId}' already exists.");
-        }
+         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Users == null)
+            try {
+                if (_context.Users == null)
+                {
+                    return NotFound();
+                }
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }catch(Exception ex)
             {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
+                return StatusCode(500, $"Internal Server Error : {ex.Message}");
+
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
        
         private bool UserExists(int id)
