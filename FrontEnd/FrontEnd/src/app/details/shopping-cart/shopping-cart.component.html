@@ -1,5 +1,11 @@
 <section class="page" style="border-radius: 0; min-height: 75vh;" >
   <h1 class="text-center">My Cart</h1>
+  <div  >
+  <div *ngIf="isCartEmpty;else cartContent">
+    <div class="text-center" style="margin-top: 30vh;"><p style="font-size: 5vh;color: gray;">Your cart is empty :( </p></div>
+    
+  </div>
+<ng-template #cartContent>
   <div class="container mt-5">
     <div class="container mt-4">
       <div class="container mt-4">
@@ -64,4 +70,6 @@
       </div>
     </div>
   </div>
+</ng-template>
+</div>
 </section>
