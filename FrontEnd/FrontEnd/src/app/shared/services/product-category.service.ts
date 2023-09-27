@@ -21,7 +21,7 @@ export class ProductCategoryService {
     public search: SearchService
   ) {}
 
-  clickedId:number;
+  clickedId: number;
 
   refreshProductCategoryList() {
     this.objHttp.get(this.apiUrl).subscribe({
@@ -44,10 +44,10 @@ export class ProductCategoryService {
     this.objHttp.get(this.apiProductUrl + catId).subscribe({
       next: (response) => {
         this.prodServ.PList = response as Product[];
-        this.search.data = "";
+        this.search.data = '';
         this.search.price = null;
 
-        console.log(this.prodServ.PList)
+        console.log(this.prodServ.PList);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
