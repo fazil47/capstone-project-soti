@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from './product.service';
 import { Product } from '../models/product.model';
+import { SearchService } from './search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +17,11 @@ export class ProductCategoryService {
   constructor(
     private prodServ: ProductService,
     private objHttp: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    public search: SearchService
   ) {}
 
-  clickedId:number;
+  clickedId: number;
 
   refreshProductCategoryList() {
     this.objHttp.get(this.apiUrl).subscribe({
@@ -42,7 +44,10 @@ export class ProductCategoryService {
     this.objHttp.get(this.apiProductUrl + catId).subscribe({
       next: (response) => {
         this.prodServ.PList = response as Product[];
-        console.log(this.prodServ.PList)
+        this.search.data = '';
+        this.search.price = null;
+
+        console.log(this.prodServ.PList);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

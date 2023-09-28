@@ -1,0 +1,27 @@
+.searchbar-wrapper {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+
+@media (min-width: 992px) {
+  .searchbar-wrapper {
+    justify-content: right;
+  }
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #212529;
+}

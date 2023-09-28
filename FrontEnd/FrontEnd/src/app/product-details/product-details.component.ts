@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../shared/models/product.model';
 import { ProductService } from '../shared/services/product.service';
-import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from '../shared/services/cart.service';
 
@@ -21,6 +20,8 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.cartService.loadCart();
+
     // First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));

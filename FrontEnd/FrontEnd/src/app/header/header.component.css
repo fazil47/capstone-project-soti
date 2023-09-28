@@ -18,6 +18,21 @@
   padding-bottom: 20px;
 }
 
+/* For making the navbar toggle SVG white */
+.navbar-toggler {
+  filter: invert(97%) sepia(10%) saturate(109%) hue-rotate(297deg)
+    brightness(122%) contrast(100%);
+}
+
+#navbar-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 30px;
+}
+
 @media (min-width: 992px) {
   #navbarContent {
     display: flex;

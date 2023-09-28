@@ -1,19 +1,29 @@
-<div class="productGrid" style="z-index: 0;">
-  <div class="productWrapper" *ngFor="let p of serv.PList" style="z-index: 0;">
+<div
+  class="productGrid"
+  style="z-index: 0"
+  *ngIf="serv.PList != undefined && serv.PList.length != 0"
+>
+  <div
+    class="productWrapper"
+    *ngFor="let p of serv.PList"
+    style="z-index: 0"
+    [ngStyle]="p.discontinued ? { display: 'none' } : {}"
+  >
     <div
       class="card"
       *ngIf="!p.discontinued"
       [routerLink]="['/products', p.id]"
     >
-      <img
-        src={{p.imgUrl}}
-        class="card-img-top"
-        alt="productImage"
-      />
+      <img src="{{ p.imgUrl }}" class="card-img-top" alt="productImage" />
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title" style="color: green;">{{ p.productName }}</h5>
-        <p class="card-text text-dark"><strong>{{ p.unitPrice | currency: 'INR'}}</strong></p>
+        <h5 class="card-title" style="color: green">{{ p.productName }}</h5>
+        <p class="card-text text-dark">
+          <strong>{{ p.unitPrice | currency : "INR" }}</strong>
+        </p>
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="serv.PList != undefined && serv.PList.length == 0">
+  <p>No product found..</p>
 </div>

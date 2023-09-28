@@ -8,7 +8,7 @@
         height="50"
     /></a>
     <button
-      class="navbar-toggler bg-white"
+      class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarContent"
@@ -21,29 +21,21 @@
     <div class="collapse navbar-collapse bg-dark" id="navbarContent">
       <div class="navbar-nav fs-5 text">
         <a
-        class="nav-link text-white"
-        routerLink="products"
-        routerLinkActive="active fw-bold"
-        id="hover4"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="refreshProductList()"
-        >Products</a
-      >
-     
-      <a
-        class="nav-link text-white"
-        routerLink="cart"
-        routerLinkActive="active fw-bold"
-        id="hover5"
-        >Cart</a
-      >
-      <a
-      class="nav-link text-white"
-      routerLink="contact"
-      routerLinkActive="active fw-bold"
-      id="hover3"
-      >Contact</a
-    >
+          class="nav-link text-white"
+          routerLink="products"
+          routerLinkActive="active fw-bold"
+          id="hover4"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="refreshProductList()"
+          >Products</a
+        >
+        <a
+          class="nav-link text-white"
+          routerLink="contact"
+          routerLinkActive="active fw-bold"
+          id="hover3"
+          >Contact</a
+        >
         <a
           class="nav-link text-white"
           aria-current="page"
@@ -52,39 +44,45 @@
           id="hover2"
           >About</a
         >
-       
-       
         <a
-        class="nav-link text-white"
-        *ngIf="this.loginServ.isAdmin()"
-        routerLink="products/edit"
-        routerLinkActive="active fw-bold"
-        id="hover5"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >Edit Products</a
-      >
-      <a
-        class="nav-link text-white"
-        *ngIf="this.loginServ.isAdmin()"
-        routerLink="categories/edit"
-        routerLinkActive="active fw-bold"
-        id="hover5"
-        
-        >Edit Categories</a
-      >
+          class="nav-link text-white"
+          *ngIf="this.loginServ.isAdmin()"
+          routerLink="products/edit"
+          routerLinkActive="active fw-bold"
+          id="hover5"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Edit Products</a
+        >
+        <a
+          class="nav-link text-white"
+          *ngIf="this.loginServ.isAdmin()"
+          routerLink="categories/edit"
+          routerLinkActive="active fw-bold"
+          id="hover5"
+          >Edit Categories</a
+        >
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
-      <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
-        <a class="btn btn-outline-primary" routerLink="login">
-          <span>Login/Register</span>
-          <i class="fa fa-user"></i>
-        </a>
-      </div>
-      <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
-        <a class="btn btn-outline-danger" (click)="logOut()">
-          <span>Logout</span>
-          <i class="fa fa-user"></i>
-        </a>
+      <div id="navbar-button-wrapper">
+        <a
+          class="nav-link text-white"
+          routerLink="cart"
+          routerLinkActive="active fw-bold"
+          id="hover5"
+          ><i class="fas fa-shopping-cart fa-xl" style="color: white"></i
+        ></a>
+        <div class="ml-auto" *ngIf="!this.loginServ.isUserAuthenticated()">
+          <a class="btn btn-outline-primary" routerLink="login">
+            <span>Login/Register</span>
+            <i class="fa fa-user"></i>
+          </a>
+        </div>
+        <div class="ml-auto" *ngIf="this.loginServ.isUserAuthenticated()">
+          <a class="btn btn-outline-danger" (click)="logOut()">
+            <span>Logout</span>
+            <i class="fa fa-user"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>

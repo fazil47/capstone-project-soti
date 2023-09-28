@@ -11,15 +11,23 @@ export class CartService {
 
   constructor(private productService: ProductService) {}
 
-  loadCart(): void {
+  loadCart(onSuccess?: () => void): void {
     try {
       this.productIds = JSON.parse(localStorage.getItem('cart'));
       if (this.productIds === undefined || this.productIds === null) {
         this.products = [];
+        if (onSuccess) {
+          onSuccess();
+        }
       } else {
         this.productService
           .getProductsById(this.productIds)
-          .then((products) => (this.products = products));
+          .then((products) => {
+            this.products = products;
+            if (onSuccess) {
+              onSuccess();
+            }
+          });
       }
     } catch (error) {
       console.error(error);
@@ -37,7 +45,6 @@ export class CartService {
       this.products.push(product);
       this.productIds.push(product.id);
       localStorage.setItem('cart', JSON.stringify(this.productIds));
-      
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +75,7 @@ export class CartService {
     return this.productIds?.includes(product.id);
   }
 
-  clearCart(){
+  clearCart() {
     localStorage.setItem('cart', JSON.stringify([]));
   }
 }
