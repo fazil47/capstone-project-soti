@@ -50,11 +50,8 @@ export class ShoppingCartComponent implements OnInit {
 
   buyCart() {
     Swal.fire({
-      title: 'proceed with the purchase',
-      text:
-        'Hi ' +
-        this.loginServ.name +
-        ', are you sure you want to proceed with the purchase',
+      title: 'Proceed with the purchase',
+      text: 'Are you sure you want to proceed with the purchase',
       showDenyButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: `No`,

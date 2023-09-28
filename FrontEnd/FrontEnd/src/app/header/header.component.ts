@@ -17,22 +17,28 @@ export class HeaderComponent {
   ) {}
 
   logOut(): void {
-    Swal.fire({
-      title: 'Do you want to logout?',
-      text: 'Hi ' + this.loginServ.name + ', do you really want to log out :(',
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: `No`,
-      icon: 'warning',
-      centre: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Logged Out', 'Logged out successfully', 'success');
-        this.loginServ.logout();
-      } else if (result.isDenied) {
-        Swal.fire('Continue as ' + this.loginServ.name, '', 'info');
-      }
-    });
+    try {
+      const name = JSON.parse(localStorage.getItem('currentUser'))?.name;
+      Swal.fire({
+        title: 'Do you want to logout?',
+        text: 'Hi ' + name + ', do you really want to log out :(',
+        showDenyButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: `No`,
+        icon: 'warning',
+        centre: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Logged Out', 'Logged out successfully', 'success');
+          this.loginServ.logout();
+        } else if (result.isDenied) {
+          Swal.fire('Continue as ' + name, '', 'info');
+        }
+      });
+    } catch {
+      console.error('Current user not valid');
+      this.loginServ.logout();
+    }
   }
 
   refreshProductList() {
